@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cd8e6f8-40c8-4c3e-b6eb-f626b5649527" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/source/image/Cam_Capture.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/image/Client.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/image/ser2net.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Wifi-Smart-Car-Ⅳ-Hardware-and-MCU’s-Programming.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Wifi-Smart-Car-Ⅳ-Hardware-and-MCU’s-Programming.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/毕业前随想.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/毕业前随想.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="753">
-              <caret line="81" column="68" selection-start-line="81" selection-start-column="68" selection-end-line="81" selection-end-column="68" />
+            <state relative-caret-position="432">
+              <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -33,7 +27,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="54">
-                <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="7" selection-end-column="16" />
+                <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="16" />
               </first_editor>
               <second_editor />
             </state>
@@ -92,8 +86,8 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/毕业前随想.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="180">
-                <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <first_editor relative-caret-position="360">
+                <caret line="20" column="314" selection-start-line="20" selection-start-column="314" selection-end-line="20" selection-end-column="314" />
               </first_editor>
               <second_editor />
             </state>
@@ -171,13 +165,13 @@
         <option value="$PROJECT_DIR$/source/_posts/Wifi-Smart-Car-Ⅳ-Hardware-and-MCU’s-Programming.md" />
         <option value="$PROJECT_DIR$/source/_posts/Wifi-Smart-Car-Ⅱ-Communication-by-Using-Ser2net.md" />
         <option value="$PROJECT_DIR$/source/_posts/Wifi-Smart-Car-Ⅲ-Devolop-a-PC-Client.md" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/Deploy-a-Transparent-Proxy-with-Squid.md" />
+        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/毕业前随想.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="67" />
     <option name="y" value="-8" />
     <option name="width" value="1861" />
@@ -259,15 +253,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556344636510</updated>
-      <workItem from="1556417896026" duration="4897000" />
+      <workItem from="1556417896026" duration="9823000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5824000" />
+    <option name="totallyTimeSpent" value="10750000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="-8" width="1861" height="1096" extended-state="6" />
+    <frame x="67" y="-8" width="1861" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23486951" />
@@ -446,13 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="753">
-          <caret line="81" column="68" selection-start-line="81" selection-start-column="68" selection-end-line="81" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/Deploy-a-Transparent-Proxy-with-Squid.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -467,17 +454,24 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="54">
-            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="7" selection-end-column="16" />
+            <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="16" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/毕业前随想.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="180">
-            <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <first_editor relative-caret-position="360">
+            <caret line="20" column="314" selection-start-line="20" selection-start-column="314" selection-end-line="20" selection-end-column="314" />
           </first_editor>
           <second_editor />
         </state>
