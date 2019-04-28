@@ -8,7 +8,7 @@ subtitle: A hardware engineer who knows a little about software.
 description:
 keywords:
 author: Kaylor
-language:
+language: en
 timezone:
 
 # URL
@@ -79,7 +79,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:kaylorchen/kaylorchen.github.io.git
+  repository: https://github.com/kaylorchen/kaylorchen.github.io.git
   branch: master
 
 
