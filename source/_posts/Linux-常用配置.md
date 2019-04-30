@@ -9,6 +9,7 @@ tags:
 - ssh
 categories:
 - Linux
+comments: true
 ---
 # Ubuntu 18.04 网络配置
 编辑*** /etc/netplan/50-cloud-init.yaml***
