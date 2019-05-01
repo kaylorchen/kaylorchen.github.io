@@ -1,5 +1,6 @@
 ---
 title: 'Remote Desktop I: Install NoMachine in TX2'
+comments: true
 date: 2019-04-30 14:03:31
 tags:
 - Remote Desktop
