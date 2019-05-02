@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cd8e6f8-40c8-4c3e-b6eb-f626b5649527" name="Default" comment="Update">
-      <change afterPath="$PROJECT_DIR$/source/image/SPIFFS.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/image/Station.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/image/Web.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/image/kaylor.txt.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="5cd8e6f8-40c8-4c3e-b6eb-f626b5649527" name="Default" comment="Update" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +10,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/themes/next/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="313" column="14" selection-start-line="313" selection-start-column="14" selection-end-line="313" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/Set-a-softAP-with-ESP32.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -40,7 +43,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/Configure-your-Wifi-Information-via-Browser.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -74,11 +77,6 @@
               <second_editor />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/next/source/images/logo.svg">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -154,12 +152,12 @@
         <option value="$PROJECT_DIR$/source/_posts/Setup-an-ESP32-Arduino-development-environment.md" />
         <option value="$PROJECT_DIR$/source/_posts/First-ESP32-Project.md" />
         <option value="$PROJECT_DIR$/source/_posts/Remote-Desktop-I-Install-NoMachine-in-TX2.md" />
-        <option value="$PROJECT_DIR$/themes/next/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/How-to-controll-GPIO-of-ESP32.md" />
         <option value="$PROJECT_DIR$/source/_posts/Set-a-softAP-with-ESP32.md" />
         <option value="$PROJECT_DIR$/source/_posts/Connect-to-your-Wifi-with-ESP32.md" />
         <option value="$PROJECT_DIR$/source/_posts/How-to-Test-SPIFFS.md" />
         <option value="$PROJECT_DIR$/source/_posts/Configure-your-Wifi-Information-via-Browser.md" />
+        <option value="$PROJECT_DIR$/themes/next/_config.yml" />
       </list>
     </option>
   </component>
@@ -191,8 +189,13 @@
             <path>
               <item name="kaylorchen.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="kaylorchen.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="image" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kaylorchen.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kaylorchen.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="next" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -246,7 +249,7 @@
       <workItem from="1556592575927" duration="11250000" />
       <workItem from="1556615196015" duration="3092000" />
       <workItem from="1556697572138" duration="4540000" />
-      <workItem from="1556764132360" duration="4549000" />
+      <workItem from="1556764132360" duration="4762000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1556635554802</created>
@@ -266,12 +269,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36778000" />
+    <option name="totallyTimeSpent" value="36991000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="-8" width="1861" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16712937" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16712937" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -283,7 +287,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17465389" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17465389" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
@@ -542,13 +546,6 @@
     <entry file="file://$PROJECT_DIR$/themes/next/source/images/apple-touch-icon-next.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/next/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/How-to-controll-GPIO-of-ESP32.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -634,6 +631,13 @@
             <caret line="230" column="129" selection-start-line="230" selection-start-column="129" selection-end-line="230" selection-end-column="129" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="313" column="14" selection-start-line="313" selection-start-column="14" selection-end-line="313" selection-end-column="14" />
         </state>
       </provider>
     </entry>
