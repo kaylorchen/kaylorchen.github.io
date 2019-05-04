@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cd8e6f8-40c8-4c3e-b6eb-f626b5649527" name="Default" comment="Update">
+      <change afterPath="$PROJECT_DIR$/source/image/RPi_MQTT.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Write-Read-GPIO-in-your-Raspberry-Pi-with-WiringPi-Library.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Write-Read-GPIO-in-your-Raspberry-Pi-with-WiringPi-Library.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,11 +14,11 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Install-WiringPi-library-in-Raspberry-Pi.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Install-Ubuntu-18-04-in-Raspberry-Pi-Mode-3B.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="54">
-                <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="14" />
+              <first_editor relative-caret-position="342">
+                <caret line="19" selection-start-line="19" selection-end-line="19" />
               </first_editor>
               <second_editor />
             </state>
@@ -26,11 +26,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Install-Ubuntu-18-04-in-Raspberry-Pi-Mode-3B.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Write-Read-GPIO-in-your-Raspberry-Pi-with-WiringPi-Library.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="342">
-                <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <first_editor relative-caret-position="846">
+                <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
               </first_editor>
               <second_editor />
             </state>
@@ -38,11 +38,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Write-Read-GPIO-in-your-Raspberry-Pi-with-WiringPi-Library.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Install-and-Test-MQTT-Client-C-Library-in-Raspberry-Pi.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="166">
-                <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+              <first_editor relative-caret-position="274">
+                <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
               </first_editor>
               <second_editor />
             </state>
@@ -164,6 +164,7 @@
         <option value="$PROJECT_DIR$/source/_posts/Configure-your-Wifi-Information-via-Browser.md" />
         <option value="$PROJECT_DIR$/themes/next/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/Write-Read-GPIO-in-your-Raspberry-Pi-with-WiringPi-Library.md" />
+        <option value="$PROJECT_DIR$/source/_posts/Install-and-Test-MQTT-Client-C-Library-in-Raspberry-Pi.md" />
       </list>
     </option>
   </component>
@@ -201,6 +202,12 @@
             <path>
               <item name="kaylorchen.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="kaylorchen.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="image" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kaylorchen.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kaylorchen.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="themes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -225,14 +232,14 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Private\kaylorchen.github.io\source\image" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Private\kaylorchen.github.io\source\image" />
       <recent name="$PROJECT_DIR$/source/image" />
       <recent name="$PROJECT_DIR$/themes/next/source/images" />
       <recent name="$PROJECT_DIR$/themes/next" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Private\kaylorchen.github.io\source\image" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -262,7 +269,8 @@
       <workItem from="1556615196015" duration="3092000" />
       <workItem from="1556697572138" duration="4540000" />
       <workItem from="1556764132360" duration="5007000" />
-      <workItem from="1556971599324" duration="264000" />
+      <workItem from="1556971599324" duration="322000" />
+      <workItem from="1556974494691" duration="2570000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1556635554802</created>
@@ -282,12 +290,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37500000" />
+    <option name="totallyTimeSpent" value="40128000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="-8" width="1861" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16879511" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17046085" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -318,9 +327,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/themes/next/source/css/_custom/custom.styl">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/tags/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -581,6 +587,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Install-WiringPi-library-in-Raspberry-Pi.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="54">
+            <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="14" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Install-Ubuntu-18-04-in-Raspberry-Pi-Mode-3B.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="342">
+            <caret line="19" selection-start-line="19" selection-end-line="19" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/Configure-your-Wifi-Information-via-Browser.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -623,31 +649,21 @@
     <entry file="file://$PROJECT_DIR$/themes/next/source/images/searchicon.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Install-WiringPi-library-in-Raspberry-Pi.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="54">
-            <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="14" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Install-Ubuntu-18-04-in-Raspberry-Pi-Mode-3B.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="342">
-            <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/Write-Read-GPIO-in-your-Raspberry-Pi-with-WiringPi-Library.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="166">
+          <first_editor relative-caret-position="846">
             <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Install-and-Test-MQTT-Client-C-Library-in-Raspberry-Pi.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="274">
+            <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
           </first_editor>
           <second_editor />
         </state>
