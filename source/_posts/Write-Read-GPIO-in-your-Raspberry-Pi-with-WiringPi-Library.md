@@ -37,6 +37,7 @@ void loop(uint16_t cnt, int ctlPin, int sigPin)
         while(sig)
         {
             printf("sig state: %d\n",sig);
+            delay(10);
             sig = digitalRead(sigPin);
         }
         printf("___sig state: %d\n",sig);
@@ -44,6 +45,7 @@ void loop(uint16_t cnt, int ctlPin, int sigPin)
         while(!sig)
         {
             printf("sig state: %d\n",sig);
+            delay(10);
             sig = digitalRead(sigPin);
         }
         printf("###sig state: %d\n",sig);
