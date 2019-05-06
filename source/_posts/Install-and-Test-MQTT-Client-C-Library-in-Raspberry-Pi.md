@@ -7,9 +7,10 @@ tags:
 - Raspberry Pi
 - MQTT
 categories:
-- Raspberry Pi
-- IoT
+- [IoT]
+- [Raspberry Pi]
 ---
+
 # Install MQTT Client C Library
 ```
 apt update
