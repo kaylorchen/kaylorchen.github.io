@@ -4,6 +4,8 @@ date: 2015-11-11 16:45:29
 tags:
 - NAS
 - OpenWRT
+categories:
+- OpenWRT
 ---
 Firstly, we should install USB storage prerequisites.
 ```

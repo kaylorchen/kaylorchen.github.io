@@ -3,6 +3,8 @@ title: How to Update OpenWRT Firmware by SSH or Uart
 date: 2015-11-05 15:08:23
 tags: 
 - OpenWRT
+categories:
+- OpenWRT
 ---
 If you want to have a diy router, I suggest you buy a openwrt router.
 

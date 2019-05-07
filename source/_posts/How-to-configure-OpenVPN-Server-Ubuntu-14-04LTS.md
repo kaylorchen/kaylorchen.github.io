@@ -4,6 +4,8 @@ date: 2015-11-06 15:30:57
 tags: 
 - OpenVPN 
 - Ubuntu
+categories:
+- Network
 ---
 ### Install Software
 ```bash

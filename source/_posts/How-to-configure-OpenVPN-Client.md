@@ -7,6 +7,8 @@ tags:
 - Ubuntu
 - Linux
 - Windows
+categories:
+- Network
 ---
 ### Generate client certifictes with OpenVPN server
 Before configuring client, I must generate some client files in the server.

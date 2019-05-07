@@ -3,6 +3,8 @@ title: How to Realize QoS in your Openwrt Router
 date: 2015-11-07 16:27:52
 tags:
 - OpenWRT
+categories:
+- OpenWRT
 ---
 I realize IP QoS(Quality of Service) in my Openwrt with iptables and tc(Traffic Control).
 

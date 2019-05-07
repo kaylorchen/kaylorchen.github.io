@@ -4,6 +4,8 @@ date: 2015-11-11 16:35:44
 tags:
 - Uboot
 - DM8168
+categories:
+- Network
 ---
 We only designed a Ethernet interface with Emac1, so I had to modified the Uboot sources from TI.
 MII interface is a manager to read the PHY address of network chip when this interface is initialized. The value of the PHY address will be save in a 32-bit register. For example, the address is 3, and the value will be 0×00000008.  The value’s 3rd bit is set as ’1′, so I find the value is 0×08, not 0×03. I have come to the conclusion that a MII interface can manage 32 network chip at most.
