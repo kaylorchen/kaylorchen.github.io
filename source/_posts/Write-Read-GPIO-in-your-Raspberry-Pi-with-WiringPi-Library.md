@@ -19,7 +19,7 @@ usermod -a -G gpio root
 reboot
 ```
 # Edit C++ code:
-```
+```C++
 #include <iostream>
 #include "wiringPi.h"
 

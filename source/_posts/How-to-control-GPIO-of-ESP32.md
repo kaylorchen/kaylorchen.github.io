@@ -1,5 +1,5 @@
 ---
-title: How to controll GPIO of ESP32
+title: How to control GPIO of ESP32
 comments: true
 date: 2019-05-01 16:05:00
 tags:
@@ -13,7 +13,7 @@ categories:
 ![](/image/ESP32.jpg)
 ![](/image/GPIO.jpg)
 # Software
-```
+```C++
 #include "Arduino.h"
 // constants won't change. Used here to set a pin number:
 const int ledPin =  2;// the number of the LED pin

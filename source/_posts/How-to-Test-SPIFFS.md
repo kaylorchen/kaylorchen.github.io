@@ -58,7 +58,7 @@ Wrote 1503232 bytes (2863 compressed) at 0x00291000 in 0.1 seconds (effective 21
 Hash of data verified.
 ```
 # Software 
-```
+```C++
 #include "SPIFFS.h"
 #include "FS.h"
 void listDir(fs::FS &fs, const char * dirname, uint8_t levels){

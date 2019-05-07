@@ -24,7 +24,7 @@ monitor_speed = 115200
 ```
 # Program Application Code
 Edit **src/main.cpp**.  
-```
+```C++
 #include "Arduino.h"
 uint64_t chipid;  
 void setup(){

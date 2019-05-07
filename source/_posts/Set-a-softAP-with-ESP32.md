@@ -14,7 +14,7 @@ categories:
 - Control LED with the browser
 
 # Software
-```
+```C++
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiAP.h>

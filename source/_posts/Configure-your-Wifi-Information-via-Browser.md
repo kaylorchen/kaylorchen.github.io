@@ -21,7 +21,7 @@ directory.
 Upload these files to your image: ***Terminal -> Run task -> PlatformIO: Upload file system image***
 
 # Software
-```
+```C++
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WebServer.h>

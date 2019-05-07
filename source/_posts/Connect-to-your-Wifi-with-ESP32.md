@@ -13,7 +13,7 @@ categories:
 - Connect to a Wifi as a station
 
 # Software
-```
+```C++
 #include <WiFi.h>
 
 const char* ssid     = "Xiaomi_kaylordut";
