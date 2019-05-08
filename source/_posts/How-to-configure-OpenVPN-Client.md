@@ -41,6 +41,7 @@ verb 3
 ca ca.crt
 cert client.crt
 key client.key
+comp-lzo
 ```
 
 #### Ubuntu Client
