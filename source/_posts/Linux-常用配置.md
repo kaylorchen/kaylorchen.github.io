@@ -148,3 +148,7 @@ $ ip route show
 
 $ ip route list
 ```
+
+# SimpleHTTPServer with python
+
+python -m SimpleHTTPServer
