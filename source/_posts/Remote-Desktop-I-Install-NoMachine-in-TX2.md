@@ -66,4 +66,4 @@ Section "Screen"
         EndSubSection
 EndSection
 ```
-PS: You can modify "**Virtual 1920 1080**".
+PS: You can modify **Modes "1920x1080"**.
