@@ -28,6 +28,11 @@ cd /tmp
 sudo dpkg -i nomachine*arm64.deb
 ```
 # Configure TX2 Resolution
+
+Install driver:
+```bash
+sudo apt install xserver-xorg-video-dummy
+```
 ***sudo vi /etc/X11/xorg.conf*** as follow:
 ```
 # Copyright (c) 2015, NVIDIA CORPORATION.  All Rights Reserved.
@@ -51,18 +56,13 @@ Section "Device"
     Option      "AllowEmptyInitialConfiguration" "true"
 EndSection
 
-Section "Monitor"
-   Identifier "DSI-0"
-   Option    "Ignore"
-EndSection
-
 Section "Screen"
         Identifier "Default Screen"
         Monitor "Configured Monitor"
         Device "Configured Video Device"
         SubSection "Display"
-                   Depth 24
-                   Virtual 1920 1080
+        Depth 24
+        Modes "1920x1080"
         EndSubSection
 EndSection
 ```
