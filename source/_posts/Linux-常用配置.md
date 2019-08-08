@@ -154,5 +154,7 @@ $ ip route list
 ```
 
 # SimpleHTTPServer with python
-
+```bash
 python -m SimpleHTTPServer
+```
+
