@@ -82,6 +82,10 @@ git remote add origin git_link
 ```
 git remote –v
 ```
+- 取消本地目录关联下的远程库
+```
+git remote remove origin
+```
 - 推送主分支
 ```
 git push --set-upstream origin master
