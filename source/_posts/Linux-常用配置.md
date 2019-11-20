@@ -156,5 +156,29 @@ $ ip route list
 # SimpleHTTPServer with python
 ```bash
 python -m SimpleHTTPServer
+
+python3 -m http.server
+```
+
+# Udev 检查指令
+查看某个设备的详细信息，如/dev/video0
+```
+udevadm info -a /dev/video0
+```
+编辑匹配规则（/etc/udev/rules.d/10-local.rules）:
+```
+#map cameras to clear names
+KERNEL=="video*", ATTRS{manufacturer}=="RoboteX", ATTRS{product}=="Drive Camera", SYMLINK+="drive"
+KERNEL=="video*", ATTRS{manufacturer}=="RoboteX", ATTRS{product}=="PTZ Camera", SYMLINK+="ptz"
+KERNEL=="video*", ATTRS{manufacturer}=="RoboteX", ATTRS{product}=="Arm Camera", SYMLINK+="armCam"
+KERNEL=="video*", ATTRS{manufacturer}=="RoboteX", ATTRS{product}=="USB2.0 Camera", SYMLINK+="radCam"
+#map storage device to clear name
+KERNEL=="mmcblk?p1", ATTRS{vendor}=="0x8086", ATTRS{device}=="0x0f16", SYMLINK+="storage"
+#KERNEL=="mmcblk?p2", SYMLINK+="storage"
+KERNEL=="sd?1", KERNELS=="1-4.4:1.0", SYMLINK+="storage"
+```
+触发规则
+```
+udevadm trigger
 ```
 
