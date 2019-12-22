@@ -11,6 +11,22 @@ categories:
 - Linux
 comments: true
 ---
+
+# Linux 内核编译指令
+配置config文件
+```bash
+make menuconfig
+```
+编译内核和模块
+```bash
+make
+```
+单独编译模块和安装（不要轻易安装内核模块，如果不指定安装路径，容易损坏系统）
+```bash
+make modules
+make modules_install INSTALL_MOD_PATH=安装路径
+```
+
 # Ubuntu 18.04 网络配置
 编辑*** /etc/netplan/50-cloud-init.yaml***
 ```
@@ -104,6 +120,10 @@ git branch -d xxx
 ```
 git branch -D xxx
 ```
+- 打补丁
+```bash
+git am *.patch
+```
 
 # Ubuntu 启动分析
 ```
@@ -180,5 +200,14 @@ KERNEL=="sd?1", KERNELS=="1-4.4:1.0", SYMLINK+="storage"
 触发规则
 ```
 udevadm trigger
+```
+
+# 查看文件夹大小
+```bash
+du
+du --max-depth=0 ./
+du -k ./
+du -m ./
+du -h ./
 ```
 
