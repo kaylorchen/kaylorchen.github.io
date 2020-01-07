@@ -124,6 +124,10 @@ git branch -D xxx
 ```bash
 git am *.patch
 ```
+- 修改commit的message
+```bash
+git commit --amend -m "I miss you"
+```
 
 # Ubuntu 启动分析
 ```
