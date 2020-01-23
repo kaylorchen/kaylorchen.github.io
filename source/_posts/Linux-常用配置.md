@@ -128,6 +128,20 @@ git am *.patch
 ```bash
 git commit --amend -m "I miss you"
 ```
+3. 代理
+- 加代理
+```bash
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+#只对github.com
+git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+```
+- 取消代理
+```
+git config --global --unset http.https://github.com.proxy
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
 
 # Ubuntu 启动分析
 ```
@@ -179,9 +193,9 @@ $ ip route list
 
 # SimpleHTTPServer with python
 ```bash
-python -m SimpleHTTPServer
+python -m SimpleHTTPServer 8080
 
-python3 -m http.server
+python3 -m http.server 8080
 ```
 
 # Udev 检查指令
