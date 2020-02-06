@@ -147,6 +147,18 @@ git config --unset http.proxy
 git config --unset https.proxy
 
 ```
+4.Linux设置免密
+```bash
+vim ~/.git-credentials
+```
+内容如下：
+```
+https://{username}:{passwd}@github.com
+```
+添加全局配置
+```bash
+git config --global credential.helper store
+```
 
 # Ubuntu 启动分析
 ```
@@ -232,5 +244,55 @@ du --max-depth=0 ./
 du -k ./
 du -m ./
 du -h ./
+```
+
+# 使用parted扩容分区
+- 修改分区表
+```bash
+sudo parted /dev/sdb
+```
+打印信息如下：
+```
+GNU Parted 3.2
+Using /dev/sdb
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) p
+Model: Multiple Card Reader (scsi)
+Disk /dev/sdb: 15.8GB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags: 
+
+Number  Start  End     Size    Type     File system  Flags
+ 1      154kB  52.4MB  52.3MB  primary  ext2         boot
+
+(parted) resizepart 1                                                     
+Warning: Partition /dev/sdb1 is being used. Are you sure you want to continue?
+Yes/No? Yes                                                               
+End?  [52.4MB]? 15.8G                                                     
+(parted) p                                                                
+Model: Multiple Card Reader (scsi)
+Disk /dev/sdb: 15.8GB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags: 
+
+Number  Start  End     Size    Type     File system  Flags
+ 1      154kB  15.8GB  15.8GB  primary  ext2         boot
+
+(parted) q                                                                
+Information: You may need to update /etc/fstab.
+```
+上述的指令可以复合成：
+```bash
+sudo parted -s /dev/sdb resizepart 1 15.8G
+```
+- 恢复文件系统
+```bash
+sudo e2fsck -f /dev/sdb1
+```
+- 扩容
+```bash
+sudo resize2fs /dev/sdb1
 ```
 
