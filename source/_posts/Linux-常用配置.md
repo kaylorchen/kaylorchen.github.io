@@ -28,7 +28,7 @@ make modules_install INSTALL_MOD_PATH=安装路径
 ```
 
 # Ubuntu 18.04 网络配置
-编辑*** /etc/netplan/50-cloud-init.yaml***
+编辑 ***/etc/netplan/50-cloud-init.yaml***
 ```
 # This file is generated from information provided by
 # the datasource.  Changes to it will not persist across an instance.
@@ -159,54 +159,95 @@ https://{username}:{passwd}@github.com
 ```bash
 git config --global credential.helper store
 ```
+编辑全局配置文件 ***~/.gitconfig***
+```
+[credential]
+	helper = store
+[user]
+	email = you@example.com
+[https]
+    proxy = socks://192.168.15.1:10808
+[http]
+    proxy = socks://192.168.15.1:10808
+[core]
+	editor = vim
+```
+# ROS常用指令
+- 配置ROS环境变量（临时）
+```bash
+export ROS_IP=192.168.15.147
+export ROS_MASTER_URI="http://192.168.15.3:11311"
+```
+- 设置ROS Log等级
+```bash
+rqt_logger_level
+```
 
 # Ubuntu 启动分析
 ```
 systemd-analyze plot > boot.svg
 ```
 
-# IP
+# 网络配置
+
+- ipv4:
+```bash
+ip -4 addr
 ```
-ipv4:
-
-$ ip -4 addr
-ipv6:
-
-$ ip -6 addr
-查詢個別網卡的資訊:
-
-$ ip addr show eth0
-或
-
-$ ip addr list eth0
-或
-
-$ ip addr show dev eth0
-給網卡定義 IP 地址:
-
-$ sudo ip addr add 10.20.0.15/24 dev eth1
-從網卡移除 IP 地址:
-
-$ sudo ip addr del 10.20.0.15/24 dev eth1
-啟動網卡:
-
-$ sudo ip link set dev eth1 up
-停用網卡:
-
-$ sudo ip link set dev eth1 down
-顯示 Routing Table
-
-$ip r
-或
-
-$ ip route
-戓
-
-$ ip route show
-或
-
-$ ip route list
+- ipv6:
 ```
+ip -6 addr
+```
+- 查詢個別網卡的資訊:
+```
+ip addr show eth0
+ip addr list eth0
+ip addr show dev eth0
+```
+- 給網卡定義 IP 地址:
+```
+sudo ip addr add 10.20.0.15/24 dev eth1
+```
+- 從網卡移除 IP 地址:
+```
+sudo ip addr del 10.20.0.15/24 dev eth1
+```
+- 啟動網卡:
+```
+sudo ip link set dev eth1 up
+```
+- 停用網卡:
+```
+sudo ip link set dev eth1 down
+```
+- 顯示 Routing Table
+```
+ip r
+ip route
+ip route show
+ip route list
+```
+- 添加路由和默认网关
+```bash
+ip route add default via 192.168.1.254
+route add default gw 192.168.1.254
+```
+- 无线网络配置
+```bash
+kaylor@kaylor-ThinkPad-T460:~$ wpa_passphrase ssid password
+network={
+	ssid="ssid"
+	#psk="password"
+	psk=44116ea881531996d8a23af58b376d70f196057429c258f529577a26e727ec1b
+}
+```
+使用以上指令生成配置文件，然后在 ***/etc/network/interfaces.d/*** 下建立wlan0文件，内容如下：
+```
+auto wlan0
+iface wlan0 inet dhcp
+wpa-conf /etc/wpa_supplicant/wpa.conf
+```
+
 
 # SimpleHTTPServer with python
 ```bash
