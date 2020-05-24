@@ -337,3 +337,8 @@ sudo e2fsck -f /dev/sdb1
 sudo resize2fs /dev/sdb1
 ```
 
+# APT
+- 列出软件包可用版本
+```
+apt-cache madison package-name
+```
