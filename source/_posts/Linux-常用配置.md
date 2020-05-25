@@ -342,3 +342,49 @@ sudo resize2fs /dev/sdb1
 ```
 apt-cache madison package-name
 ```
+# docker
+- 基本指令
+```bash
+docker ps -l #查看上一次运行的容器
+docker ps -a #查看历史运行的容器
+docker run -i -t ubuntu bash #运行ubuntu， -i表示标准输出， -t表示生成tty， bash是运行的指令
+docker inspecet 唯一ID或者容器名字 #返回容器的信息
+docker run --name=your_name -it ubuntu bash #定义容器的名字
+docker start -i container_name #重新启动停止的容器
+docker rm 容器的ID/容器名 #删除已经停止的容器
+```
+- 守护式容器
+```bash
+docker run -i -t ubuntu /bin/bash #启动之后使用Ctrl+P 和 Ctrl+Q
+docker attach 容器ID/容器名 #重新进入退出的容器
+
+docker run -d CONTAINER [COMMAND] [argv ...] #后台启动容器，返回Docker守护进程分配的ID
+
+docker logs [-f] [-t] [--tail] CONTAINER
+# -f --follow=true|false default:false
+# -t --timestamps=true|false default:false
+# --tail="all"
+
+docker top #查看运行情况
+docker exec [-d] [-t] [-t] CONTAINER_ID/NAME [COMMAND] [argv ...] #在运行的容器中启动新的进程
+docker stop CONTAINER_NAME/ID # 发送一个停止信号
+docker kill CONTAINER_NAME_ID # 直接停止容器
+```
+- 容器端口映射
+```bash
+dodker run -P -i -t ubuntu /bin/bash #-P --publish-all=true|false default: false
+docker run -p 80 -i -t ubuntu /bin/bash  # -p --publish=[] 指定端口
+docker run -p 8080:80 -i -t ubuntu /bin/bash
+docker run -p 0.0.0.0:80 -i -t ubuntu /bin/bash
+docker run -p 0.0.0.0:8080:80 -i -t ubuntu /bin/bash
+docker port CONTAINER_NAME/ID #查看端口映射情况
+```
+- 镜像
+ ```bash
+ docker images [options] [repository]
+ -a, --all=false
+ -f, --filter=[]
+ --no-trunc=false
+ -q, --quiet=false
+ ```
+
