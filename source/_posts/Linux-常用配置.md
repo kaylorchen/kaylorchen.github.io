@@ -1,34 +1,43 @@
 ---
 title: Linux 常用配置
-date: 2019-04-28 15:37:02
+date: 2020-05-25 15:37:02
 tags:
-- Linux
-- Ubuntu
-- vim
-- git
-- ssh
+  - Linux
+  - Ubuntu
+  - vim
+  - git
+  - ssh
+  - docker
 categories:
-- Linux
+  - Linux
 comments: true
 ---
 
 # Linux 内核编译指令
-配置config文件
+
+配置 config 文件
+
 ```bash
 make menuconfig
 ```
+
 编译内核和模块
+
 ```bash
 make
 ```
+
 单独编译模块和安装（不要轻易安装内核模块，如果不指定安装路径，容易损坏系统）
+
 ```bash
 make modules
 make modules_install INSTALL_MOD_PATH=安装路径
 ```
 
 # Ubuntu 18.04 网络配置
-编辑 ***/etc/netplan/50-cloud-init.yaml***
+
+编辑 **_/etc/netplan/50-cloud-init.yaml_**
+
 ```
 # This file is generated from information provided by
 # the datasource.  Changes to it will not persist across an instance.
@@ -55,19 +64,24 @@ network:
 ```
 
 # SSH
-编辑 ***/etc/ssh/ssh_config***
+
+编辑 **_/etc/ssh/ssh_config_**
+
 ```
 ClientAliveInterval 30
 ClientAliveCountMax 6
 ```
-ClientAliveInterval表示每隔多少秒，服务器端向客户端发送心跳，是的，你没看错。
 
-下面的ClientAliveInterval表示上述多少次心跳无响应之后，会认为Client已经断开。
+ClientAliveInterval 表示每隔多少秒，服务器端向客户端发送心跳，是的，你没看错。
 
-所以，总共允许无响应的时间是60*3=180秒。
+下面的 ClientAliveInterval 表示上述多少次心跳无响应之后，会认为 Client 已经断开。
+
+所以，总共允许无响应的时间是 60\*3=180 秒。
 
 # VIM
-编辑 ***/etc/vim/vimrc***
+
+编辑 **_/etc/vim/vimrc_**
+
 ```
 set nu
 colorscheme desert
@@ -76,60 +90,88 @@ set expandtab
 ```
 
 # 用户管理
+
 - 添加一个组
+
 ```
 groupadd groupname
 ```
+
 - 添加现有用户到一个组：
+
 ```
 usermod -a -G groupname username
 ```
+
 - 同时将 user 增加到 admins, ftp, www, 和 developers 用户组中，可以输入以下命令：
+
 ```
 useradd -G admins,ftp,www,developers user
 ```
 
 # GIT
+
 - 绑定远程仓库
+
 ```
 git remote add origin git_link
 ```
+
 - 查看现有远程仓库
+
 ```
 git remote –v
 ```
+
 - 取消本地目录关联下的远程库
+
 ```
 git remote remove origin
 ```
+
 - 推送主分支
+
 ```
 git push --set-upstream origin master
 ```
-- 查看分支，并checkout
+
+- 查看分支，并 checkout
+
 ```
 git branch –av
 git checkout -t origin/xxx
 ```
+
 - 删除本地分支
-1. 删除merge了的分支
+
+1. 删除 merge 了的分支
+
 ```
 git branch -d xxx
 ```
-2. 删除分支（不管它有没有merge）
+
+2. 删除分支（不管它有没有 merge）
+
 ```
 git branch -D xxx
 ```
+
 - 打补丁
+
 ```bash
 git am *.patch
 ```
-- 修改commit的message
+
+- 修改 commit 的 message
+
 ```bash
 git commit --amend -m "I miss you"
 ```
+
 3. 代理
+
 - 加代理
+
 ```bash
 git config --global http.proxy 'socks5://127.0.0.1:1080'
 git config --global https.proxy 'socks5://127.0.0.1:1080'
@@ -138,7 +180,9 @@ git config https.proxy 'socks5://127.0.0.1:1080'
 #只对github.com
 git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 ```
+
 - 取消代理
+
 ```bash
 git config --global --unset http.https://github.com.proxy
 git config --global --unset http.proxy
@@ -147,19 +191,27 @@ git config --unset http.proxy
 git config --unset https.proxy
 
 ```
-4.Linux设置免密
+
+4.Linux 设置免密
+
 ```bash
 vim ~/.git-credentials
 ```
+
 内容如下：
+
 ```
 https://{username}:{passwd}@github.com
 ```
+
 添加全局配置
+
 ```bash
 git config --global credential.helper store
 ```
-编辑全局配置文件 ***~/.gitconfig***
+
+编辑全局配置文件 **_~/.gitconfig_**
+
 ```
 [credential]
 	helper = store
@@ -172,18 +224,24 @@ git config --global credential.helper store
 [core]
 	editor = vim
 ```
-# ROS常用指令
-- 配置ROS环境变量（临时）
+
+# ROS 常用指令
+
+- 配置 ROS 环境变量（临时）
+
 ```bash
 export ROS_IP=192.168.15.147
 export ROS_MASTER_URI="http://192.168.15.3:11311"
 ```
-- 设置ROS Log等级
+
+- 设置 ROS Log 等级
+
 ```bash
 rqt_logger_level
 ```
 
 # Ubuntu 启动分析
+
 ```
 systemd-analyze plot > boot.svg
 ```
@@ -191,48 +249,67 @@ systemd-analyze plot > boot.svg
 # 网络配置
 
 - ipv4:
+
 ```bash
 ip -4 addr
 ```
+
 - ipv6:
+
 ```
 ip -6 addr
 ```
+
 - 查詢個別網卡的資訊:
+
 ```
 ip addr show eth0
 ip addr list eth0
 ip addr show dev eth0
 ```
+
 - 給網卡定義 IP 地址:
+
 ```
 sudo ip addr add 10.20.0.15/24 dev eth1
 ```
+
 - 從網卡移除 IP 地址:
+
 ```
 sudo ip addr del 10.20.0.15/24 dev eth1
 ```
+
 - 啟動網卡:
+
 ```
 sudo ip link set dev eth1 up
 ```
+
 - 停用網卡:
+
 ```
 sudo ip link set dev eth1 down
 ```
+
 - 顯示 Routing Table
+
 ```
 ip r
 ip route
 ip route show
 ip route list
 ```
+
 - 添加路由和默认网关
+
 ```bash
 ip route add default via 192.168.1.254
 route add default gw 192.168.1.254
 ```
+
 - 无线网络配置
+
 ```bash
 kaylor@kaylor-ThinkPad-T460:~$ wpa_passphrase ssid password
 network={
@@ -241,15 +318,17 @@ network={
 	psk=44116ea881531996d8a23af58b376d70f196057429c258f529577a26e727ec1b
 }
 ```
-使用以上指令生成配置文件，然后在 ***/etc/network/interfaces.d/*** 下建立wlan0文件，内容如下：
+
+使用以上指令生成配置文件，然后在 **_/etc/network/interfaces.d/_** 下建立 wlan0 文件，内容如下：
+
 ```
 auto wlan0
 iface wlan0 inet dhcp
 wpa-conf /etc/wpa_supplicant/wpa.conf
 ```
 
-
 # SimpleHTTPServer with python
+
 ```bash
 python -m SimpleHTTPServer 8080
 
@@ -257,11 +336,15 @@ python3 -m http.server 8080
 ```
 
 # Udev 检查指令
+
 查看某个设备的详细信息，如/dev/video0
+
 ```
 udevadm info -a /dev/video0
 ```
+
 编辑匹配规则（/etc/udev/rules.d/10-local.rules）:
+
 ```
 #map cameras to clear names
 KERNEL=="video*", ATTRS{manufacturer}=="RoboteX", ATTRS{product}=="Drive Camera", SYMLINK+="drive"
@@ -273,12 +356,15 @@ KERNEL=="mmcblk?p1", ATTRS{vendor}=="0x8086", ATTRS{device}=="0x0f16", SYMLINK+=
 #KERNEL=="mmcblk?p2", SYMLINK+="storage"
 KERNEL=="sd?1", KERNELS=="1-4.4:1.0", SYMLINK+="storage"
 ```
+
 触发规则
+
 ```
 udevadm trigger
 ```
 
 # 查看文件夹大小
+
 ```bash
 du
 du --max-depth=0 ./
@@ -287,12 +373,16 @@ du -m ./
 du -h ./
 ```
 
-# 使用parted扩容分区
+# 使用 parted 扩容分区
+
 - 修改分区表
+
 ```bash
 sudo parted /dev/sdb
 ```
+
 打印信息如下：
+
 ```
 GNU Parted 3.2
 Using /dev/sdb
@@ -302,48 +392,59 @@ Model: Multiple Card Reader (scsi)
 Disk /dev/sdb: 15.8GB
 Sector size (logical/physical): 512B/512B
 Partition Table: msdos
-Disk Flags: 
+Disk Flags:
 
 Number  Start  End     Size    Type     File system  Flags
  1      154kB  52.4MB  52.3MB  primary  ext2         boot
 
-(parted) resizepart 1                                                     
+(parted) resizepart 1
 Warning: Partition /dev/sdb1 is being used. Are you sure you want to continue?
-Yes/No? Yes                                                               
-End?  [52.4MB]? 15.8G                                                     
-(parted) p                                                                
+Yes/No? Yes
+End?  [52.4MB]? 15.8G
+(parted) p
 Model: Multiple Card Reader (scsi)
 Disk /dev/sdb: 15.8GB
 Sector size (logical/physical): 512B/512B
 Partition Table: msdos
-Disk Flags: 
+Disk Flags:
 
 Number  Start  End     Size    Type     File system  Flags
  1      154kB  15.8GB  15.8GB  primary  ext2         boot
 
-(parted) q                                                                
+(parted) q
 Information: You may need to update /etc/fstab.
 ```
+
 上述的指令可以复合成：
+
 ```bash
 sudo parted -s /dev/sdb resizepart 1 15.8G
 ```
+
 - 恢复文件系统
+
 ```bash
 sudo e2fsck -f /dev/sdb1
 ```
+
 - 扩容
+
 ```bash
 sudo resize2fs /dev/sdb1
 ```
 
 # APT
+
 - 列出软件包可用版本
+
 ```
 apt-cache madison package-name
 ```
+
 # docker
-- 基本指令
+
+## 基本指令
+
 ```bash
 docker ps -l #查看上一次运行的容器
 docker ps -a #查看历史运行的容器
@@ -353,7 +454,9 @@ docker run --name=your_name -it ubuntu bash #定义容器的名字
 docker start -i container_name #重新启动停止的容器
 docker rm 容器的ID/容器名 #删除已经停止的容器
 ```
-- 守护式容器
+
+## 守护式容器
+
 ```bash
 docker run -i -t ubuntu /bin/bash #启动之后使用Ctrl+P 和 Ctrl+Q
 docker attach 容器ID/容器名 #重新进入退出的容器
@@ -370,7 +473,9 @@ docker exec [-d] [-t] [-t] CONTAINER_ID/NAME [COMMAND] [argv ...] #在运行的�
 docker stop CONTAINER_NAME/ID # 发送一个停止信号
 docker kill CONTAINER_NAME_ID # 直接停止容器
 ```
-- 容器端口映射
+
+## 容器端口映射
+
 ```bash
 dodker run -P -i -t ubuntu /bin/bash #-P --publish-all=true|false default: false
 docker run -p 80 -i -t ubuntu /bin/bash  # -p --publish=[] 指定端口
@@ -379,12 +484,50 @@ docker run -p 0.0.0.0:80 -i -t ubuntu /bin/bash
 docker run -p 0.0.0.0:8080:80 -i -t ubuntu /bin/bash
 docker port CONTAINER_NAME/ID #查看端口映射情况
 ```
-- 镜像
- ```bash
- docker images [options] [repository]
- -a, --all=false
- -f, --filter=[]
- --no-trunc=false
- -q, --quiet=false
- ```
 
+## 镜像
+
+```bash
+docker images [options] [repository]
+-a, --all=false #显示所有镜像，包括中间镜像
+-f, --filter=[]
+--no-trunc=false #不截断ID
+-q, --quiet=false #只显示ID
+
+docker rmi [options] IMAGE
+-f, --force=false #强制删除
+--no-prune=false #保留未打标签的父镜像
+
+docker rmi ${docker images -q ubuntu} #删除ubuntu的所有镜像
+```
+
+## 查找 Images
+- 从网站查找
+https://registry.hub.docker.com
+- 使用命令
+```bash
+docker search [options] term #最多返回25个结果
+--automated=false
+--no-trunc-false
+-s, --stars=0 
+```
+## 拉取Images
+```bash
+docker pull [options] NAME[:TAG]
+-a, -all-tags=false
+```
+
+## 推送镜像
+
+
+```bash
+docker push repository
+```
+
+## 配置国内镜像地址
+编辑 ***/etc/docker/daemon.json***
+```config
+{
+  "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
+}
+```
