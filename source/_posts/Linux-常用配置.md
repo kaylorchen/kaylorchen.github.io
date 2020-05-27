@@ -511,7 +511,7 @@ docker search [options] term #最多返回25个结果
 --no-trunc-false
 -s, --stars=0 
 ```
-## 拉取Images
+## 拉取 Images
 ```bash
 docker pull [options] NAME[:TAG]
 -a, -all-tags=false
@@ -530,4 +530,76 @@ docker push repository
 {
   "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
 }
+```
+## 构建镜像
+```bash
+docker commit #通过容器构建
+docker commit [options] CONTAINER [REPOSITORY[:TAG]]
+# -a, --author="" 
+# -m, --message="" Commit message
+# -p, --pause=true Pause container during commit
+docker build #通过Dockerfile文件构造
+docker build [options] PATH | URL | -
+# --force-rm=false
+# --no-cache=false
+# --pull=false
+# -q, -quiet=false
+# --rm=true
+# -t,--tag=""
+```
+Dockerfile例子
+```bash
+FROM ubuntu:14.04
+MAINTAINER kaylor "kaylor@kaylordut.com"
+RUN apt update
+RUN apt install -y vim
+EXPOSE 80
+```
+## Doker的C/S模式
+- Romote API
+unix:///var/run/docker.sock
+tcp://host:port
+fd://socketfd
+
+## Docker的守护进程
+docker -d [options]
+-D, --debug=false
+-e, --exec-driver="native"
+-g, --graph="var/lib/docker"
+--icc=true
+-l, --log-level="info"
+--lable=[]
+-p, --pidfile=""/var/run/docker.pid
+-G, --group="docker"
+-H, --host=[]
+--tls=false
+--tlscacert="/home/kaylor/.docker/ca.pem"
+--tlscert="/home/kaylor/.docker/cert.pem"
+--tlskey="/home/kaylor/.docker/key.pem"
+--tlsverify=false
+Registry相关：
+--insecure-registry=[]
+--registry-mirror=[]
+网络相关:
+-b, --bridge=""
+--bip=""
+--fixed-cidr=""
+--fixed-cidr-v6=""
+--dns=[]
+--dns-search=[]
+--ip=0.0.0.0
+--ip-forward=true
+--ip-masq=true
+--iptables=true
+--ipv6=false
+--mtu=0
+
+## Docker环境变量
+export DOCKER_HOST="tcp://x.x.x.x:2375"
+
+## 镜像保存与加载
+```bash
+docker save -o 要保存的文件名 要保存的镜像
+$ docker save -o test.tar ubuntu
+docker load --input 加载的文件名
 ```
