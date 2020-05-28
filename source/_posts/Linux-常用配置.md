@@ -547,14 +547,7 @@ docker build [options] PATH | URL | -
 # --rm=true
 # -t,--tag=""
 ```
-Dockerfile例子
-```bash
-FROM ubuntu:14.04
-MAINTAINER kaylor "kaylor@kaylordut.com"
-RUN apt update
-RUN apt install -y vim
-EXPOSE 80
-```
+
 ## Doker的C/S模式
 - Romote API
 unix:///var/run/docker.sock
@@ -603,3 +596,65 @@ docker save -o 要保存的文件名 要保存的镜像
 $ docker save -o test.tar ubuntu
 docker load --input 加载的文件名
 ```
+
+## dockerfile 指令
+Dockerfile例子
+```bash
+FROM ubuntu:14.04
+MAINTAINER kaylor "kaylor@kaylordut.com"
+RUN apt update
+RUN apt install -y vim
+EXPOSE 80
+```
+- FROM
+```bash
+FROM <image> 
+FROM <image>:<tag>
+```
+必须是dockerfile的第一条指令
+- MAINTAINER
+```bash
+MAINTAINER <name>
+```
+包含作者和联系信息
+- RUN
+```bash
+RUN <command> 
+shell 模式： /bin/sh -c command
+RUN echo hello
+```
+```bash
+RUN ["executalbe", "param1", "param2"]
+exec 模式：
+RUN ["/bin/bash", "-c", "echo hello"]
+```
+- EXPOSE
+```bash
+EXPOSE <port> [<port>...]
+```
+虽然我们在镜像构建中指定了暴露的端口号，但在容器运行时，我们仍需要手动的指定容器的端口映射，就像我们之前曾经使用的这个docker run命令。也就是说，在dockerfile中使用expose指令来指定的端口，只是告诉Docker，该容器内的应用程序会使用特定的端口儿，但是出于安全的考虑，Docker并不会自动地打开端口，是需要在使用时再run命令中添加对端口的映射指令。
+- CMD
+```bash
+CMD ["executalbe", "param1", "param2"]
+CMD command param1 param2
+CMD ["param1", "param2"] #作为ENTRYPOINT指令的默认参数
+```
+cmd是指定容器运行时的默认指令，如果docker run带指令，会覆盖cmd的指令
+- ENTRYPOINT
+```bash
+ENTRYPOINT ["executalbe", "param1", "param2"]
+ENTRYPOINT command param1 param2
+```
+docker run的指令不能覆盖该指令。
+- ADD and COPY
+```bash
+ADD/COPY src dest
+ADD/COPY ["src"..."dest"] #路径中有空格也可以使用
+```
+add包含tar的解压缩功能，复制推荐使用copy
+
+- VOLUME
+- WORKDIR
+- ENV
+- USER
+- ONBUILD
