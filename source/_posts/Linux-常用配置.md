@@ -37,6 +37,10 @@ make modules_install INSTALL_MOD_PATH=安装路径
 ```bash
 make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules  
 ```
+安装内核头文件
+```bash
+make headers_install INSTALL_HDR_PATH=安装路径
+```
 
 # Ubuntu 18.04 网络配置
 
