@@ -33,6 +33,10 @@ make
 make modules
 make modules_install INSTALL_MOD_PATH=安装路径
 ```
+指定内核源码和模块源码所在的绝对路径
+```bash
+make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules  
+```
 
 # Ubuntu 18.04 网络配置
 
