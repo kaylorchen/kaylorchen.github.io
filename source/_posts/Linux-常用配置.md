@@ -666,3 +666,13 @@ add包含tar的解压缩功能，复制推荐使用copy
 - ENV
 - USER
 - ONBUILD
+
+# fswebcam 命令行拍照
+
+```bash
+fswebcam -S 10 -r 640x480 --no-banner 1.jpg
+
+-S 跳过N帧
+-r 设置分辨率
+--no-banner 隐藏banner
+```
