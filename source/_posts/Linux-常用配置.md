@@ -141,6 +141,7 @@ git remote remove origin
 
 ```
 git push --set-upstream origin master
+git push --all origin
 ```
 - 拉取远程分支
 
@@ -148,6 +149,7 @@ git push --set-upstream origin master
 git pull <远程库名> <远程分支名>:<本地分支名> 
 git pull origin develop:develop #拉取远程分支中的develop分支和本地develop分支merge
 git pull origin develop #拉取远程分支中的develop与当前分支merge
+git pull --all
 ```
 
 - 查看分支，并 checkout
