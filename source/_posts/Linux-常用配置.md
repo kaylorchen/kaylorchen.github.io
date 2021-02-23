@@ -96,6 +96,17 @@ colorscheme desert
 set ts=4
 set expandtab
 ```
+# GRUB
+- 让grub记住你上一次的启动项
+编辑 **_/etc/default/grub_**
+```commandline
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+```
+执行指令更新grub
+```bash
+update-grub
+```
 
 # 用户管理
 
