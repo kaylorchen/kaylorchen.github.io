@@ -17,9 +17,8 @@ jobs:
           git config --global user.email "kaylor.chen@qq.com"
           git config --global user.name "kaylorchen"
           git config --global init.defaultBranch master
-          git branch -v
-          git checkout hexo
-          sudo apt-get install -y nodejs
+          curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+          sudo apt-get install -y nodejs=12.21.0
           npm install hexo
           npx hexo -v
           npx hexo g
