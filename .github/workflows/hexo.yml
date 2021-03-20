@@ -22,6 +22,7 @@ jobs:
           sudo apt-cache madison nodejs
           sudo apt-get install -y nodejs=12.21.0-deb-1nodesource1
           npm install -g hexo-cli@4.2.0
+          node -v
           npx hexo -v
           npx hexo g
           npx hexo d
