@@ -9,14 +9,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: hexo
+#        with:
+#          ref: hexo
       - name: Hexo
         run: |
           ls -al ./
           git config --global user.email "kaylor.chen@qq.com"
           git config --global user.name "kaylorchen"
           git config --global init.defaultBranch master
+          git branch -v
+          git checkout hexo
           curl -fsSL https://deb.nodesource.com/setup_10.x | sudo -E bash -
           sudo apt-get install -y nodejs
           npm install hexo
