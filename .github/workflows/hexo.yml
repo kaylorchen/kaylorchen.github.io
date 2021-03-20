@@ -21,7 +21,7 @@ jobs:
           curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
           sudo apt-cache madison nodejs
           sudo apt-get install -y nodejs=12.21.0-deb-1nodesource1
-          npm install hexo
+          npm install -g hexo-cli@4.2.0
           npx hexo -v
           npx hexo g
           npx hexo d
