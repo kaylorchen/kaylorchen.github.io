@@ -1,16 +1,16 @@
 name: Hexo process
 on:
   push:
-#    branches:
-#      - hexo
+    branches:
+      - hexo
 jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-#        with:
-#          ref: hexo
+        with:
+          ref: hexo
       - name: Hexo
         run: |
           ls -al ./
@@ -22,6 +22,7 @@ jobs:
           curl -fsSL https://deb.nodesource.com/setup_10.x | sudo -E bash -
           sudo apt-get install -y nodejs
           npm install hexo
+          npx hexo -v
           npx hexo g
           npx hexo d
 
