@@ -19,7 +19,7 @@ jobs:
           git config --global init.defaultBranch master
           git branch -v
           git checkout hexo
-          sudo apt-get install -y nodejs=10.19.0
+          sudo apt-get install -y nodejs
           npm install hexo
           npx hexo -v
           npx hexo g
