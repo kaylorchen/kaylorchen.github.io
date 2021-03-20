@@ -1,8 +1,8 @@
 name: Hexo process
 on:
   push:
-    branches:
-      - hexo
+#    branches:
+#      - hexo
 jobs:
   build:
     runs-on: ubuntu-18.04
