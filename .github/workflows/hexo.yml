@@ -3,29 +3,56 @@ on:
   push:
     branches:
       - hexo
+env:
+  GIT_USER: kaylorchen
+  GIT_EMAIL: kaylor.chen@qq.com
+  DEPLOY_REPO: kaylorchen/kaylorchen.github.io
+  DEPLOY_BRANCH: master
+
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [12.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: hexo
-      - name: Hexo
+
+      - name: Checkout deploy repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.DEPLOY_REPO }}
+          ref: ${{ env.DEPLOY_BRANCH }}
+          path: .deploy_git
+
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Configuration environment
+        env:
+          HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
         run: |
-          ls -al ./
-          git config --global user.email "kaylor.chen@qq.com"
-          git config --global user.name "kaylorchen"
-          git config --global init.defaultBranch master
-          sudo apt-get purge -y nodejs
-          curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-          sudo apt-cache madison nodejs
-          sudo apt-get install -y nodejs=12.21.0-deb-1nodesource1
-          node -v
-          sudo cp /usr/bin/node /usr/local/bin/node
-          sudo cp /usr/bin/npm /usr/local/bin/npm
-          npm install hexo
-          npx hexo -v
-          npx hexo g
-          npx hexo d
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          mkdir -p ~/.ssh/
+          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name $GIT_USER
+          git config --global user.email $GIT_EMAIL
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Deploy hexo
+        run: |
+          npm run deploy
 
