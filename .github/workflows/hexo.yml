@@ -16,6 +16,7 @@ jobs:
           ls -al ./
           git config --global user.email "kaylor.chen@qq.com"
           git config --global user.name "kaylorchen"
+          git config --global init.defaultBranch master
           curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
           sudo apt-get install -y nodejs
           npm install hexo
