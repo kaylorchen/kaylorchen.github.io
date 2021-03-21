@@ -355,6 +355,7 @@ iface wlan0 inet dhcp
 wpa-conf /etc/wpa_supplicant/wpa.conf
 ```
 - iw指令
+
 ```bash
 iw help    # 帮助
 iw list    # 获得所有设备的功能，如带宽信息（2.4GHz，和5GHz），和802.11n的信息
