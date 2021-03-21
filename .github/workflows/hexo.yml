@@ -22,7 +22,7 @@ jobs:
       - name: Configuration environment
         env:
           ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
-          run: |
+        run: |
             mkdir -p ~/.ssh/
             echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
             chmod 700 ~/.ssh
