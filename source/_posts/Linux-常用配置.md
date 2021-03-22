@@ -21,6 +21,11 @@ comments: true
 make menuconfig
 ```
 
+根据已有的.config文件，补充缺失的配置
+```
+make defconfig
+```
+
 编译内核和模块
 
 ```bash
@@ -40,6 +45,13 @@ make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modul
 安装内核头文件
 ```bash
 make headers_install INSTALL_HDR_PATH=安装路径
+```
+# nohup指令
+
+nohup 即不挂起，不会因为终端退出而终结
+比如编译Openwrt
+```
+nohup make -j1 V=s >& make.log & 2>&1
 ```
 
 # Ubuntu 18.04 网络配置
