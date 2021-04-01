@@ -50,6 +50,14 @@ make modules_install INSTALL_MOD_PATH=安装路径
 make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules  
 make ARCH=arm CROSS_COMPILE= -C /lib/modules/5.10.17-v7l+/build M=/home/pi/rtl8812au  modules
 ```
+
+安装模块具体操作
+```
+install -p -m 644 88XXau.ko  /lib/modules/5.10.17-v7l+/kernel/drivers/net/wireless/
+/sbin/depmod -a 5.10.17-v7l+
+```
+
+
 安装内核头文件
 ```bash
 make headers_install INSTALL_HDR_PATH=安装路径
