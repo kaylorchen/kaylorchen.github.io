@@ -13,6 +13,13 @@ categories:
 comments: true
 ---
 
+# find指令
+
+指定目录搜索文件
+```
+find dir -name "*pppoe*"
+```
+
 # Linux 内核编译指令
 
 配置 config 文件
@@ -41,6 +48,7 @@ make modules_install INSTALL_MOD_PATH=安装路径
 指定内核源码和模块源码所在的绝对路径
 ```bash
 make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules  
+make ARCH=arm CROSS_COMPILE= -C /lib/modules/5.10.17-v7l+/build M=/home/pi/rtl8812au  modules
 ```
 安装内核头文件
 ```bash
@@ -52,7 +60,7 @@ nohup 即不挂起，不会因为终端退出而终结
 比如编译Openwrt
 ```
 nohup make -j1 V=s >& make.log & 2>&1
-```
+```e
 
 # Ubuntu 18.04 网络配置
 
