@@ -68,7 +68,7 @@ nohup 即不挂起，不会因为终端退出而终结
 比如编译Openwrt
 ```
 nohup make -j1 V=s >& make.log & 2>&1
-```e
+```
 
 # Ubuntu 18.04 网络配置
 
