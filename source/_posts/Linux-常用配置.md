@@ -70,6 +70,16 @@ nohup 即不挂起，不会因为终端退出而终结
 nohup make -j1 V=s >& make.log & 2>&1
 ```
 
+# 客户定制USB设备号驱动加载
+```bash
+sudo modprobe -r em28xx
+echo "modprobe finished"
+sudo modprobe em28xx card=65
+echo "em28xx configured"
+sudo su -c "echo '2694 0008' > /sys/bus/usb/drivers/em28xx/new_id"
+echo "Custom VID and PID enabled"
+```
+
 # Ubuntu 18.04 网络配置
 
 编辑 **_/etc/netplan/50-cloud-init.yaml_**
