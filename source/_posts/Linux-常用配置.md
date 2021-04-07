@@ -136,6 +136,9 @@ sudo su -c "echo '2694 0008' > /sys/bus/usb/drivers/em28xx/new_id"
 echo "Custom VID and PID enabled"
 ```
 
+# load 分析网卡流量
+
+
 # Ubuntu 18.04 网络配置
 
 编辑 **_/etc/netplan/50-cloud-init.yaml_**
