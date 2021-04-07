@@ -13,6 +13,62 @@ categories:
 comments: true
 ---
 
+# 日志分析
+
+查看日志
+```
+journalctl
+```
+显示全部最近一次重新引导后收集到的journal条目
+```
+journalctl -b
+```
+要查看上次引导的journal记录，则可使用-1相对指针配合-b标记
+```
+journalctl -b -1
+```
+通过以下命令查看全部2015年1月10日下午5：15之后的条目
+
+```
+journalctl --since "2015-01-10 17:15:00"
+journalctl --since "2015-01-10" --until "2015-01-11 03:00"
+journalctl --since 09:00 --until "1 hour ago"
+journalctl –-since yesterday
+```
+过滤
+```
+journalctl -u nginx.service
+journalctl -u nginx.service --since today
+journalctl _PID=8088
+journalctl _UID=33 --since today
+```
+显示内核信息
+```
+journalctl -k
+```
+根据优先级显示
+0: emerg
+1: alert
+2: crit
+3: err
+4: warning
+5: notice
+6: info
+7: debug
+```
+journalctl -p err -b
+```
+显示近期日志
+```
+journalctl -n 20
+```
+追踪日志
+```
+journalctl -f
+```
+
+
+
 # find指令
 
 指定目录搜索文件
