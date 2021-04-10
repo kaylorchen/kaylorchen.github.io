@@ -468,8 +468,8 @@ iw wlan0 set bitrates legacy-2.4 12 18 24    # 修改传输比特率
 iw dev wlan0 set bitrates mcs-5 4    # 修改tx HT MCS的比特率 
 iw dev wlan0 set bitrates mcs-2.4 10  
 iw dev wlan0 set bitrates mcs-5    # 清除所有 tx 比特率和设置的东西来恢复正常
-iw dev  set txpower  []   #设置传输功率
-iw phy  set txpower  []   #设置传输功率
+iw dev  set txpower  <auto|fixed|limit> [<tx power in mBm>]   #设置传输功率
+iw phy  set txpower  <auto|fixed|limit> [<tx power in mBm>]   #设置传输功率
 iw dev wlan0 set power_save on  #设置省电模式
 iw dev wlan0 get power_save  #查询当前的节电设定
 iw phy phy0 interface add moni0 type monitor  #添加一个 monitor 接口
