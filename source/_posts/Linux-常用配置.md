@@ -136,8 +136,36 @@ sudo su -c "echo '2694 0008' > /sys/bus/usb/drivers/em28xx/new_id"
 echo "Custom VID and PID enabled"
 ```
 
-# load 分析网卡流量
+# nload 分析网卡流量
 
+```
+-a period       Sets the length in seconds of the time window for average
+                calculation.
+                Default is 300.
+-i max_scaling  Specifies the 100% mark in kBit/s of the graph indicating the
+                incoming bandwidth usage. Ignored if max_scaling is 0 or the
+                switch -m is given.
+                Default is 10240.
+-m              Show multiple devices at a time; no traffic graphs.
+-o max_scaling  Same as -i but for the graph indicating the outgoing bandwidth
+                usage.
+                Default is 10240.
+-t interval     Determines the refresh interval of the display in milliseconds.
+                Default is 500.
+-u h|b|k|m|g    Sets the type of unit used for the display of traffic numbers.
+   H|B|K|M|G    h: auto, b: Bit/s, k: kBit/s, m: MBit/s etc.
+                H: auto, B: Byte/s, K: kByte/s, M: MByte/s etc.
+                Default is h.
+-U h|b|k|m|g    Same as -u, but for a total amount of data (without "/s").
+   H|B|K|M|G    Default is H.
+devices         Network devices to use.
+                Default is to use all auto-detected devices.
+--help
+-h              Print this help.
+
+example: nload -t 200 -i 1024 -o 128 -U M
+
+```
 
 # Ubuntu 18.04 网络配置
 
