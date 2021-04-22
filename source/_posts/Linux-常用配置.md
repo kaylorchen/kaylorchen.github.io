@@ -479,7 +479,7 @@ auto wlan0
 iface wlan0 inet dhcp
 wpa-conf /etc/wpa_supplicant/wpa.conf
 ```
-- iw指令
+# iw指令
 
 ```
 iw help    # 帮助
@@ -501,6 +501,8 @@ iw phy  set txpower  <auto|fixed|limit> [<tx power in mBm>]   #设置传输功�
 iw dev wlan0 set power_save on  #设置省电模式
 iw dev wlan0 get power_save  #查询当前的节电设定
 iw phy phy0 interface add moni0 type monitor  #添加一个 monitor 接口
+iw wlan0 info #查看当前网络状态
+iw phy0 info #查看phy0物理网卡信息
 ```
 
 # SimpleHTTPServer with python
