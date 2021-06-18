@@ -297,21 +297,22 @@ git checkout -t origin/xxx
 
 - 删除本地分支
 
-1. 删除 merge 了的分支
+删除 merge 了的分支
 
 ```
 git branch -d xxx
 ```
 
-2. 删除分支（不管它有没有 merge）
+删除分支（不管它有没有 merge）
 
 ```
 git branch -D xxx
 ```
 
-- 打补丁
+- 补丁
 
 ```bash
+git format-patch xxxxxxxxxx
 git am *.patch
 ```
 
@@ -321,9 +322,9 @@ git am *.patch
 git commit --amend -m "I miss you"
 ```
 
-3. 代理
+- 代理
 
-- 加代理
+加代理
 
 ```bash
 git config --global http.proxy 'socks5://127.0.0.1:1080'
@@ -334,7 +335,7 @@ git config https.proxy 'socks5://127.0.0.1:1080'
 git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 ```
 
-- 取消代理
+取消代理
 
 ```bash
 git config --global --unset http.https://github.com.proxy
@@ -345,7 +346,7 @@ git config --unset https.proxy
 
 ```
 
-4.Linux 设置免密
+- Linux 设置免密
 
 ```bash
 vim ~/.git-credentials
@@ -377,6 +378,14 @@ git config --global credential.helper store
 [core]
 	editor = vim
 ```
+
+- tag使用
+```bash
+git tag v1.0.0
+git push --tag
+git tag -d v1.0.0
+```
+
 
 # ROS 常用指令
 
