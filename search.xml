@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[使用matlab标定相机参数和畸变系数]]></title>
+    <url>%2F2020%2F07%2F11%2F%E4%BD%BF%E7%94%A8matlab%E6%A0%87%E5%AE%9A%E7%9B%B8%E6%9C%BA%E5%8F%82%E6%95%B0%E5%92%8C%E7%95%B8%E5%8F%98%E7%B3%BB%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[打开摄像头校准APP 加载校准图片并设置实际方格大小加载图片之后，对比每张图片，把原点识别出错的图片移除 校准并输出参数 查看校准的相机参数和畸变系数]]></content>
+      <categories>
+        <category>Computer Vison</category>
+      </categories>
+      <tags>
+        <tag>Matlab</tag>
+        <tag>Computer Vision</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 常用配置]]></title>
+    <url>%2F2020%2F05%2F25%2FLinux-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[日志分析查看日志1journalctl 显示全部最近一次重新引导后收集到的journal条目1journalctl -b 要查看上次引导的journal记录，则可使用-1相对指针配合-b标记1journalctl -b -1 通过以下命令查看全部2015年1月10日下午5：15之后的条目 1234journalctl --since &quot;2015-01-10 17:15:00&quot;journalctl --since &quot;2015-01-10&quot; --until &quot;2015-01-11 03:00&quot;journalctl --since 09:00 --until &quot;1 hour ago&quot;journalctl –-since yesterday 过滤1234journalctl -u nginx.servicejournalctl -u nginx.service --since todayjournalctl _PID=8088journalctl _UID=33 --since today 显示内核信息1journalctl -k 根据优先级显示0: emerg1: alert2: crit3: err4: warning5: notice6: info7: debug1journalctl -p err -b 显示近期日志1journalctl -n 20 追踪日志1journalctl -f find指令指定目录搜索文件1find dir -name &quot;*pppoe*&quot; Linux 内核编译指令配置 config 文件 1make menuconfig 根据已有的.config文件，补充缺失的配置1make defconfig 编译内核和模块 1make 单独编译模块和安装（不要轻易安装内核模块，如果不指定安装路径，容易损坏系统） 12make modulesmake modules_install INSTALL_MOD_PATH=安装路径 指定内核源码和模块源码所在的绝对路径12make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules make ARCH=arm CROSS_COMPILE= -C /lib/modules/5.10.17-v7l+/build M=/home/pi/rtl8812au modules 安装模块具体操作12install -p -m 644 88XXau.ko /lib/modules/5.10.17-v7l+/kernel/drivers/net/wireless//sbin/depmod -a 5.10.17-v7l+ 安装内核头文件1make headers_install INSTALL_HDR_PATH=安装路径 nohup指令nohup 即不挂起，不会因为终端退出而终结比如编译Openwrt1nohup make -j1 V=s &gt;&amp; make.log &amp; 2&gt;&amp;1 客户定制USB设备号驱动加载123456sudo modprobe -r em28xxecho "modprobe finished"sudo modprobe em28xx card=65echo "em28xx configured"sudo su -c "echo '2694 0008' &gt; /sys/bus/usb/drivers/em28xx/new_id"echo "Custom VID and PID enabled" nload 分析网卡流量12345678910111213141516171819202122232425-a period Sets the length in seconds of the time window for average calculation. Default is 300.-i max_scaling Specifies the 100% mark in kBit/s of the graph indicating the incoming bandwidth usage. Ignored if max_scaling is 0 or the switch -m is given. Default is 10240.-m Show multiple devices at a time; no traffic graphs.-o max_scaling Same as -i but for the graph indicating the outgoing bandwidth usage. Default is 10240.-t interval Determines the refresh interval of the display in milliseconds. Default is 500.-u h|b|k|m|g Sets the type of unit used for the display of traffic numbers. H|B|K|M|G h: auto, b: Bit/s, k: kBit/s, m: MBit/s etc. H: auto, B: Byte/s, K: kByte/s, M: MByte/s etc. Default is h.-U h|b|k|m|g Same as -u, but for a total amount of data (without &quot;/s&quot;). H|B|K|M|G Default is H.devices Network devices to use. Default is to use all auto-detected devices.--help-h Print this help.example: nload -t 200 -i 1024 -o 128 -U M Ubuntu 18.04 网络配置编辑 /etc/netplan/50-cloud-init.yaml 123456789101112131415161718192021# This file is generated from information provided by# the datasource. Changes to it will not persist across an instance.# To disable cloud-init&apos;s network configuration capabilities, write a file# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:# network: &#123;config: disabled&#125;network: version: 2 ethernets: eth0: dhcp4: true match: macaddress: b8:27:eb:d2:d7:1e set-name: eth0 optional: true wifis: wlan0: dhcp4: true optional: true access-points: &quot;Xiaomi_kaylordut_5G&quot;: password: &quot;kaylordut.com&quot; SSH编辑 _/etc/ssh/ssh_config_ 12ClientAliveInterval 30ClientAliveCountMax 6 ClientAliveInterval 表示每隔多少秒，服务器端向客户端发送心跳，是的，你没看错。 下面的 ClientAliveInterval 表示上述多少次心跳无响应之后，会认为 Client 已经断开。 所以，总共允许无响应的时间是 60*3=180 秒。 VIM编辑 /etc/vim/vimrc 1234set nucolorscheme desertset ts=4set expandtab GRUB 让grub记住你上一次的启动项编辑 /etc/default/grub12GRUB_DEFAULT=savedGRUB_SAVEDEFAULT=true 执行指令更新grub1update-grub 用户管理 添加一个组 1groupadd groupname 添加现有用户到一个组： 1usermod -a -G groupname username 同时将 user 增加到 admins, ftp, www, 和 developers 用户组中，可以输入以下命令： 1useradd -G admins,ftp,www,developers user GIT 绑定远程仓库 1git remote add origin git_link 查看现有远程仓库 1git remote –v 取消本地目录关联下的远程库 1git remote remove origin 推送主分支 12git push --set-upstream origin mastergit push --all origin 拉取远程分支 1234git pull &lt;远程库名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt; git pull origin develop:develop #拉取远程分支中的develop分支和本地develop分支mergegit pull origin develop #拉取远程分支中的develop与当前分支mergegit pull --all 查看分支，并 checkout 12git branch –avgit checkout -t origin/xxx 删除本地分支 删除 merge 了的分支 1git branch -d xxx 删除分支（不管它有没有 merge） 1git branch -D xxx 删除远程分支 1git push origin --delete branch_name 补丁 12git format-patch xxxxxxxxxxgit am *.patch 修改 commit 的 message 1git commit --amend -m "I miss you" 代理 加代理 123456git config --global http.proxy 'socks5://127.0.0.1:1080'git config --global https.proxy 'socks5://127.0.0.1:1080'git config http.proxy 'socks5://127.0.0.1:1080'git config https.proxy 'socks5://127.0.0.1:1080'#只对github.comgit config --global http.https://github.com.proxy socks5://127.0.0.1:1080 取消代理 12345git config --global --unset http.https://github.com.proxygit config --global --unset http.proxygit config --global --unset https.proxygit config --unset http.proxygit config --unset https.proxy Linux 设置免密 1vim ~/.git-credentials 内容如下： 1https://&#123;username&#125;:&#123;passwd&#125;@github.com 添加全局配置 1git config --global credential.helper store 编辑全局配置文件 ~/.gitconfig 12345678910[credential] helper = store[user] email = you@example.com[https] proxy = socks://192.168.15.1:10808[http] proxy = socks://192.168.15.1:10808[core] editor = vim tag使用123git tag v1.0.0git push --taggit tag -d v1.0.0 ROS 常用指令 配置 ROS 环境变量（临时） 12export ROS_IP=192.168.15.147export ROS_MASTER_URI="http://192.168.15.3:11311" 设置 ROS Log 等级 1rqt_logger_level Ubuntu 启动分析1systemd-analyze plot &gt; boot.svg 网络配置 ipv4: 1ip -4 addr ipv6: 1ip -6 addr 查詢個別網卡的資訊: 123ip addr show eth0ip addr list eth0ip addr show dev eth0 給網卡定義 IP 地址: 1sudo ip addr add 10.20.0.15/24 dev eth1 從網卡移除 IP 地址: 1sudo ip addr del 10.20.0.15/24 dev eth1 啟動網卡: 1sudo ip link set dev eth1 up 停用網卡: 1sudo ip link set dev eth1 down 顯示 Routing Table 1234ip rip routeip route showip route list 添加路由和默认网关 12ip route add default via 192.168.1.254route add default gw 192.168.1.254 无线网络配置 123456kaylor@kaylor-ThinkPad-T460:~$ wpa_passphrase ssid passwordnetwork=&#123; ssid="ssid" #psk="password" psk=44116ea881531996d8a23af58b376d70f196057429c258f529577a26e727ec1b&#125; 使用以上指令生成配置文件，然后在 /etc/network/interfaces.d/ 下建立 wlan0 文件，内容如下： 123auto wlan0iface wlan0 inet dhcpwpa-conf /etc/wpa_supplicant/wpa.conf iw指令123456789101112131415161718192021iw help # 帮助iw list # 获得所有设备的功能，如带宽信息（2.4GHz，和5GHz），和802.11n的信息iw dev wlan0 scan # 扫描iw event # 监听事件 iw dev wlan0 link # 获得链路状态 iw wlan0 connect foo # 连接到已禁用加密的AP，这里它的SSID是foo iw wlan0 connect foo 2432 # 假设你有两个AP SSID 都是 foo ，你知道你要连接的是在 2432 频道iw wlan0 connect foo keys 0:abcde d:1:0011223344 # 连接到使用WEP的APiw dev wlan1 station dump # 获取station 的统计信息iw dev wlan1 station get # 获得station对应的peer统计信息iw wlan0 set bitrates legacy-2.4 12 18 24 # 修改传输比特率 iw dev wlan0 set bitrates mcs-5 4 # 修改tx HT MCS的比特率 iw dev wlan0 set bitrates mcs-2.4 10 iw dev wlan0 set bitrates mcs-5 # 清除所有 tx 比特率和设置的东西来恢复正常iw dev set txpower &lt;auto|fixed|limit&gt; [&lt;tx power in mBm&gt;] #设置传输功率iw phy set txpower &lt;auto|fixed|limit&gt; [&lt;tx power in mBm&gt;] #设置传输功率iw dev wlan0 set power_save on #设置省电模式iw dev wlan0 get power_save #查询当前的节电设定iw phy phy0 interface add moni0 type monitor #添加一个 monitor 接口iw wlan0 info #查看当前网络状态iw phy0 info #查看phy0物理网卡信息 SimpleHTTPServer with python123python -m SimpleHTTPServer 8080python3 -m http.server 8080 Udev 检查指令查看某个设备的详细信息，如/dev/video0 1udevadm info -a /dev/video0 编辑匹配规则（/etc/udev/rules.d/10-local.rules）: 123456789#map cameras to clear namesKERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;Drive Camera&quot;, SYMLINK+=&quot;drive&quot;KERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;PTZ Camera&quot;, SYMLINK+=&quot;ptz&quot;KERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;Arm Camera&quot;, SYMLINK+=&quot;armCam&quot;KERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;USB2.0 Camera&quot;, SYMLINK+=&quot;radCam&quot;#map storage device to clear nameKERNEL==&quot;mmcblk?p1&quot;, ATTRS&#123;vendor&#125;==&quot;0x8086&quot;, ATTRS&#123;device&#125;==&quot;0x0f16&quot;, SYMLINK+=&quot;storage&quot;#KERNEL==&quot;mmcblk?p2&quot;, SYMLINK+=&quot;storage&quot;KERNEL==&quot;sd?1&quot;, KERNELS==&quot;1-4.4:1.0&quot;, SYMLINK+=&quot;storage&quot; 触发规则 1udevadm trigger 查看文件夹大小12345dudu --max-depth=0 ./du -k ./du -m ./du -h ./ 使用 parted 扩容分区 修改分区表 1sudo parted /dev/sdb 打印信息如下： 1234567891011121314151617181920212223242526272829GNU Parted 3.2Using /dev/sdbWelcome to GNU Parted! Type &apos;help&apos; to view a list of commands.(parted) pModel: Multiple Card Reader (scsi)Disk /dev/sdb: 15.8GBSector size (logical/physical): 512B/512BPartition Table: msdosDisk Flags:Number Start End Size Type File system Flags 1 154kB 52.4MB 52.3MB primary ext2 boot(parted) resizepart 1Warning: Partition /dev/sdb1 is being used. Are you sure you want to continue?Yes/No? YesEnd? [52.4MB]? 15.8G(parted) pModel: Multiple Card Reader (scsi)Disk /dev/sdb: 15.8GBSector size (logical/physical): 512B/512BPartition Table: msdosDisk Flags:Number Start End Size Type File system Flags 1 154kB 15.8GB 15.8GB primary ext2 boot(parted) qInformation: You may need to update /etc/fstab. 上述的指令可以复合成： 1sudo parted -s /dev/sdb resizepart 1 15.8G 恢复文件系统 1sudo e2fsck -f /dev/sdb1 扩容 1sudo resize2fs /dev/sdb1 APT 列出软件包可用版本 1apt-cache madison package-name docker基本指令1234567docker ps -l #查看上一次运行的容器docker ps -a #查看历史运行的容器docker run -i -t ubuntu bash #运行ubuntu， -i表示标准输出， -t表示生成tty， bash是运行的指令docker inspecet 唯一ID或者容器名字 #返回容器的信息docker run --name=your_name -it ubuntu bash #定义容器的名字docker start -i container_name #重新启动停止的容器docker rm 容器的ID/容器名 #删除已经停止的容器 守护式容器1234567891011121314docker run -i -t ubuntu /bin/bash #启动之后使用Ctrl+P 和 Ctrl+Qdocker attach 容器ID/容器名 #重新进入退出的容器docker run -d CONTAINER [COMMAND] [argv ...] #后台启动容器，返回Docker守护进程分配的IDdocker logs [-f] [-t] [--tail] CONTAINER# -f --follow=true|false default:false# -t --timestamps=true|false default:false# --tail="all"docker top #查看运行情况docker exec [-d] [-t] [-t] CONTAINER_ID/NAME [COMMAND] [argv ...] #在运行的容器中启动新的进程docker stop CONTAINER_NAME/ID # 发送一个停止信号docker kill CONTAINER_NAME_ID # 直接停止容器 容器端口映射123456dodker run -P -i -t ubuntu /bin/bash #-P --publish-all=true|false default: falsedocker run -p 80 -i -t ubuntu /bin/bash # -p --publish=[] 指定端口docker run -p 8080:80 -i -t ubuntu /bin/bashdocker run -p 0.0.0.0:80 -i -t ubuntu /bin/bashdocker run -p 0.0.0.0:8080:80 -i -t ubuntu /bin/bashdocker port CONTAINER_NAME/ID #查看端口映射情况 镜像1234567891011docker images [options] [repository]-a, --all=false #显示所有镜像，包括中间镜像-f, --filter=[]--no-trunc=false #不截断ID-q, --quiet=false #只显示IDdocker rmi [options] IMAGE-f, --force=false #强制删除--no-prune=false #保留未打标签的父镜像docker rmi $&#123;docker images -q ubuntu&#125; #删除ubuntu的所有镜像 查找 Images 从网站查找https://registry.hub.docker.com 使用命令1234docker search [options] term #最多返回25个结果--automated=false--no-trunc-false-s, --stars=0 拉取 Images12docker pull [options] NAME[:TAG]-a, -all-tags=false 推送镜像1docker push repository 配置国内镜像地址编辑 /etc/docker/daemon.json123&#123; &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]&#125; 构建镜像12345678910111213docker commit #通过容器构建docker commit [options] CONTAINER [REPOSITORY[:TAG]]# -a, --author="" # -m, --message="" Commit message# -p, --pause=true Pause container during commitdocker build #通过Dockerfile文件构造docker build [options] PATH | URL | -# --force-rm=false# --no-cache=false# --pull=false# -q, -quiet=false# --rm=true# -t,--tag="" Doker的C/S模式 Romote APIunix:///var/run/docker.socktcp://host:portfd://socketfd Docker的守护进程docker -d [options]-D, –debug=false-e, –exec-driver=”native”-g, –graph=”var/lib/docker”–icc=true-l, –log-level=”info”–lable=[]-p, –pidfile=””/var/run/docker.pid-G, –group=”docker”-H, –host=[]–tls=false–tlscacert=”/home/kaylor/.docker/ca.pem”–tlscert=”/home/kaylor/.docker/cert.pem”–tlskey=”/home/kaylor/.docker/key.pem”–tlsverify=falseRegistry相关：–insecure-registry=[]–registry-mirror=[]网络相关:-b, –bridge=””–bip=””–fixed-cidr=””–fixed-cidr-v6=””–dns=[]–dns-search=[]–ip=0.0.0.0–ip-forward=true–ip-masq=true–iptables=true–ipv6=false–mtu=0 Docker环境变量export DOCKER_HOST=”tcp://x.x.x.x:2375” 镜像保存与加载123docker save -o 要保存的文件名 要保存的镜像$ docker save -o test.tar ubuntudocker load --input 加载的文件名 dockerfile 指令Dockerfile例子12345FROM ubuntu:14.04MAINTAINER kaylor "kaylor@kaylordut.com"RUN apt updateRUN apt install -y vimEXPOSE 80 FROM12FROM &lt;image&gt; FROM &lt;image&gt;:&lt;tag&gt; 必须是dockerfile的第一条指令 MAINTAINER1MAINTAINER &lt;name&gt; 包含作者和联系信息 RUN123RUN &lt;command&gt; shell 模式： /bin/sh -c commandRUN echo hello 123RUN ["executalbe", "param1", "param2"]exec 模式：RUN ["/bin/bash", "-c", "echo hello"] EXPOSE1EXPOSE &lt;port&gt; [&lt;port&gt;...] 虽然我们在镜像构建中指定了暴露的端口号，但在容器运行时，我们仍需要手动的指定容器的端口映射，就像我们之前曾经使用的这个docker run命令。也就是说，在dockerfile中使用expose指令来指定的端口，只是告诉Docker，该容器内的应用程序会使用特定的端口儿，但是出于安全的考虑，Docker并不会自动地打开端口，是需要在使用时再run命令中添加对端口的映射指令。 CMD123CMD ["executalbe", "param1", "param2"]CMD command param1 param2CMD ["param1", "param2"] #作为ENTRYPOINT指令的默认参数 cmd是指定容器运行时的默认指令，如果docker run带指令，会覆盖cmd的指令 ENTRYPOINT12ENTRYPOINT ["executalbe", "param1", "param2"]ENTRYPOINT command param1 param2 docker run的指令不能覆盖该指令。 ADD and COPY12ADD/COPY src destADD/COPY ["src"..."dest"] #路径中有空格也可以使用 add包含tar的解压缩功能，复制推荐使用copy VOLUME WORKDIR ENV USER ONBUILD fswebcam 命令行拍照12345fswebcam -S 10 -r 640x480 --no-banner 1.jpg-S 跳过N帧-r 设置分辨率--no-banner 隐藏banner]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Linux</tag>
+        <tag>vim</tag>
+        <tag>git</tag>
+        <tag>ssh</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用live555低延时直播USB摄像头视频流]]></title>
+    <url>%2F2020%2F05%2F19%2F%E4%BD%BF%E7%94%A8live555%E4%BD%8E%E5%BB%B6%E6%97%B6%E7%9B%B4%E6%92%ADUSB%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E6%B5%81%2F</url>
+    <content type="text"><![CDATA[背景分析了live555的源码，其中的样例多数时从文件读取H264文件进行直播，没有直接从摄像头读取视频流直接编码实现的样例。根据自己需求，按照live555的样例实现了几个类。 具体实现源码从我的github直接获取：github客户端接收可以使用VLC，也可以使用我的另外一个代码（有bug，显示没有问题）.VLC需要设置缓存，导致了较大的延时，我的代码只是直接获取每一帧直接解码，这样的实时性根据我的测试，在局域网的640*480的分辨率下，可以到达140ms的延时，平均带宽2Mbit/s.]]></content>
+      <categories>
+        <category>Network</category>
+        <category>RTSP</category>
+      </categories>
+      <tags>
+        <tag>Network</tag>
+        <tag>RTSP</tag>
+        <tag>live555</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to setup a second order C++ IIR filter with Matlab]]></title>
+    <url>%2F2019%2F08%2F08%2FHow-to-setup-a-second-order-C-IIR-filter-with-Matlab%2F</url>
+    <content type="text"><![CDATA[Generating parameters with MatlabOpen your matlab and type fdatool, and click “Analysis-&gt;Filter Coefficients“.Click “Design Filter“ and get filter parameters.Numerator: [ 1 2 1 ]Denominator: [ 1 -1.8153410827045682 0.83100558934675761 ]Gain: 0.0039161266605473692 Test your IIR filtergit IIR Code1git clone https://github.com/kaylorchen/IIR_Filter.git Initialize your filter:1IIR_Filter lowpass(1, 2, 1, -1.8153410827045682, 0.83100558934675761); // Fs = 48000, Fc=1000]]></content>
+      <categories>
+        <category>Robot</category>
+      </categories>
+      <tags>
+        <tag>Matlab</tag>
+        <tag>Filter</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何把你的4G变成你家的WiFi]]></title>
+    <url>%2F2019%2F07%2F06%2F%E5%A6%82%E4%BD%95%E6%8A%8A%E4%BD%A0%E7%9A%844G%E5%8F%98%E6%88%90%E4%BD%A0%E5%AE%B6%E7%9A%84WiFi%2F</url>
+    <content type="text"><![CDATA[前言在流量多如牛毛的今天，某宝随意开个19块钱就能100G流量的今天，装个宽带居然还要个100+ RMB。我们穷苦的孩子用不起高大上的宽带，现在搞个4G改WiFi还是可行的。 硬件准备 带USB口的路由器，能刷固件（最好是OpenWrt） USB接口的车载4G Dongle, 如华为的e8278s-602。（本人用的是这个，理论上任何的4G Dongle都可行） 增益天线，比如某宝的：https://item.taobao.com/item.htm?spm=a1z1r.7974869.0.0.269c3ad4mtnUJW&amp;id=563132470233 带有大流量套餐的SIM卡 路由配置 给4G dongle装好SIM卡，使用PC确认其能上网 把4G dongle装好天线，并插到路由器的USB口上 打开路由器管理界面并登陆，如192.168.111.1 （我默认路由系统已经被你刷好） 打开选项卡 网络 -&gt; 接口, 然后添加接口，“新接口名称”可以随意设置，“新接口协议”如果不懂静态IP知识的，可以选择“DHCP客户端”，“包括以下接口”一定要选择4G Dongle的接口。（如果不知道接口的话，在不提交的前提下插拔USB测试接口） 上一步完成之后，编辑你的接口，把防火墙设置分配到“WAN” 如果一切都顺利，那你就可以测试你的网络了~]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Add rc.local Service for Ubuntu 18.04]]></title>
+    <url>%2F2019%2F06%2F25%2FAdd-rc-local-Service-for-Ubuntu-18-04%2F</url>
+    <content type="text"><![CDATA[Modify /lib/systemd/system/rc-local.serviceAppend some content:12345678910111213141516[Unit]Description=/etc/rc.local CompatibilityDocumentation=man:systemd-rc-local-generator(8)ConditionFileIsExecutable=/etc/rc.localAfter=network.target[Service]Type=forkingExecStart=/etc/rc.local startTimeoutSec=0RemainAfterExit=yesGuessMainPID=no[Install]WantedBy=multi-user.targetAlias=rc-local.service Configure /etc/rc.local12touch /etc/rc.localchmod 755 /etc/rc.local Edit /etc/rc.local, and the content is as follows:12#!/bin/bashecho &quot;test rc &quot; &gt; /var/test.log Reboot your OS, and check /var/test.log.]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ESP32 Configure WiFi and Control LED Frequency and duty via WebSever]]></title>
+    <url>%2F2019%2F05%2F27%2FESP32-Configure-WiFi-and-Control-LED-Frequency-and-duty-via-WebSever%2F</url>
+    <content type="text"><![CDATA[Video If you can’t open this Youtube link, please click this.]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Setup a SoftAP with Raspberry Pi]]></title>
+    <url>%2F2019%2F05%2F22%2FSetup-a-SoftAP-with-Raspberry-Pi%2F</url>
+    <content type="text"><![CDATA[Install hostapd and dnsmasq1sudo apt install hostapd dnsmasq ConfigurationEdit dhcpcd.confEdit /etc/dhcpcd.conf and append a new line: denyinterfaces wlan0. Edit interfacesEdit /etc/network/interfaces.d/wlan0, and the content is as follows:1234allow-hotplug wlan0iface wlan0 inet staticaddress 192.168.77.77netmask 255.255.255.0 Restart dhcpcd service123sudo service dhcpcd restartsudo ifdown wlan0sudo ifup wlan0 Configure hostapdEdit /etc/hostapd/hostapd.conf, and the contend is as follows:123456789101112131415161718192021222324252627282930# This is the name of the WiFi interface we configured aboveinterface=wlan0# Use the nl80211 driver with the brcmfmac driverdriver=nl80211# This is the name of the networkssid=Pi3-AP# Use the 2.4GHz bandhw_mode=g# Use channel 6channel=6# Enable 802.11nieee80211n=1# Enable WMMwmm_enabled=1# Enable 40MHz channels with 20ns guard intervalht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]# Accept all MAC addressesmacaddr_acl=0# Use WPA authenticationauth_algs=1# Require clients to know the network nameignore_broadcast_ssid=0# Use WPA2wpa=2# Use a pre-shared keywpa_key_mgmt=WPA-PSK# The network passphrasewpa_passphrase=raspberry# Use AES, instead of TKIPrsn_pairwise=CCMP Edit /etc/default/hostapd, and append a new line: DAEMON_CONF=”/etc/hostapd/hostapd.conf”Test: sudo hostapd /etc/hostapd/hostapd.conf]]></content>
+      <categories>
+        <category>Network</category>
+        <category>Raspberry Pi</category>
+      </categories>
+      <tags>
+        <tag>Raspberry Pi</tag>
+        <tag>hostapd</tag>
+        <tag>dnsmasq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MQTT Client for ESP32]]></title>
+    <url>%2F2019%2F05%2F08%2FMQTT-Client-for-ESP32%2F</url>
+    <content type="text"><![CDATA[Requirements Publish a message from ESP32 Subscribe a topic SoftwareDownload MQTT Client Opensource CodeClone source code from https://github.com/knolleary/pubsubclient.git.Copy PubSubClient.cpp and PubSubClient.h from the original src/ to your ESP32 project’s src/. Program Yourself Code123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115#include &lt;Arduino.h&gt;#include "WiFi.h"#include "PubSubClient.h"// Update these with values suitable for your network.#define BUILTIN_LED 2const char* ssid = "Xiaomi_kaylordut";const char* password = "kaylordut.com";const char* mqtt_server = "your.mqtt.server.address";const int mqtt_port = 11111;const char* mqtt_user = "username";const char* mqtt_passwd = "password";WiFiClient espClient;PubSubClient client(espClient);long lastMsg = 0;char msg[50];int value = 0;void setup_wifi() &#123; delay(10); // We start by connecting to a WiFi network Serial.println(); Serial.print("Connecting to "); Serial.println(ssid); WiFi.begin(ssid, password); while (WiFi.status() != WL_CONNECTED) &#123; delay(500); Serial.print("."); &#125; randomSeed(micros()); Serial.println(""); Serial.println("WiFi connected"); Serial.println("IP address: "); Serial.println(WiFi.localIP());&#125;void callback(char* topic, byte* payload, unsigned int length) &#123; Serial.print("Message arrived ["); Serial.print(topic); Serial.print("] "); char _msg[length + 1]; for (int i = 0; i &lt; length; i++) &#123; Serial.print((char)payload[i]); _msg[i] = (char) payload[i]; &#125; Serial.println(); Serial.print("msg = "); _msg[length] = 0; Serial.println(_msg); if (std::string(_msg) == "ON" || std::string(_msg) == "On" || std::string(_msg) == "on" ) &#123; digitalWrite(BUILTIN_LED, HIGH); &#125; else if(std::string(_msg) == "OFF" || std::string(_msg) == "Off" || std::string(_msg) == "off" )&#123; digitalWrite(BUILTIN_LED, LOW); &#125;&#125;void reconnect() &#123; // Loop until we're reconnected while (!client.connected()) &#123; Serial.print("Attempting MQTT connection..."); // Create a random client ID String clientId = "ESP32Client-"; clientId += String(random(0xffff), HEX); // Attempt to connect if (client.connect(clientId.c_str(), mqtt_user, mqtt_passwd)) &#123; Serial.println("connected"); // Once connected, publish an announcement... client.publish("outTopic", "hello world"); // ... and resubscribe client.subscribe("inTopic"); &#125; else &#123; Serial.print("failed, rc="); Serial.print(client.state()); Serial.println(" try again in 5 seconds"); // Wait 5 seconds before retrying delay(5000); &#125; &#125;&#125;void setup() &#123; pinMode(BUILTIN_LED, OUTPUT); // Initialize the BUILTIN_LED pin as an output Serial.begin(115200); setup_wifi(); client.setServer(mqtt_server, mqtt_port); client.setCallback(callback);&#125;void loop() &#123; if (!client.connected()) &#123; reconnect(); &#125; client.loop(); long now = millis(); if (now - lastMsg &gt; 2000) &#123; lastMsg = now; ++value; snprintf (msg, 50, "hello world #%ld", value); Serial.print("Publish message: "); Serial.println(msg); client.publish("outTopic", msg); &#125;&#125; TestIf you can’t open Youtube, Pls click this link.]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to Remote Control LED via BLE of ESP32]]></title>
+    <url>%2F2019%2F05%2F07%2FHow-to-Remote-Control-LED-via-BLE-of-ESP32%2F</url>
+    <content type="text"><![CDATA[Requirements Turn on/off LED via Bluetooth Software12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394#include &lt;BLEDevice.h&gt;#include &lt;BLEServer.h&gt;#include &lt;BLEUtils.h&gt;#include &lt;BLE2902.h&gt; BLECharacteristic *pCharacteristic;bool deviceConnected = false;float txValue = 0;const int LED = 2; // Could be different depending on the dev board. I used the DOIT ESP32 dev board. #define SERVICE_UUID "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" // UART service UUID#define CHARACTERISTIC_UUID_RX "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"#define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E" class MyServerCallbacks: public BLEServerCallbacks &#123; void onConnect(BLEServer* pServer) &#123; deviceConnected = true; &#125;; void onDisconnect(BLEServer* pServer) &#123; deviceConnected = false; &#125;&#125;; class MyCallbacks: public BLECharacteristicCallbacks &#123; void onWrite(BLECharacteristic *pCharacteristic) &#123; std::string rxValue = pCharacteristic-&gt;getValue(); if (rxValue.length() &gt; 0) &#123; Serial.println("*********"); Serial.print("Received Value: "); for (int i = 0; i &lt; rxValue.length(); i++) &#123; Serial.print(rxValue[i]); &#125; Serial.println(); // Do stuff based on the command received from the app if (rxValue == "ON" || rxValue == "On" || rxValue == "on") &#123; Serial.print("Turning ON!"); digitalWrite(LED, HIGH); &#125; else if (rxValue == "OFF" || rxValue == "Off" || rxValue == "off") &#123; Serial.print("Turning OFF!"); digitalWrite(LED, LOW); &#125; Serial.println(); Serial.println("*********"); &#125; &#125;&#125;;void setup() &#123; Serial.begin(115200); pinMode(LED, OUTPUT); // Create the BLE Device BLEDevice::init("ESP32_BLE_LED"); // Give it a name // Create the BLE Server BLEServer *pServer = BLEDevice::createServer(); pServer-&gt;setCallbacks(new MyServerCallbacks()); // Create the BLE Service BLEService *pService = pServer-&gt;createService(SERVICE_UUID); // Create a BLE Characteristic pCharacteristic = pService-&gt;createCharacteristic( CHARACTERISTIC_UUID_TX, BLECharacteristic::PROPERTY_NOTIFY ); pCharacteristic-&gt;addDescriptor(new BLE2902()); BLECharacteristic *pCharacteristic = pService-&gt;createCharacteristic( CHARACTERISTIC_UUID_RX, BLECharacteristic::PROPERTY_WRITE ); pCharacteristic-&gt;setCallbacks(new MyCallbacks()); // Start the service pService-&gt;start(); // Start advertising pServer-&gt;getAdvertising()-&gt;start(); Serial.println("Waiting a client connection to notify...");&#125; void loop() &#123; if (deviceConnected) &#123; pCharacteristic-&gt;setValue("Hello, this is a led test."); pCharacteristic-&gt;notify(); // Send the value to the app! &#125; delay(1000);&#125; Test Download nRF Connect from Goggle Paly ,Apple Store or github. Open the App and scan Bluetooth devices. Connect to “ESP32_BLE_LED” and send “on” or “off” to ESP.If you can’t open the above video, please click this link.]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Install and Test MQTT Client C Library in Raspberry Pi]]></title>
+    <url>%2F2019%2F05%2F04%2FInstall-and-Test-MQTT-Client-C-Library-in-Raspberry-Pi%2F</url>
+    <content type="text"><![CDATA[Install MQTT Client C Library12345678apt updateapt install cmake libssl-devgit clone https://github.com/eclipse/paho.mqtt.c.gitcd paho.mqtt.cgit checkout v1.2.1cmake -Bbuild -H. -DPAHO_WITH_SSL=ONsudo cmake --build build/ --target installsudo ldconfig Test DemoEdit src/sample/CMakeLists.txt:12345678910111213141516171819202122232425262728293031323334353637383940diff --git a/src/samples/CMakeLists.txt b/src/samples/CMakeLists.txtindex 79ea886..230599a 100644--- a/src/samples/CMakeLists.txt+++ b/src/samples/CMakeLists.txt@@ -18,6 +18,7 @@ # Note: on OS X you should install XCode and the associated command-line tools ## compilation/linkage settings+cmake_minimum_required(VERSION 3.10) INCLUDE_DIRECTORIES( . $&#123;CMAKE_SOURCE_DIR&#125;/src@@ -51,15 +52,15 @@ TARGET_LINK_LIBRARIES(MQTTClient_subscribe paho-mqtt3c) TARGET_LINK_LIBRARIES(MQTTClient_publish paho-mqtt3c) TARGET_LINK_LIBRARIES(MQTTClient_publish_async paho-mqtt3c)-INSTALL(TARGETS paho_c_sub- paho_c_pub- paho_cs_sub- paho_cs_pub- MQTTAsync_subscribe- MQTTAsync_publish- MQTTClient_subscribe- MQTTClient_publish- MQTTClient_publish_async-- RUNTIME DESTINATION $&#123;CMAKE_INSTALL_BINDIR&#125;- LIBRARY DESTINATION $&#123;CMAKE_INSTALL_LIBDIR&#125;)+#INSTALL(TARGETS paho_c_sub+# paho_c_pub+# paho_cs_sub+# paho_cs_pub+# MQTTAsync_subscribe+# MQTTAsync_publish+# MQTTClient_subscribe+# MQTTClient_publish+# MQTTClient_publish_async+#+# RUNTIME DESTINATION $&#123;CMAKE_INSTALL_BINDIR&#125;+# LIBRARY DESTINATION $&#123;CMAKE_INSTALL_LIBDIR&#125;) Edit MQTTClient_publish_async.c and MQTTClient_subscribe.c:123456789101112131415161718192021diff --git a/src/samples/MQTTClient_publish_async.c b/src/samples/MQTTClient_publish_async.cindex 7784349..57ef1ab 100644--- a/src/samples/MQTTClient_publish_async.c+++ b/src/samples/MQTTClient_publish_async.c@@ -19,7 +19,7 @@ #include &lt;string.h&gt; #include "MQTTClient.h"-#define ADDRESS "tcp://localhost:1883"+#define ADDRESS "tcp://example.com:11111" #define CLIENTID "ExampleClientPub" #define TOPIC "MQTT Examples" #define PAYLOAD "Hello World!"@@ -72,6 +72,8 @@ int main(int argc, char* argv[]) MQTTCLIENT_PERSISTENCE_NONE, NULL); conn_opts.keepAliveInterval = 20; conn_opts.cleansession = 1;+ conn_opts.username = "username";+ conn_opts.password = "passwd"; MQTTClient_setCallbacks(client, NULL, connlost, msgarrvd, delivered); 123456789101112131415161718192021diff --git a/src/samples/MQTTClient_subscribe.c b/src/samples/MQTTClient_subscribe.cindex c675ecc..e99fd84 100644--- a/src/samples/MQTTClient_subscribe.c+++ b/src/samples/MQTTClient_subscribe.c@@ -19,7 +19,7 @@ #include &lt;string.h&gt; #include "MQTTClient.h"-#define ADDRESS "tcp://localhost:1883"+#define ADDRESS "tcp://example.com:11111" #define CLIENTID "ExampleClientSub" #define TOPIC "MQTT Examples" #define PAYLOAD "Hello World!"@@ -71,6 +71,8 @@ int main(int argc, char* argv[]) MQTTCLIENT_PERSISTENCE_NONE, NULL); conn_opts.keepAliveInterval = 20; conn_opts.cleansession = 1;+ conn_opts.username = "username";+ conn_opts.password = "passwd"; MQTTClient_setCallbacks(client, NULL, connlost, msgarrvd, delivered); Type the below command:12345mkdir buildcd buildcmake ..make.MQTTClient_subscribe Open another terminal:./MQTTClient_publish_async Result:]]></content>
+      <categories>
+        <category>IoT</category>
+        <category>Raspberry Pi</category>
+      </categories>
+      <tags>
+        <tag>IoT</tag>
+        <tag>MQTT</tag>
+        <tag>Raspberry Pi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to setup your private MQTT server]]></title>
+    <url>%2F2019%2F05%2F02%2FHow-to-setup-your-private-MQTT-server%2F</url>
+    <content type="text"><![CDATA[Install MQTT Software Package12apt updateapt install mosquitto Configure and Start MQTT ServiceEdit /etc/mosquitto/mosquitto.conf, and append the following contents:123port 11111 #change default portallow_anonymous false #deny anonymouspassword_file /etc/mosquitto/passwd #select password file Then, generate password file for MQTT service.1mosquitto_passwd -c /etc/mosquitto/passwd username If you want to add one more user, you can:1mosquitto_passwd /etc/mosquitto/passwd another_username Finally, start MQTT service:1systemctl restart mosquitto Test MQTT ServiceMAC OS ClientDownload MQTTBox software from Apple Store. Chrome PluginSearch MQTTLens in Chrome APP Store and install it.]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>IoT</tag>
+        <tag>MQTT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Configure your Wifi Information via WebServer]]></title>
+    <url>%2F2019%2F05%2F02%2FConfigure-your-Wifi-Information-via-Browser%2F</url>
+    <content type="text"><![CDATA[Requirments Start a WebServer with ESP32 Control LED by browser Input your Wifi information by browser and enable connect SPIFFS filesYou can download some web files via https://github.com/kaylorchen/ESP32/tree/master/WebConfig/data, and save them to your datadirectory.Upload these files to your image: Terminal -&gt; Run task -&gt; PlatformIO: Upload file system image Software123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199#include &lt;WiFi.h&gt;#include &lt;WiFiClient.h&gt;#include &lt;WebServer.h&gt;#include &lt;ESPmDNS.h&gt;#include "SPIFFS.h"#include "FS.h"bool loadFromSpiffs(String path);char ssid[50] = "";char password[50] = "";WebServer server(80);const int led = 2;void listDir(fs::FS &amp;fs, const char * dirname, uint8_t levels)&#123; Serial.printf("Listing directory: %s\r\n", dirname); File root = fs.open(dirname); if(!root)&#123; Serial.println("- failed to open directory"); return; &#125; if(!root.isDirectory())&#123; Serial.println(" - not a directory"); return; &#125; File file = root.openNextFile(); while(file)&#123; if(file.isDirectory())&#123; Serial.print(" DIR : "); Serial.println(file.name()); if(levels)&#123; listDir(fs, file.name(), levels -1); &#125; &#125; else &#123; Serial.print(" FILE: "); Serial.print(file.name()); Serial.print("\tSIZE: "); Serial.println(file.size()); &#125; file = root.openNextFile(); &#125;&#125;void handleRoot() &#123; server.sendHeader("Location", "/index.html",true); //Redirect to our html web page server.send(302, "text/plane","");&#125;void handleLED()&#123; if(server.hasArg("value"))&#123; String action = server.arg("value"); if( action == "ON")&#123; digitalWrite(led, 1); server.send(200, "text/html", "ON"); return; &#125;else if( action == "OFF")&#123; digitalWrite(led, 0); server.send(200, "text/html", "OFF"); return; &#125; &#125;&#125;void handleWifi()&#123; if(server.hasArg("config"))&#123; String config = server.arg("config"); String wifiname; String wifipwd; if(config == "on")&#123; if(server.hasArg("name"))&#123; wifiname = server.arg("name"); &#125; if(server.hasArg("pwd"))&#123; wifipwd = server.arg("pwd"); &#125; Serial.println("ssid: "+ wifiname +"\r\npassword: " + wifipwd); wifiname.toCharArray(ssid, 50); wifipwd.toCharArray(password, 50); WiFi.mode(WIFI_STA); if(WiFi.status() == WL_CONNECTED)&#123; Serial.println("disconnect the original Wifi"); WiFi.disconnect(); &#125; Serial.println("handle Wifi end"); &#125; &#125; &#125;void handleWebRequests()&#123; if(loadFromSpiffs(server.uri())) return; String message = "File Not Detected\n\n"; message += "URI: "; message += server.uri(); message += "\nMethod: "; message += (server.method() == HTTP_GET)?"GET":"POST"; message += "\nArguments: "; message += server.args(); message += "\n"; for (uint8_t i=0; i&lt;server.args(); i++)&#123; message += " NAME:"+server.argName(i) + "\n VALUE:" + server.arg(i) + "\n"; &#125; server.send(404, "text/plain", message); Serial.println(message);&#125;void softAPConfig()&#123; Serial.println("Configuring access point..."); // You can remove the password parameter if you want the AP to be open. uint32_t chipID = ESP.getEfuseMac(); String apName = "ESP32_" + String(chipID, HEX); Serial.println("AP name: " + apName ); WiFi.mode(WIFI_AP); WiFi.softAP(apName.c_str()); IPAddress myIP = WiFi.softAPIP(); Serial.print("AP IP address: "); Serial.println(myIP); &#125;void wifiConfig()&#123; Serial.print("Connecting to "); Serial.println(ssid); Serial.print("Password: "); Serial.println(password); WiFi.mode(WIFI_STA); WiFi.begin(ssid, password); while (WiFi.status() != WL_CONNECTED) &#123; delay(500); Serial.print("."); &#125; Serial.println(""); Serial.println("WiFi connected"); Serial.println("IP address: "); Serial.println(WiFi.localIP());&#125;void setup() &#123; // put your setup code here, to run once: pinMode(led, OUTPUT); digitalWrite(led, 0); Serial.begin(115200); delay(3000); if(!SPIFFS.begin(true))&#123; Serial.println("An Error has occurred while mounting SPIFFS"); return; &#125; listDir(SPIFFS, "/", 0); softAPConfig(); server.on("/", handleRoot); server.on("/led", HTTP_GET, handleLED); server.on("/wifi", HTTP_GET, handleWifi); server.onNotFound(handleWebRequests); server.begin(); Serial.println("HTTP server started");&#125;void loop() &#123; // put your main code here, to run repeatedly: server.handleClient(); if(WiFi.status() != WL_CONNECTED &amp;&amp; WiFi.getMode() == WIFI_STA)&#123; wifiConfig(); &#125;&#125;bool loadFromSpiffs(String path)&#123; String dataType = "text/plain"; if(path.endsWith("/")) path += "index.htm"; if(path.endsWith(".src")) path = path.substring(0, path.lastIndexOf(".")); else if(path.endsWith(".html")) dataType = "text/html"; else if(path.endsWith(".htm")) dataType = "text/html"; else if(path.endsWith(".css")) dataType = "text/css"; else if(path.endsWith(".js")) dataType = "application/javascript"; else if(path.endsWith(".png")) dataType = "image/png"; else if(path.endsWith(".gif")) dataType = "image/gif"; else if(path.endsWith(".jpg")) dataType = "image/jpeg"; else if(path.endsWith(".ico")) dataType = "image/x-icon"; else if(path.endsWith(".xml")) dataType = "text/xml"; else if(path.endsWith(".pdf")) dataType = "application/pdf"; else if(path.endsWith(".zip")) dataType = "application/zip"; File dataFile = SPIFFS.open(path.c_str(), "r"); if (server.hasArg("download")) dataType = "application/octet-stream"; if (server.streamFile(dataFile, dataType) != dataFile.size()) &#123; &#125; Serial.println(path); dataFile.close(); return true;&#125; Result: If you can’t open Youtube, and please open this link.]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to Test SPIFFS]]></title>
+    <url>%2F2019%2F05%2F02%2FHow-to-Test-SPIFFS%2F</url>
+    <content type="text"><![CDATA[Requirements Upload files to SPIFFS independently. Read files and display its contents in the monitor. Upload FilesCreate a new data directory in the project root directory, and generate a txt file named “kaylor.txt“. This file’s contents are written as follows;I am interested in you. Terminal -&gt; Run task -&gt; PlatformIO: Upload file system image, you will see logs as follows:12345678910111213141516171819202122232425262728293031323334353637Processing esp32dev (platform: espressif32; board: esp32dev; framework: arduino)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------Verbose mode can be enabled via `-v, --verbose` optionCONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32dev.htmlPLATFORM: Espressif 32 &gt; Espressif ESP32 Dev ModuleHARDWARE: ESP32 240MHz 320KB RAM (4MB Flash)DEBUG: CURRENT(esp-prog) EXTERNAL(esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)Converting FS.inoLibrary Dependency Finder -&gt; http://bit.ly/configure-pio-ldfLDF MODES: FINDER(chain) COMPATIBILITY(soft)Collected 26 compatible librariesScanning dependencies...Dependency Graph|-- &lt;SPIFFS&gt; 1.0| |-- &lt;FS&gt; 1.0|-- &lt;FS&gt; 1.0Building SPIFFS image from &apos;data&apos; directory to .pioenvs\esp32dev\spiffs.bin/kaylor.txtLooking for upload port...Auto-detected: COM13Uploading .pioenvs\esp32dev\spiffs.binesptool.py v2.6Serial port COM13Connecting........__Chip is ESP32D0WDQ6 (revision 1)Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme NoneMAC: cc:50:e3:a9:51:a4Uploading stub...Running stub...Stub running...Changing baud rate to 921600Changed.Configuring flash size...Auto-detected Flash size: 4MBCompressed 1503232 bytes to 2863...Wrote 1503232 bytes (2863 compressed) at 0x00291000 in 0.1 seconds (effective 210979.3 kbit/s)...Hash of data verified. Software123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include "SPIFFS.h"#include "FS.h"void listDir(fs::FS &amp;fs, const char * dirname, uint8_t levels)&#123; Serial.printf("Listing directory: %s\r\n", dirname); File root = fs.open(dirname); if(!root)&#123; Serial.println("- failed to open directory"); return; &#125; if(!root.isDirectory())&#123; Serial.println(" - not a directory"); return; &#125; File file = root.openNextFile(); while(file)&#123; if(file.isDirectory())&#123; Serial.print(" DIR : "); Serial.println(file.name()); if(levels)&#123; listDir(fs, file.name(), levels -1); &#125; &#125; else &#123; Serial.print(" FILE: "); Serial.print(file.name()); Serial.print("\tSIZE: "); Serial.println(file.size()); &#125; file = root.openNextFile(); &#125;&#125;void setup() &#123; // put your setup code here, to run once: Serial.begin(115200); if(!SPIFFS.begin(true))&#123; Serial.println("An Error has occurred while mounting SPIFFS"); return; &#125; listDir(SPIFFS, "/", 0); File file = SPIFFS.open("/kaylor.txt"); if(!file)&#123; Serial.println("Failed to open file for reading"); return; &#125; Serial.println("File Content:"); while(file.available())&#123; Serial.write(file.read()); &#125; file.close();&#125;void loop() &#123; // put your main code here, to run repeatedly:&#125; Result:]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Connect to your Wifi with ESP32]]></title>
+    <url>%2F2019%2F05%2F02%2FConnect-to-your-Wifi-with-ESP32%2F</url>
+    <content type="text"><![CDATA[Requirements Connect to a Wifi as a station Software123456789101112131415161718192021222324252627282930313233#include &lt;WiFi.h&gt;const char* ssid = "Xiaomi_kaylordut";const char* password = "kaylordut.com";void setup()&#123; Serial.begin(115200); delay(10); // We start by connecting to a WiFi network Serial.println(); Serial.println(); Serial.print("Connecting to "); Serial.println(ssid); WiFi.begin(ssid, password); while (WiFi.status() != WL_CONNECTED) &#123; delay(500); Serial.print("."); &#125; Serial.println(""); Serial.println("WiFi connected"); Serial.println("IP address: "); Serial.println(WiFi.localIP());&#125;void loop()&#123;&#125; Result:]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Setup a softAP with ESP32]]></title>
+    <url>%2F2019%2F05%2F01%2FSet-a-softAP-with-ESP32%2F</url>
+    <content type="text"><![CDATA[Requirements Setup a softAP with ESP32 Control LED with the browser Software1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980#include &lt;WiFi.h&gt;#include &lt;WiFiClient.h&gt;#include &lt;WiFiAP.h&gt;#define LED_BUILTIN 2 // Set the GPIO pin where you connected your test LED or comment this line out if your dev board has a built-in LED// Set these to your desired credentials.const char *ssid = "Kaylor test";const char *password = "00000000";WiFiServer server(80);void setup() &#123; pinMode(LED_BUILTIN, OUTPUT); Serial.begin(115200); Serial.println(); Serial.println("Configuring access point..."); // You can remove the password parameter if you want the AP to be open. WiFi.softAP(ssid, password); IPAddress myIP = WiFi.softAPIP(); Serial.print("AP IP address: "); Serial.println(myIP); server.begin(); Serial.println("Server started");&#125;void loop() &#123; WiFiClient client = server.available(); // listen for incoming clients if (client) &#123; // if you get a client, Serial.println("New Client."); // print a message out the serial port String currentLine = ""; // make a String to hold incoming data from the client while (client.connected()) &#123; // loop while the client's connected if (client.available()) &#123; // if there's bytes to read from the client, char c = client.read(); // read a byte, then Serial.write(c); // print it out the serial monitor if (c == '\n') &#123; // if the byte is a newline character // if the current line is blank, you got two newline characters in a row. // that's the end of the client HTTP request, so send a response: if (currentLine.length() == 0) &#123; // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK) // and a content-type so the client knows what's coming, then a blank line: client.println("HTTP/1.1 200 OK"); client.println("Content-type:text/html"); client.println(); // the content of the HTTP response follows the header: client.print("Click &lt;a href=\"/H\"&gt;here&lt;/a&gt; to turn ON the LED.&lt;br&gt;"); client.print("Click &lt;a href=\"/L\"&gt;here&lt;/a&gt; to turn OFF the LED.&lt;br&gt;"); // The HTTP response ends with another blank line: client.println(); // break out of the while loop: break; &#125; else &#123; // if you got a newline, then clear currentLine: currentLine = ""; &#125; &#125; else if (c != '\r') &#123; // if you got anything else but a carriage return character, currentLine += c; // add it to the end of the currentLine &#125; // Check to see if the client request was "GET /H" or "GET /L": if (currentLine.endsWith("GET /H")) &#123; digitalWrite(LED_BUILTIN, HIGH); // GET /H turns the LED on &#125; if (currentLine.endsWith("GET /L")) &#123; digitalWrite(LED_BUILTIN, LOW); // GET /L turns the LED off &#125; &#125; &#125; // close the connection: client.stop(); Serial.println("Client Disconnected."); &#125;&#125; Open your phone WLAN settings, and connect the SSID: Kaylor test, Password is “00000000”.You will see some log in the monitor window as follows:Open the browser and type: 192.168.4.1]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to control GPIO of ESP32]]></title>
+    <url>%2F2019%2F05%2F01%2FHow-to-control-GPIO-of-ESP32%2F</url>
+    <content type="text"><![CDATA[Hardware Software123456789101112131415161718192021222324#include "Arduino.h"// constants won't change. Used here to set a pin number:const int ledPin = 2;// the number of the LED pinconst int buttonPin = 0;uint8_t value = 0;void setup() &#123; // set the digital pin as output/input: pinMode(ledPin, OUTPUT); pinMode(buttonPin, INPUT); Serial.begin(115200);&#125;void loop() &#123; value = digitalRead(buttonPin); Serial.printf("Button = %d\n\r",value); if (value == 0) &#123; // set the LED with 1 when button is pressed: digitalWrite(ledPin, 1); &#125; else&#123; digitalWrite(ledPin, 0); &#125; &#125; When the button is pressed, LED will be ON.]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[The First ESP32 Project]]></title>
+    <url>%2F2019%2F04%2F30%2FFirst-ESP32-Project%2F</url>
+    <content type="text"><![CDATA[Initialize the ProjectOpen Visual Studio Code, New Project: Append a new line in platformio.ini, the final file follow as:12345[env:esp32dev]platform = espressif32board = esp32devframework = arduinomonitor_speed = 115200 Program Application CodeEdit src/main.cpp.1234567891011#include "Arduino.h"uint64_t chipid; void setup()&#123; Serial.begin(115200);&#125;void loop()&#123; chipid=ESP.getEfuseMac();//The chip ID is essentially its MAC address(length: 6 bytes). Serial.printf("ESP32 Chip ID = %04X",(uint16_t)(chipid&gt;&gt;32));//print High 2 bytes Serial.printf("%08X\n",(uint32_t)chipid);//print Low 4bytes. delay(1500);&#125;]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Setup an ESP32 Arduino development environment]]></title>
+    <url>%2F2019%2F04%2F30%2FSetup-an-ESP32-Arduino-development-environment%2F</url>
+    <content type="text"><![CDATA[Download and Install Visual Studio CodeDownload Visual Studio Code from https://code.visualstudio.com/, and install it. Install PlatformIO Plugin Install ESP32 LibraryOpen a new terminal, and type:1pio platform install &quot;espressif32&quot;]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>ESP32</tag>
+        <tag>Arduino</tag>
+        <tag>IoT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Remote Desktop I: Install NoMachine in TX2]]></title>
+    <url>%2F2019%2F04%2F30%2FRemote-Desktop-I-Install-NoMachine-in-TX2%2F</url>
+    <content type="text"><![CDATA[Most remote desktops do not support the ARM platform, but NoMachine is an exception. NoMachine has comparable performance to teamviewer. Install NoMachine in TX2Download NoMachineDownload NoMachine by BrowserDownload NoMachine from https://www.nomachine.com/download/linux&amp;id=30&amp;s=ARM.Select NoMachine for ARM ARMv8 DEB Download NoMachine by Terminal12cd /tmpwget https://download.nomachine.com/download/6.6/Arm/nomachine_6.6.8_7_arm64.deb If the NoMachine version is updated, the above link will be invalid, Install NoMachine12cd /tmpsudo dpkg -i nomachine*arm64.deb Configure TX2 ResolutionInstall driver:1sudo apt install xserver-xorg-video-dummy sudo vi /etc/X11/xorg.conf as follow:123456789101112131415161718192021222324252627282930# Copyright (c) 2015, NVIDIA CORPORATION. All Rights Reserved.## This is the minimal configuration necessary to use the Tegra driver.# Please refer to the xorg.conf man page for more configuration# options provided by the X server, including display-related options# provided by RandR 1.2 and higher.# Disable extensions not useful on Tegra.Section &quot;Module&quot; Disable &quot;dri&quot; SubSection &quot;extmod&quot; Option &quot;omit xfree86-dga&quot; EndSubSectionEndSectionSection &quot;Device&quot; Identifier &quot;Tegra0&quot; Driver &quot;nvidia&quot; Option &quot;AllowEmptyInitialConfiguration&quot; &quot;true&quot;EndSectionSection &quot;Screen&quot; Identifier &quot;Default Screen&quot; Monitor &quot;Configured Monitor&quot; Device &quot;Configured Video Device&quot; SubSection &quot;Display&quot; Depth 24 Modes &quot;1920x1080&quot; EndSubSectionEndSection PS: You can modify Modes “1920x1080”.]]></content>
+      <categories>
+        <category>Remote Desktop</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Remote Desktop</tag>
+        <tag>TX2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Write/Read GPIO in your Raspberry Pi with WiringPi Library]]></title>
+    <url>%2F2019%2F04%2F30%2FWrite-Read-GPIO-in-your-Raspberry-Pi-with-WiringPi-Library%2F</url>
+    <content type="text"><![CDATA[Edit GPIO Permission Create a rule file: /lib/udev/rules.d/60-gpio.rules 12KERNEL==&quot;spidev*&quot;, GROUP=&quot;spi&quot;, MODE=&quot;0660&quot;SUBSYSTEM==&quot;gpio*&quot;, PROGRAM=&quot;/bin/sh -c &apos;chown -R root:gpio /sys/class/gpio &amp;&amp; chmod -R 770 /sys/class/gpio; chown -R root:gpio /sys/devices/virtual/gpio &amp;&amp; chmod -R 770 /sys/devices/virtual/gpio; chown -R root:gpio /sys/devices/platform/soc/*.gpio/gpio &amp;&amp; chmod -R 770 /sys/devices/platform/soc/*.gpio/gpio&apos;&quot; Add root user to GPIO group 123groupadd gpiousermod -a -G gpio rootreboot Edit C++ code:1234567891011121314151617181920212223242526272829303132333435363738#include &lt;iostream&gt;#include "wiringPi.h"void loop(uint16_t cnt, int ctlPin, int sigPin)&#123; pinMode(ctlPin, OUTPUT); pullUpDnControl(ctlPin, PUD_DOWN); pinMode(sigPin, INPUT); while (cnt --) &#123; digitalWrite(ctlPin, 1);// delay(5000); uint8_t sig = digitalRead(sigPin); while(sig) &#123; printf("sig state: %d\n",sig); delay(10); sig = digitalRead(sigPin); &#125; printf("___sig state: %d\n",sig); delay(10); while(!sig) &#123; printf("sig state: %d\n",sig); delay(10); sig = digitalRead(sigPin); &#125; printf("###sig state: %d\n",sig); digitalWrite(ctlPin, 0); &#125;&#125;int main()&#123; if (wiringPiSetup() &lt; 0) return 1; loop(1, 24, 25); return 0;&#125; Edit CMakelists.txt123456789cmake_minimum_required(VERSION 3.10)project(test)set(CMAKE_CXX_STANDARD 11)find_library(wiringPi_LIB wiringPi)find_package(Threads)add_executable(test main.cpp)target_link_libraries(test $&#123;wiringPi_LIB&#125; $&#123;CMAKE_THREAD_LIBS_INIT&#125; rt crypt) Test your program1234mkdir buildcd buildmakesudo ./test]]></content>
+      <categories>
+        <category>Raspberry Pi</category>
+      </categories>
+      <tags>
+        <tag>Raspberry Pi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Install WiringPi library in Raspberry Pi]]></title>
+    <url>%2F2019%2F04%2F30%2FInstall-WiringPi-library-in-Raspberry-Pi%2F</url>
+    <content type="text"><![CDATA[Git WiringPi source123git clone git://git.drogon.net/wiringPicd wiringPi./build]]></content>
+      <categories>
+        <category>Raspberry Pi</category>
+      </categories>
+      <tags>
+        <tag>Raspberry Pi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Install Ubuntu 18.04 in Raspberry Pi Mode 3B+]]></title>
+    <url>%2F2019%2F04%2F30%2FInstall-Ubuntu-18-04-in-Raspberry-Pi-Mode-3B%2F</url>
+    <content type="text"><![CDATA[Download the ImageDownload the image from https://wiki.ubuntu.com/ARM/RaspberryPi. ARMHF: Hard float for ARM (32bit) ARM64: 64bitARMHF compatibility is better than ARM64 compatibility. Install Ubuntu 18.04Get balenaEtcher from https://www.balena.io/etcher/]]></content>
+      <categories>
+        <category>Raspberry Pi</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Raspberry Pi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to Deploy N2N VPN]]></title>
+    <url>%2F2019%2F04%2F30%2FHow-to-Deploy-N2N-VPN%2F</url>
+    <content type="text"><![CDATA[n2n is an open source Layer 2 over Layer 3 VPN application which utilises a peer-to-peer architecture for network membership and routing. Some details can be found in https://www.ntop.org/products/n2n/. N2N communication method Edge node Super node Edge node Edge node Other edge nodes Edge node Edge node Edge node Method 3 is a direct connection, and data will not pass the super node. This is the most ideal way. Deploy Super Node in your VPS (Ubuntu 16.04)Compile your N2N:1234git clone https://github.com/meyerd/n2n.gitcd n2n/n2n_v2cmake ./make &amp;&amp; make install Start your super node, listen port is set as 6666:1supernode -l 6666 Configure Your Windows ClientDownload a client from https://file.bugxia.com/s/b6MAp6LS78b6XBp. Install TAP Adapter Configure Client服务器地址: Server IP端口： Port本机IP：Local IP组名称：Group组密码：Password Configure Your MAC ClientCompile your N2N:12git clone https://github.com/meyerd/n2n.gitcd n2n/n2n_v2 Modify n2n/n2n_v2/CMakeLists.txt.CMAKE_C_FLAGS and CMAKE_CXX_FLAGS append -I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib1234mkdir buildcd buildmakesudo make install modify your ~/.bash_profile and append a new line: export PATH=$PATH:/usr/local/sbin/ Using n2n on MacOSIn order to use n2n on MacOS you need to first install support for the tap interface.if you are a brew (https://brew.sh) user you can do it in a couple of steps brew tap homebrew/cask brew cask install tuntap Note that in the latest OS versions (for instance MacOS High Sierra), you may need toneed to enable their kernel extension in System Preferences → Security &amp; Privacy → General Start Your Client1sudo edge -d n2n0 -c kaylor k 123456 -l your_server_ip:6666 -a 192.168.100.200 -b -r]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>N2N</tag>
+        <tag>MAC OS</tag>
+        <tag>Winodows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[毕业前随想]]></title>
+    <url>%2F2016%2F06%2F15%2F%E6%AF%95%E4%B8%9A%E5%89%8D%E9%9A%8F%E6%83%B3%2F</url>
+    <content type="text"><![CDATA[人家说七年是人体把细胞更新一轮的周期，也就是说我再也不会是七年前的那个意气风发的少年了吧。学妹说当你回首过去的时候，感叹那时的幼稚说明你成长了，感觉那时很美好说明你老了。问题是，我怎么感觉又幼稚又美好呢。 今天刚好看到一段话——“我只知道，重回当年选择的那一刻，基于我当时的视野范围和认知水平，我做了我认为最好的选择。是好还是坏，这就是我无法改变不能回头的了。” 确实，上一次毕业做了当时自己认为最好的选择，即使在现在看来也从无后悔，只是徒添了一些遗憾吧，总感觉有些未完成的梦。 这一路上，自己也许做了自己所有能够去做的、去争取的事情，涉足了许多本不属于自己的领域。终于被生活被境遇慢慢带离了自己的轨道，两年前的那个时候是真的hold不住生活，对未来的恐惧，对自己的不自信，我依稀记得仿佛被抽空了灵魂的感觉。总是因为太过于孤注一掷，把生活过得太压抑的结果。 时间这种东西，其实并不能改变什么。我们只是在时间的长河里奔赴一个个的下一站，我们遇见了不同的人，看尽别人不同的人生。然后我终于明白，那年那些选择那些放弃和坚持，都是基于当时我们的视野范围和认知水平，做出了最合乎自己心意的事情罢了。生活慢慢地回到自己的轨道上，以前对未来不确定的恐惧渐渐地变得对未来那些无限的可能期待。不再去过多的纠结于那些被普遍认为的重要的人生的十字路口，毕竟那些决定都已经在自己心里做好，那些决定都是基于自己的学识而做出的。]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Deploy a Transparent Proxy with Squid]]></title>
+    <url>%2F2016%2F01%2F06%2FDeploy-a-Transparent-Proxy-with-Squid%2F</url>
+    <content type="text"><![CDATA[Sometimes, we want to have a local transparent proxy, and it will provide http, https and e-mail’s proxy.Why do we need a local proxy? As we know, most of routers don’t support Ipv6. If there is a router with ipv6 in a local area network, and it also is proxy server, so other device will browse a ipv6 homepage via proxy.OK, let’s begin:12apt-get updateapt-get install squid Edit squid’s configuration file, it’s path is /etc/squid3/squid.conf. there is a reference file:12345678910111213141516171819202122232425262728acl SSL_ports port 443acl Safe_ports port 80 # httpacl Safe_ports port 21 # ftpacl Safe_ports port 443 # httpsacl Safe_ports port 70 # gopheracl Safe_ports port 210 # waisacl Safe_ports port 1025-65535 # unregistered portsacl Safe_ports port 280 # http-mgmtacl Safe_ports port 488 # gss-httpacl Safe_ports port 591 # filemakeracl Safe_ports port 777 # multiling httpacl CONNECT method CONNECThttp_access deny !Safe_portshttp_access deny CONNECT !SSL_portshttp_access allow localhost managerhttp_access deny managerhttp_access allow localhostacl openvpn6 src 10.8.6.0/24http_access allow openvpn6http_access deny allhttp_port 3128coredump_dir /var/spool/squid3refresh_pattern ^ftp: 1440 20% 10080refresh_pattern ^gopher: 1440 0% 1440refresh_pattern -i (/cgi-bin/|\?) 0 0% 0refresh_pattern (Release|Packages(.gz)*)$ 0 20% 2880refresh_pattern . 0 20% 4320forwarded_for transparent After all the above steps, enter a command and restart service.1/etc/init.d/squid3 restart Finally, configure your browser with “server’s ip” and “port”(3128).]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>Proxy</tag>
+        <tag>Squid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Wifi Smart Car Ⅳ : Hardware and MCU’s Programming]]></title>
+    <url>%2F2015%2F11%2F28%2FWifi-Smart-Car-%E2%85%A3-Hardware-and-MCU%E2%80%99s-Programming%2F</url>
+    <content type="text"><![CDATA[Hardware design and programming had been upload to my github. Pls click here.]]></content>
+      <categories>
+        <category>Wifi Smart Car</category>
+      </categories>
+      <tags>
+        <tag>Wifi Smart Car</tag>
+        <tag>OpenWRt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Wifi Smart Car Ⅲ : Devolop a PC Client]]></title>
+    <url>%2F2015%2F11%2F23%2FWifi-Smart-Car-%E2%85%A2-Devolop-a-PC-Client%2F</url>
+    <content type="text"><![CDATA[My PC client was developed with C# by myself.you can get the client’s source from my github.]]></content>
+      <categories>
+        <category>Wifi Smart Car</category>
+      </categories>
+      <tags>
+        <tag>Wifi Smart Car</tag>
+        <tag>C#</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Wifi Smart Car Ⅱ: Communication by Using Ser2net]]></title>
+    <url>%2F2015%2F11%2F17%2FWifi-Smart-Car-%E2%85%A1-Communication-by-Using-Ser2net%2F</url>
+    <content type="text"><![CDATA[Ser2net is a software that can convert data between net and serial port.12opkg update opkg install ser2net Use command ls /dev/tty*, and find the router’s serial port is called as ttyATH0.Edit the /etc/ser2net.conf, find a line by searching for “2001” within this file and change it as following: 12001:raw:600:/dev/ttyATH0:115200 NONE 1STOPBIT 8DATABITS XONXOFF LOCAL -RTSCTS Start ser2net server with command: ser2netConnect router’s uart to PC, and open serial port debugging assistant.Open your command prompt or terminal, type telnet router_ip 2001. My router ip is 192.168.1.110, so I enter telnet 192.168.1.110 2001. Now, test this server. I can type some characters in terminal, they are shown in serial port debugging assistant and vice versa.]]></content>
+      <categories>
+        <category>Wifi Smart Car</category>
+      </categories>
+      <tags>
+        <tag>OpenWRT</tag>
+        <tag>Wifi Smart Car</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Wifi Smart Car Ⅰ: Connect Your Camera]]></title>
+    <url>%2F2015%2F11%2F15%2FWifi-Smart-Car-%E2%85%A0-Connect-Your-Camera%2F</url>
+    <content type="text"><![CDATA[Hardware GL.inet AR150 or GL.inet 6416/6408 Logitech C270 camera I update the router with TP-WR720N‘s firmware. Install usb driver and mjpg server12opkg updateopkg install kmod-usb2 kmod-usb-ohci kmod-video-gspca-core kmod-video-core kmod-video-uvc kmod-i2c-core kmod-input-core mjpg-streamer Configurate mjpg server1vi /etc/config/mjpg-streamer the details are as follow:12345678910config mjpg-streamer &apos;core&apos; option enabled &apos;1&apos; option input &apos;uvc&apos; option output &apos;http&apos; option device &apos;/dev/video0&apos; option resolution &apos;640x480&apos; option fps &apos;60&apos; option www &apos;/www/webcam&apos; option port &apos;8080&apos; option yuv &apos;0&apos; TestRestart your router, and type router_ip:8080 in your address bar of browser. you will see: PS: some router need to enable USB device. For instance, AR150′s USB device is enabled by GPIO6.1234echo 6 &gt; /sys/class/gpio/export # Load GPIO6echo out &gt; /sys/class/gpio/gpio6/direction # Set direction as outecho 1 &gt; /sys/class/gpio/gpio6/value # Set output level as high, enable USB deviceecho 6 &gt; /sys/class/gpio/unexport # Unload GPIO, but output level keep the current voltage]]></content>
+      <categories>
+        <category>Wifi Smart Car</category>
+      </categories>
+      <tags>
+        <tag>OpenWRT</tag>
+        <tag>Wifi Smart Car</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to Deploy your Private NAS with your OpenWrt Router]]></title>
+    <url>%2F2015%2F11%2F11%2FHow-to-Deploy-your-Private-NAS-with-your-OpenWrt-Router%2F</url>
+    <content type="text"><![CDATA[Firstly, we should install USB storage prerequisites.12opkg updateopkg install kmod-usb-storage block-mount kmod-fs-ext4 kmod-usb-storage-extras kmod-scsi-core e2fsprogs fdisk If your device’s filesystem isn’t ext4 or ext3, I sugguest to format it.1fdisk /dev/sda Delete old partitions and creat new partitions with fdisk.Format your device and mount it:12mkfs.ext4 /dev/sdamount -t ext4 /dev/sda /mnt/ Install samba server:12opkg install samba36-servervi /etc/config/samba 12345678910config samba option &apos;name&apos; &apos;OpenWrt&apos; option &apos;workgroup&apos; &apos;WORKGROUP&apos; option &apos;description&apos; &apos;OpenWrt&apos; option &apos;homes&apos; &apos;1&apos;config sambashare option name &apos;share&apos; option path &apos;mnt&apos; option read_only &apos;no&apos; option guest_ok &apos;no&apos; Edit /etc/samba/smb.conf.template, and delete invalid users = root. Next:smbpasswd -a root Enter your samba server’s password.Now, all the configurations are completed. Start samba server:/etc/init.d/samba start Finally, Connect our server with PC. “win+R” and enter “\x.x.x.x”. If you want to use IPv6 address, you can append a line “2001:da8:a800::xxxx(server) samba_server” in your hosts. Use “\samba_server” instead of “\x.x.x.x”.If your device is a Android phone, you can install a APP named “Shared Viewer” from Google Play.]]></content>
+      <categories>
+        <category>OpenWRT</category>
+      </categories>
+      <tags>
+        <tag>NAS</tag>
+        <tag>OpenWRT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[DM8168 Uboot support EMAC1]]></title>
+    <url>%2F2015%2F11%2F11%2FDM8168-Uboot-support-EMAC1%2F</url>
+    <content type="text"><![CDATA[We only designed a Ethernet interface with Emac1, so I had to modified the Uboot sources from TI.MII interface is a manager to read the PHY address of network chip when this interface is initialized. The value of the PHY address will be save in a 32-bit register. For example, the address is 3, and the value will be 0×00000008. The value’s 3rd bit is set as ’1′, so I find the value is 0×08, not 0×03. I have come to the conclusion that a MII interface can manage 32 network chip at most. Edit arch/arm/include/asm/arch-ti81xx/emac_defs.h,123#define EMAC_MDIO_PHY_NUM 3#define EMAC_MDIO_PHY_MASK (1 &lt; &lt; EMAC_MDIO_PHY_NUM) So its mask is 0×08. Next, change EMAC based address:1234567891011121314151617181920212223242526272829303132333435363738//#define EMAC0#ifdef EMAC0#define EMAC_MDIO_PHY_NUM (1)#define EMAC_BASE_ADDR (0x4A100000)#define EMAC_WRAPPER_BASE_ADDR (0x4A100900)#define EMAC_WRAPPER_RAM_ADDR (0x4A102000)#else#define EMAC_MDIO_PHY_NUM (3)#define EMAC_WRAPPER_RAM_ADDR (0x4A122000)#define EMAC_WRAPPER_BASE_ADDR (0x4A120900)#define EMAC_BASE_ADDR (0x4A120000)#endif#define EMAC_MDIO_BASE_ADDR (0x4A100800)#define DAVINCI_EMAC_VERSION2#define DAVINCI_EMAC_GIG_ENABLE#define EMAC_MDIO_BUS_FREQ (250000000UL)#define EMAC_MDIO_CLOCK_FREQ (2000000UL)In default configuration, Emac0′s IO is configurated by default, but Emac1′s IO should been configurated extra. Edit drivers/net/davinci_emac.c :#ifndef EMAC0#define EMAC1_PINCTRL_BASE *( volatile unsigned int* )( 0x481408C8 )/*Initialize EMAC1 pins */pReg = &amp;amp;EMAC1_PINCTRL_BASE;for ( i = 0 ; i &lt; 24 ; i++ )&#123;debug_emac(&quot;Before : 0x%08x\t&quot;,readl(pReg));writel(readl(pReg)|0x01,pReg);debug_emac(&quot;After : 0x%08x\n&quot;,readl(pReg));pReg++;&#125;#endif The initialization of the network chip may not been completed when CPU reads network chip, because CPU speed is too fast. The network will be invalid in this case. we can find a method in davinci_emac_initialize().1234567for (i = 0; i &lt; 256; i++) &#123;alive = readl(&amp;amp;adap_mdio-&gt;ALIVE);// printf("times:%03d,alive:0x%08x\n",i,alive);if (alive)break;udelay(10);&#125; We can increase time delay to fix this issue.]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>Uboot</tag>
+        <tag>DM8168</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to Realize QoS in your Openwrt Router]]></title>
+    <url>%2F2015%2F11%2F07%2FHow-to-Realize-QoS-in-your-Openwrt-Router%2F</url>
+    <content type="text"><![CDATA[I realize IP QoS(Quality of Service) in my Openwrt with iptables and tc(Traffic Control). Firstly , we should installs the related software packages.12opkg updateopkg install tc iptables If your firmware is trunk version, you have to install kmod-sched. this software has been installed in stable version. If openwrt lacks the software, “RTNETLINK answers: No such file or directory” will be present when you enter tc command. So:1opkg install kmod-sched After the above steps, let’s edit Qos shell scripts.12mkdir /etc/qosvi /etc/qos/start.sh Details of the start.sh are as follows:12345678910111213141516171819202122232425262728293031323334353637383940414243#!/bin/shIDEV="br-lan"ODEV="tun0"UP="800kbit"DOWN="1200kbit"UPLOAD="80kbit"DOWNLOAD="120kbit"MUPLOAD="160kbit"MDOWNLOAD="160kbit"INET="192.168.254."IPS="240"IPE="249"tc qdisc del dev $ODEV root 2&gt;/dev/nulltc qdisc del dev $IDEV root 2&gt;/dev/nulltc qdisc add dev $ODEV root handle 10: htb default 256tc qdisc add dev $IDEV root handle 10: htb default 256tc class add dev $ODEV parent 10: classid 10:1 htb rate $UP ceil $UPtc class add dev $IDEV parent 10: classid 10:1 htb rate $DOWN ceil $DOWNi=$IPS;while [ $i -le $IPE ]dotc class add dev $ODEV parent 10:1 classid 10:2$i htb rate $UPLOAD ceil $MUPLOAD prio 1tc qdisc add dev $ODEV parent 10:2$i handle 100$i: pfifotc filter add dev $ODEV parent 10: protocol ip prio 100 handle 2$i fw classid 10:2$itc class add dev $IDEV parent 10:1 classid 10:2$i htb rate $DOWNLOAD ceil $MDOWNLOAD prio 1tc qdisc add dev $IDEV parent 10:2$i handle 100$i: pfifotc filter add dev $IDEV parent 10: protocol ip prio 100 handle 2$i fw classid 10:2$iiptables -t mangle -A PREROUTING -s $INET$i -j MARK --set-mark 2$iiptables -t mangle -A PREROUTING -s $INET$i -j RETURNiptables -t mangle -A POSTROUTING -d $INET$i -j MARK --set-mark 2$iiptables -t mangle -A POSTROUTING -d $INET$i -j RETURNi=`expr $i + 1`done Generate stop.sh.12345678910111213141516171819#!/bin/shINET="192.168.254."IPS="240"IPE="249"tc qdisc del dev $ODEV root 2&gt;/dev/nulltc qdisc del dev $IDEV root 2&gt;/dev/nullp=$IPS;while [ $p -le $IPE ]doiptables -t mangle -D PREROUTING -s $INET$p -j MARK --set-mark 2$piptables -t mangle -D PREROUTING -s $INET$p -j RETURNiptables -t mangle -D POSTROUTING -d $INET$p -j MARK --set-mark 2$piptables -t mangle -D POSTROUTING -d $INET$p -j RETURNp=`expr $p + 1`done 12chmod +x st*./start.sh]]></content>
+      <categories>
+        <category>OpenWRT</category>
+      </categories>
+      <tags>
+        <tag>OpenWRT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to configure OpenVPN Client]]></title>
+    <url>%2F2015%2F11%2F07%2FHow-to-configure-OpenVPN-Client%2F</url>
+    <content type="text"><![CDATA[Generate client certifictes with OpenVPN serverBefore configuring client, I must generate some client files in the server.123cd /etc/openvpn/easy-rsasource vars./build-key client If you have some different devices, you can :123./build-key client1./build-key client2./build-key clientx After generating keys, we need to copy ca.crt , client.crt and client.key from server to client. Configure OpenVPN clientGenerate client configurationDetails are as follows:1234567891011121314clientdev tun # the same as serverproto udp #the same as serverremote vpn.server.hostname 7000resolv-retry infinitenobindpersist-keypersist-tunns-cert-type serververb 3ca ca.crtcert client.crtkey client.keycomp-lzo Ubuntu ClientSave the above configuration as “client.conf” in the path: /etc/openvpn, and Copy ca.crt , client.crt and client.key to /etc/openvpn/. Finally,1/etc/init.d/openvpn start Windows ClientDownload OpenVPN Client software via the link. There is an old version client in my github.After the client software installation, we can copy ca.crt , client.crt and client.key to installation_diretory/config. Start your OpenVPN, Right-click the OpenVPN icon on the taskbar and choose correct configuration to connect your server. Android deviceIf you use a portable device, you should modify your configuration as following the link.You can download the client software from Google Play. Also, you can download an old version client from my github.After installing the client, you can import configuration file to client and enjoy it. OpenWRT routeryou can copy your client.conf to /etc/openvpn. ou also must edit /etc/config/openvpn, the content is as follows:1234config openvpn custom_config option enable 1 option config /etc/openvpn/client.conf ...... start your openvpn:1/etc/init.d/openvpn start If you want to realize the self-starting function when your router is on:1/etc/init.d/openvpn enable]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>OpenWRT</tag>
+        <tag>OpenVPN</tag>
+        <tag>Linux</tag>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[The new Openwrt firmware support IPv6]]></title>
+    <url>%2F2015%2F11%2F07%2FThe-new-Openwrt-firmware-support-IPv6%2F</url>
+    <content type="text"><![CDATA[The old version firmware may have some bugs about IPv6 after my experiment.In order to support IPv6, I chose the newest firmware.After upgrading firmware, some configuration file must be modified.1vi /etc/config/dhcp Add or modify some contents as following:123456789101112131415config dhcp 'lan'option interface 'lan'option start '100'option limit '150'option leasetime '12h'option dhcpv6 'relay'option ra 'relay'option ndp 'relay'config dhcp 'wan6'option interface 'wan'option dhcpv6 'relay'option ra 'relay'option ndp 'relay'option master 1 Restart our router~~]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>OpenVPN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to configure OpenVPN Server (Ubuntu 14.04LTS)]]></title>
+    <url>%2F2015%2F11%2F06%2FHow-to-configure-OpenVPN-Server-Ubuntu-14-04LTS%2F</url>
+    <content type="text"><![CDATA[Install Software123apt-get updateapt-get install openvpnapt-get install easy-rsa Generate Certificates12cp -r /usr/share/easy-rsa/ etc/openvpn/cd /etc/openvpn/easy-rsa you can edit vars flie, I wanted 1024bit DH parms, so I changed KEY_SIZE from 2048 to 1024. Some options may be changed with yourself informations. For example, the KEY_EMAIL is modified by me with my private e-mail. Build ca.crt, dh1024.pem, server.key and server.crt12345source var./clean-all./build-ca./build-key-server server./buid-dh After finishing the above steps, ca.crt, dh1024.pem, server.key and server.crt had been generated in path /etc/openvpn/easy-rsa/keys. Edit OpenVPN server’s configuration file12cd /etc/openvpntouch server.conf Edit server.conf with gedit or vim, the .conf file content is as follows:1234567891011121314151617181920port 7000 #listening portproto udp #TCP or UDPdev tun #TAP or TUNca /etc/openvpn/easy-rsa/keys/ca.crtcert /etc/openvpn/easy-rsa/keys/server.crtkey /etc/openvpn/easy-rsa/keys/server.key # This file should be kept secretdh /etc/openvpn/easy-rsa/keys/dh1024.pemserver 10.8.0.0 255.255.255.0ifconfig-pool-persist ipp.txt #record of client &amp;lt;-&amp;gt; virtual IP address associationspush "redirect-gateway def1 bypass-dhcp"push "dhcp-option DNS 8.8.8.8"client-to-client #clients will see other clients, by default, clients will only see the serverkeepalive 10 120comp-lzopersist-keypersist-tunstatus openvpn-status.log # output a short log file showing current connectionslog openvpn.loglog-append openvpn.logverb 3 Start OpenVPN server and configure Forward123/etc/init.d/openvpn startecho 1 &gt; /proc/sys/net/ipv4/ip_forwardiptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE If your OpenVPN is running on the VPS:12iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o venet0 -j SNAT --to (venet0 ip)]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>OpenVPN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to Update OpenWRT Firmware by SSH or Uart]]></title>
+    <url>%2F2015%2F11%2F05%2FHow-to-Update-OpenWRT-Firmware-by-SSH-or-Uart%2F</url>
+    <content type="text"><![CDATA[If you want to have a diy router, I suggest you buy a openwrt router. Firstly, you can find “Table fo Hardware’. this is the main table of hardware, listing all devices that are suppprted by Openwrt. I had bought a GL.inet router, and its hardware was the same as the TL-WR720N, so I updated the router with WR720N’s firmware. There are some different versions firmares. Binary releases and historic releases are relatively stable, but it may not have some new features. Development Snapshots was the newest firmware. If you are not a developer, I suggest to use a stable firmware. Some softwares are incompatible across multiple releases. Development snapshots are updated fast, so we have to update the newest firmware when we want to install some sofrwares. However, I can lost some important configuration files if the firmware is updated. I can download my router’s firmware. there are usually 2 kind of firmware: sysupgrade and factory. Some configuration files (network, firewall, etc. ) will be reserved if the router is updated with sysupgrade firmware. All the configuration files will be cleared with factory firmware. Let’s update firmware:1wget https://downloads.openwrt.org/chaos_calmer/15.05/ar71xx/generic/xxx.bin If you download a sydupgrade version: 1sysupgrade -v xxx.bin Also, if you download factory version: 1mtd -r write xxx.bin firmware]]></content>
+      <categories>
+        <category>OpenWRT</category>
+      </categories>
+      <tags>
+        <tag>OpenWRT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexapod robot]]></title>
+    <url>%2F2012%2F10%2F30%2FHexapod-robot%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>Robot</category>
+      </categories>
+      <tags>
+        <tag>Hexapod robot</tag>
+      </tags>
+  </entry>
+</search>
