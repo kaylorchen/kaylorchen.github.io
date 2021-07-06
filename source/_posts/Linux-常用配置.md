@@ -309,6 +309,12 @@ git branch -d xxx
 git branch -D xxx
 ```
 
+删除远程分支
+
+```
+git push origin --delete branch_name
+```
+
 - 补丁
 
 ```bash
