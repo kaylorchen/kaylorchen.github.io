@@ -861,3 +861,9 @@ fswebcam -S 10 -r 640x480 --no-banner 1.jpg
 -r 设置分辨率
 --no-banner 隐藏banner
 ```
+
+# PVE指令
+
+```bash
+qm stop ID #关机
+```
