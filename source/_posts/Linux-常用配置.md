@@ -355,6 +355,7 @@ git config --unset https.proxy
 - Linux 设置免密
 
 ```bash
+git config --global credential.helper store
 vim ~/.git-credentials
 ```
 
