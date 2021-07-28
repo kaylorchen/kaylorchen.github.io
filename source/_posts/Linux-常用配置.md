@@ -365,12 +365,6 @@ vim ~/.git-credentials
 https://{username}:{passwd}@github.com
 ```
 
-添加全局配置
-
-```bash
-git config --global credential.helper store
-```
-
 编辑全局配置文件 **_~/.gitconfig_**
 
 ```
