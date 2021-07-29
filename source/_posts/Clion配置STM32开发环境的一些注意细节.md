@@ -26,4 +26,9 @@ add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
 #add_compile_options(-mfloat-abi=soft)
 ```
 
+# 启用浮点打印
+```
+add_link_options(-u _printf_float)
+```
+
 
