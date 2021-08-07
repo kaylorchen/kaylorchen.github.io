@@ -39,7 +39,7 @@ umount image
 docker import rpi-env-2021-05-07.tar rpi-env:20210507
 docker run -it rpi-env:20210507 /bin/bash
 ```
-推出容器之后，可以使用***docker start ID*** 和 ***docker attach ID*** 重新进入
+退出容器之后，可以使用***docker start ID*** 和 ***docker attach ID*** 重新进入
 我已经设置好了基础仓库，可以直接使用***docker pull kaylor/rpi-env***拉取
 
 # 共享宿主机文件夹
