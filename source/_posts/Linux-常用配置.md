@@ -561,6 +561,14 @@ du -m ./
 du -h ./
 ```
 
+# dd指令
+- 生成空的image和扩容
+```bash
+dd if=/dev/zero of=disk.img bs=1M count=256 #生成256MBytes的image
+cat blank.img >> old.img #将blank.img追加到old.img之后
+```
+追加之后的扩容操作，需要参考接下来的“***使用parted扩容分区***”，对image进行分区，请参考我的另一个文章[***制作一个空的image***](https://blog.kaylordut.com/2021/08/07/%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9A%84image/#more)
+
 # 使用 parted 扩容分区
 
 - 修改分区表
