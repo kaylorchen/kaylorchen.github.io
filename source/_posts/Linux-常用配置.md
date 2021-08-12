@@ -255,6 +255,11 @@ useradd -G admins,ftp,www,developers user
 
 # GIT
 
+- Windows git bash 显示中文
+```
+git config --global core.quotepath false
+```
+
 - 取消文件跟踪
 ```bash
 git rm -r --cached dir #不跟踪，但保留文件
