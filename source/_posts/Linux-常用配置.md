@@ -255,6 +255,14 @@ useradd -G admins,ftp,www,developers user
 
 # GIT
 
+- 取消文件跟踪
+```bash
+git rm -r --cached dir #不跟踪，但保留文件
+git rm -r --f dir #删除文件
+git rm --cached readme.txt #不跟踪，但保留文件
+git rm --f readme.txt #删除文件
+```
+
 - 绑定远程仓库
 
 ```
