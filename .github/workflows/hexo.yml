@@ -31,6 +31,8 @@ jobs:
             git config --global user.name "kaylorchen"
             npm install hexo-cli -g
             npm install
+            npm un hexo-renderer-marked
+            npm i hexo-renderer-pandoc
 
       - name: Deploy hexo
         run: |
