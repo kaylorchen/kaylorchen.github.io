@@ -32,9 +32,7 @@ jobs:
             wget https://github.com/jgm/pandoc/releases/download/2.7/pandoc-2.7-1-amd64.deb
             sudo dpkg -i ./pandoc-2.7-1-amd64.deb
             npm install hexo-cli -g
-            npm install
-            npm un hexo-renderer-marked
-            npm i hexo-renderer-pandoc
+            npm install hexo --save
 
       - name: Deploy hexo
         run: |
