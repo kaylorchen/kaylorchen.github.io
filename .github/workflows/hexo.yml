@@ -29,7 +29,8 @@ jobs:
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             git config --global user.email "kaylor.chen@qq.com"
             git config --global user.name "kaylorchen"
-            sudo apt install pandoc
+            wget https://github.com/jgm/pandoc/releases/download/2.7/pandoc-2.7-1-amd64.deb
+            sudo dpkg -i ./pandoc-2.7-1-amd64.deb
             npm install hexo-cli -g
             npm install
             npm un hexo-renderer-marked
