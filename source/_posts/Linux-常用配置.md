@@ -1,6 +1,6 @@
 ---
 title: Linux 常用配置
-date: 2020-05-25 15:37:02
+date: 2022-02-15 15:37:02
 tags:
   - Linux
   - Ubuntu
@@ -556,6 +556,8 @@ KERNEL=="video*", ATTRS{manufacturer}=="RoboteX", ATTRS{product}=="USB2.0 Camera
 KERNEL=="mmcblk?p1", ATTRS{vendor}=="0x8086", ATTRS{device}=="0x0f16", SYMLINK+="storage"
 #KERNEL=="mmcblk?p2", SYMLINK+="storage"
 KERNEL=="sd?1", KERNELS=="1-4.4:1.0", SYMLINK+="storage"
+
+KERNEL=="wlan*", SUBSYSTEMS=="usb", NAME="wfb"
 ```
 
 触发规则
