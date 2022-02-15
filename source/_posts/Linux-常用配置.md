@@ -545,6 +545,7 @@ udevadm info -a /dev/video0
 ```
 
 编辑匹配规则（/etc/udev/rules.d/10-local.rules）:
+规则中只能包含单个父设备
 
 ```
 #map cameras to clear names
