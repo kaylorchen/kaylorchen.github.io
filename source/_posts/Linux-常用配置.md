@@ -886,3 +886,15 @@ fswebcam -S 10 -r 640x480 --no-banner 1.jpg
 ```bash
 qm stop ID #关机
 ```
+
+# exec， source 和 fork 的区别
+
+fork (/directory/script.sh) ：如果 shell 中包含执行命令，那么子命令并不影响父级的命令，在子命令执行完后再执行父级命令。子级的环境变量不会影响到父级。
+
+fork是最普通的, 就是直接在脚本里面用 /directory/script.sh 来调用 script.sh 这个脚本. 运行的时候开一个 sub-shell 执行调用的脚本， sub-shell 执行的时候, parent-shell 还在。sub-shell执行完毕后返回 parent-shell 。 sub-shell 从 parent-shell 继承环境变量.但是 sub-shell 中的环境变量不会带回 parent-shell 。整个执行的过程是 fork + exec + waitpid (此三者均为系统调用)。
+
+exec (exec /directory/script.sh) ：执行子级的命令后，不再执行父级命令。
+
+exec 与 fork 不同，不需要新开一个 sub-shell 来执行被调用的脚本. 被调用的脚本与父脚本在同一个 shell 内执行。但是使用 exec 调用一个新脚本以后, 父脚本中 exec 行之后的内容就不会再执行了。这是 exec 和 source 的区别。
+
+source (source /directory/script.sh) ：执行子级命令后继续执行父级命令，同时子级设置的环境变量会影响到父级的环境变量。
