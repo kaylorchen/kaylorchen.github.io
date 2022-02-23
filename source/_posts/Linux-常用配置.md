@@ -484,6 +484,24 @@ ip route add default via 192.168.1.254
 route add default gw 192.168.1.254
 ```
 
+
+- 设置静态ＩＰ
+
+```bash
+hunter@hunter-Drone:~$ cat /etc/network/interfaces
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 192.168.111.205
+netmask 255.255.255.0
+gateway 192.168.111.1
+dns-nameservers 192.168.111.1
+```
+为了支持ＤＮＳ，　需要安装　apt install resolvconf
+
 - 无线网络配置
 
 ```bash
