@@ -28,12 +28,52 @@ net.ipv4.ip_forward = 1
 sysctl -p
 ```
 ## iptables 指令说明
+![](/image/iptables_netfilter_chains.png)
+### PREROUTING(DNT) 
+这是chain的前端，是用来改变目标地址的
+
+### FORWARD
+如果目标地址不是本机，机会进行转发。注意linux内核默认是禁止转发的，所以需要开启上面步骤的内核转发
+
+### POSTROUTING(SNAT)
+它的作用是修改数据包的源地址，比如内网IP访问公网IP，出口路由会将数据包的源地址改为自己的公网IP，否者数据包有去无回。
+
+### 链操作
+
+操作参数
+
+|参数|描述|
+|--|--|
+|-I|插入|
+|-A|追加|
+|-R|替换|
+|-D|删除|
+|-L|列表显示|
+
+过滤参数
+
+| 参数 | 描述 |
+| -- | -- |
+| -s	| 匹配源地址 |
+|-d	|匹配目的地址|
+|-p	|协议匹配|
+|-i	|入接口匹配|
+|-o	|出接口匹配|
+|--sport，--dport	|源和目的端口匹配|
+|-j	|跳转,也就是包的方向|
+|!	|取反|
+
 - 列出nat表的所有规则
 ```bash
 iptables -t nat -n -L
 ```
 使用 -n 选项是因为避免长时间的反向DNS查询
-- 的
+- 添加一个规则到filter表的FORWARD链
+```bash
+iptables -t filter -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
+```
+在iptables中，默认的表名就是filter，所以这里可以省略-t filter直接写成: iptables -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
+
 
 ## 保存 iptables指令
 - 使用iptables-restore
