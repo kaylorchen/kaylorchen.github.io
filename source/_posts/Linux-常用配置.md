@@ -74,7 +74,54 @@ iptables -t filter -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
 ```
 在iptables中，默认的表名就是filter，所以这里可以省略-t filter直接写成: iptables -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
 
+- 允许eth3接口过来的包通过FORWARD链
+```bash
+iptables -A FORWARD -i eth3 -j ACCEPT
+```
+## 简单nat路由器
+环境介绍
+linux 2.4 +
+2个网络接口
+Lan口:10.1.1.254/24 eth0
+Wan口:60.1.1.1/24 eth1
+目的：实现内网中的节点（10.1.1.0/24）可控的访问internet。
+首先将Lan的节点pc的网关指向10.1.1.254。
 
+确定你的linux的ip配置无误，可以正确的ping通内外的地址。同时用route命令查看linux的本地路由表，确认指定了可用的ISP提供的默认网关。
+
+打开linux的转发功能：sysctl net.ipv4.ip_forward=1
+
+将FORWARD链的策略设置为DROP，这样做的目的是做到对内网ip的控制，你允许哪一个访问internet就可以增加一个规则，不在规则中的ip将无法访问internet.
+
+iptables -P FORWARD DROP
+
+这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许lan IP访问没有用，至于为什么，下面我们再详细说。
+
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+这条规则做了一个SNAT，也就是源地址转换，将来自10.1.1.0/24的地址转换为60.1.1.1
+
+(Deven：因为是让内网上网，因此对于代理服务器而言POSTROUTING（经过路由之后的包应该要把源地址改变为60.1.1.1，否则包无法返回）)
+
+iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -j SNAT --to 60.1.1.1
+
+有这几条规则，一个简单的nat路由器就实现了。这时你可以将允许访问的ip添加至FORWARD链，他们就能访问internet了。
+
+比如我想让10.1.1.9这个地址访问internet,那么你就加如下的命令就可以了。
+
+iptables -A FORWARD -s 10.1.1.9 -j ACCEPT
+
+也可以精确控制他的访问地址,比如我就允许10.1.1.99访问3.3.3.3这个ip
+
+iptables -A FORWARD -s 10.1.1.99 -d 3.3.3.3 -j ACCEPT
+
+或者只允许他们访问80端口。
+
+iptables -A FORWARD -s 10.1.1.0/24 -p tcp --dport http -j ACCEPT
+
+## 端口转发
+借鉴 http://xstarcd.github.io/wiki/Linux/iptables_forward_internetshare.html
+ 
 ## 保存 iptables指令
 - 使用iptables-restore
 设置了相关规则之后，保存到文件中
