@@ -646,9 +646,14 @@ network={
 使用以上指令生成配置文件，然后在 **_/etc/network/interfaces.d/_** 下建立 wlan0 文件，内容如下：
 
 ```
-auto wlan0
-iface wlan0 inet dhcp
-wpa-conf /etc/wpa_supplicant/wpa.conf
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa.conf
+iface default inet static
+address 192.168.20.200
+netmask 255.255.255.0
+gateway 192.168.20.1
+dns-nameservers 192.168.20.1
 ```
 # iw指令
 
