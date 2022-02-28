@@ -630,7 +630,7 @@ netmask 255.255.255.0
 gateway 192.168.111.1
 dns-nameservers 192.168.111.1
 ```
-为了支持ＤＮＳ，　需要安装　apt install resolvconf
+为了支持DNS，需要安装 apt install resolvconf ifupdown
 
 - 无线网络配置
 
