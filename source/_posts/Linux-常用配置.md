@@ -13,6 +13,78 @@ categories:
 comments: true
 ---
 
+# NFS配置
+
+## 安装NFS
+```bash
+sudo apt install nfs-kernel-server
+```
+## 配置共享目录
+服务端的共享目录配置文件为　**_/etc/exports_**
+```bash
+# /etc/exports: the access control list for filesystems which may be exported
+#		to NFS clients.  See exports(5).
+#
+# Example for NFSv2 and NFSv3:
+# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+#
+# Example for NFSv4:
+# /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+# /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+#
+/home/ubuntu *(rw,anonuid=1000,anongid=1000,sync,no_subtree_check)
+```
+```bash
+<输出目录> [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]
+```
+- 输出目录：
+  - 服务器共享的绝对目录地址
+
+- 客户端：
+  - 指定ip地址的主机：192.168.0.200
+  - 指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0
+  - 指定域名的主机：david.bsmart.cn
+  - 指定域中的所有主机：*.bsmart.cn
+  - 所有主机：*
+
+- 选项：
+  - 访问权限
+    - 只读 ro
+    - 读写 rw
+  - 用户映射选项
+    -  all_squash：将远程访问的所有普通用户及所属组都映射为匿名用户或用户组（nfsnobody）；
+    - no_all_squash：与all_squash取反（默认设置）；
+    - root_squash：将root用户及所属组都映射为匿名用户或用户组（默认设置）；
+    - no_root_squash：与rootsquash取反；
+    - anonuid=xxx：将远程访问的所有用户都映射为匿名用户，并指定该用户为本地用户（UID=xxx）；
+    - anongid=xxx：将远程访问的所有用户组都映射为匿名用户组账户，并指定该匿名用户组账户为本地用户组账户（GID=xxx）；
+- 其他选项
+  - secure：限制客户端只能从小于1024的tcp/ip端口连接nfs服务器（默认设置）；
+  - insecure：允许客户端从大于1024的tcp/ip端口连接服务器；
+  - sync：将数据同步写入内存缓冲区与磁盘中，效率低，但可以保证数据的一致性；
+  - async：将数据先保存在内存缓冲区中，必要时才写入磁盘；
+  - wdelay：检查是否有相关的写操作，如果有则将这些写操作一起执行，这样可以提高效率（默认设置）；
+  - no_wdelay：若有写操作则立即执行，应与sync配合使用；
+  - subtree_check：若输出目录是一个子目录，则nfs服务器将检查其父目录的权限(默认设置)；
+  - no_subtree_check：即使输出目录是一个子目录，nfs服务器也不检查其父目录的权限，这样可以提高效率；
+
+配置完成之后，重启nfs service.
+```bash
+sudo /etc/init.d/nfs-kernel-server restart
+```
+
+## 客户端mount
+假设服务IP为: 192.168.20.200,
+```bash
+kaylor@kaylor-ThinkPad-T460:~$ showmount -e 192.168.20.200 #显示服务器共享的目录
+Export list for 192.168.20.200:
+/home/ubuntu *
+kaylor@kaylor-ThinkPad-T460:~$ sudo mount 192.168.20.200:/home/ubuntu nfs
+
+```
+
+
+
 # iptables 网络转发设置
 ## 设置内核转发
 - 即时开启内核转发
