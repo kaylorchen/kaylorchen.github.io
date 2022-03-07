@@ -922,6 +922,21 @@ docker run -p 0.0.0.0:8080:80 -i -t ubuntu /bin/bash
 docker port CONTAINER_NAME/ID #查看端口映射情况
 ```
 
+## 跨平台使用docker
+运行特权容器
+```bash
+docker run --rm --privileged docker/binfmt:66f9012c56a8316f9244ffd7622d7c21c1f6f28d
+```
+查看支持的CPU信息
+```bash
+ls -al /proc/sys/fs/binfmt_misc/
+```
+
+## 主机文件夹映射
+```bash
+docker run -it -v /home/kaylor/wifibroadcast/:/data --name rpi_env kaylor/rpi-env:20210507 /bin/bash
+``` 
+
 ## 镜像
 
 ```bash
