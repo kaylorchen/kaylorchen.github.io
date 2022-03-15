@@ -422,9 +422,11 @@ set nu
 colorscheme desert
 set ts=4
 set expandtab
+set paste
 ```
 # GRUB
-- 让grub记住你上一次的启动项
+
+让grub记住你上一次的启动项
 编辑 **_/etc/default/grub_**
 ```commandline
 GRUB_DEFAULT=saved
@@ -458,11 +460,13 @@ useradd -G admins,ftp,www,developers user
 # GIT
 
 - Windows git bash 显示中文
+  
 ```
 git config --global core.quotepath false
 ```
 
 - 取消文件跟踪
+
 ```bash
 git rm -r --cached dir #不跟踪，但保留文件
 git rm -r --f dir #删除文件
@@ -596,6 +600,7 @@ https://{username}:{passwd}@github.com
 ```
 
 - tag使用
+
 ```bash
 git tag v1.0.0
 git push --tag
@@ -687,7 +692,7 @@ route add default gw 192.168.1.254
 ```
 
 
-- 设置静态ＩＰ
+- 设置静态IP
 
 ```bash
 hunter@hunter-Drone:~$ cat /etc/network/interfaces
@@ -804,11 +809,18 @@ du -h ./
 
 # dd指令
 - 生成空的image和扩容
+
 ```bash
 dd if=/dev/zero of=disk.img bs=1M count=256 #生成256MBytes的image
 cat blank.img >> old.img #将blank.img追加到old.img之后
 ```
 追加之后的扩容操作，需要参考接下来的“***使用parted扩容分区***”，对image进行分区，请参考我的另一个文章[***制作一个空的image***](https://blog.kaylordut.com/2021/08/07/%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9A%84image/#more)
+
+- 烧写image
+  
+```bash
+gunzip -c kaylor.img.gz | dd of=/dev/xxx bs=20M
+```
 
 # 使用 parted 扩容分区
 
@@ -958,6 +970,7 @@ docker rmi ${docker images -q ubuntu} #删除ubuntu的所有镜像
 - 从网站查找
 https://registry.hub.docker.com
 - 使用命令
+
 ```bash
 docker search [options] term #最多返回25个结果
 --automated=false
@@ -1003,6 +1016,7 @@ docker build [options] PATH | URL | -
 
 ## Doker的C/S模式
 - Romote API
+
 unix:///var/run/docker.sock
 tcp://host:port
 fd://socketfd
@@ -1044,6 +1058,7 @@ Registry相关：
 export DOCKER_HOST="tcp://x.x.x.x:2375"
 
 ## 镜像保存与加载
+
 ```bash
 docker save -o 要保存的文件名 要保存的镜像
 $ docker save -o test.tar ubuntu
@@ -1052,6 +1067,7 @@ docker load --input 加载的文件名
 
 ## dockerfile 指令
 Dockerfile例子
+
 ```bash
 FROM ubuntu:14.04
 MAINTAINER kaylor "kaylor@kaylordut.com"
