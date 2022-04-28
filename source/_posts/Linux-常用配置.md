@@ -432,6 +432,12 @@ set paste
 GRUB_DEFAULT=saved
 GRUB_SAVEDEFAULT=true
 ```
+
+- 设置网卡名字为eth*的形式
+```bash
+GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
+```
+
 执行指令更新grub
 ```bash
 update-grub
