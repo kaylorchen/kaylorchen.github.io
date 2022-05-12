@@ -20,6 +20,7 @@ comments: true
 vers参数要指定
 ```bash
 sudo mount  //192.168.100.1/share/ share/ -o vers=2.0
+sudo mount  //192.168.100.1/share/ share/ -o vers=2.0,uid=ubuntu,gid=ubuntu
 ```
 
 # NFS配置
