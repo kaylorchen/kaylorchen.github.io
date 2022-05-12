@@ -13,6 +13,15 @@ categories:
 comments: true
 ---
 
+# Samba 相关
+
+## 挂载
+
+vers参数要指定
+```bash
+sudo mount  //192.168.100.1/share/ share/ -o vers=2.0
+```
+
 # NFS配置
 
 ## 安装NFS
