@@ -207,19 +207,23 @@ iptables -A FORWARD -s 10.1.1.0/24 -p tcp --dport http -j ACCEPT
 ## 保存 iptables指令
 - 使用iptables-restore
 设置了相关规则之后，保存到文件中
+
 ```bash
 iptables-save > /etc/iptables-rules
 ip6tables-save > /etc/ip6tables-rules
 ``` 
+
 然后新建一个脚本文件，保存到**_/etc/network/if-pre-up.d/_**目录下，记得修改脚本的权限：
 ```bash
 #!/bin/bash
 iptables-restore < /etc/iptables.rules
 ```
+
 - 使用iptables-persistent
 ```bash
 sudo apt install iptables-persistent
 ```
+
 每当设置了新的iptables规则后，使用如下命令保存规则即可，规则会根据ipv4和ipv6分别保存在了/etc/iptables/rules.v4和/etc/iptables/rules.v6文件中。
 ```bash
 netfilter-persistent  save
