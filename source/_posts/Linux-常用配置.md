@@ -211,7 +211,7 @@ iptables -A FORWARD -s 10.1.1.0/24 -p tcp --dport http -j ACCEPT
 ```bash
 iptables-save > /etc/iptables-rules
 ip6tables-save > /etc/ip6tables-rules
-``` 
+```
 
 然后新建一个脚本文件，保存到**_/etc/network/if-pre-up.d/_**目录下，记得修改脚本的权限：
 ```bash
