@@ -13,6 +13,39 @@ categories:
 comments: true
 ---
 
+# v4l2-ctl
+
+## 获取支持的分辨率和编码格式
+
+```bash
+v4l2-ctl --list-formats-ext -d /dev/video0
+```
+
+## 显示Camera所有信息(分辨率:Width/Height)
+
+```bash
+v4l2-ctl -d /dev/video0 --all
+```
+
+## 获取支持的编码格式
+
+```bash
+v4l2-ctl  --list-formats -d /dev/video0
+```
+
+## 获取支持的camera设备
+
+```bash
+v4l2-ctl --list-devices -d /dev/video0
+```
+
+## 获取摄像头控制参数
+
+```bash
+v4l2-ctl -d /dev/video0 --list-ctrls
+```
+
+
 # Samba 相关
 
 ## 挂载
@@ -479,6 +512,12 @@ useradd -G admins,ftp,www,developers user
 ```
 
 # GIT
+
+- clone 指定分支
+
+```bash
+ git clone -b dev_jk http://10.1.1.11/service/tmall-service.git
+```
 
 - Windows git bash 显示中文
   
