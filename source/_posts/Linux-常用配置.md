@@ -448,7 +448,9 @@ network:
 
 # SSH
 
-编辑 **_/etc/ssh/ssh_config_**
+- 服务器端
+
+编辑 **/etc/ssh/sshd_config**
 
 ```
 ClientAliveInterval 30
@@ -460,6 +462,15 @@ ClientAliveInterval 表示每隔多少秒，服务器端向客户端发送心跳
 下面的 ClientAliveInterval 表示上述多少次心跳无响应之后，会认为 Client 已经断开。
 
 所以，总共允许无响应的时间是 60\*3=180 秒。
+
+- 客户端
+
+编辑 **/etc/ssh/ssh_config**
+
+```
+ServerAliveInterval 30
+ServerAliveCountMax 100
+```
 
 # VIM
 
