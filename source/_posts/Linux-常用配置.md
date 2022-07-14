@@ -522,6 +522,12 @@ usermod -a -G groupname username
 useradd -G admins,ftp,www,developers user
 ```
 
+- 查看用户的ID信息
+
+```bash
+id username
+```
+
 # GIT
 
 - clone 指定分支
