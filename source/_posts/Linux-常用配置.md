@@ -13,6 +13,73 @@ categories:
 comments: true
 ---
 
+# ZSH配置和FZF配置
+
+## zsh基本配置
+
+```bash
+apt install zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+chsh -s /bin/zsh
+```
+
+## 添加插件
+在.zshrc上添加如下内容：
+
+```
+# zplug configruation
+if [[ ! -d "${ZPLUG_HOME}" ]]; then
+    if [[ ! -d ~/.zplug ]]; then
+        git clone https://github.com/zplug/zplug ~/.zplug
+        # If we can't get zplug, it'll be a very sobering shell experience. To at
+        # least complete the sourcing of this file, we'll define an always-false
+        # returning zplug function.
+        if [[ $? != 0 ]]; then
+            function zplug() {
+                return 1
+            }
+        fi
+    fi
+    export ZPLUG_HOME=~/.zplug
+fi
+if [[ -d "${ZPLUG_HOME}" ]]; then
+    source "${ZPLUG_HOME}/init.zsh"
+fi
+zplug 'plugins/git', from:oh-my-zsh, if:'which git'
+zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
+zplug "plugins/vi-mode", from:oh-my-zsh
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'zsh-users/zsh-completions', defer:2
+zplug 'zsh-users/zsh-history-substring-search'
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+
+if ! zplug check; then
+    zplug install
+fi
+
+zplug load
+
+bindkey '^K' kill-line
+bindkey '^B' backward-char
+bindkey '^F' forward-char
+
+zstyle ':completion:*' rehash true
+```
+## 安装配置fzf
+
+- Install
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
+
+- upgrade
+```bash
+cd ~/.fzf && git pull && ./install
+```
+
+
 # v4l2-ctl
 
 ## 获取支持的分辨率和编码格式
@@ -454,7 +521,7 @@ network:
 
 # SSH
 
-- 服务器端
+## 服务器端
 
 编辑 **/etc/ssh/sshd_config**
 
@@ -469,7 +536,7 @@ ClientAliveInterval 表示每隔多少秒，服务器端向客户端发送心跳
 
 所以，总共允许无响应的时间是 60\*3=180 秒。
 
-- 客户端
+## 客户端
 
 编辑 **/etc/ssh/ssh_config**
 
@@ -844,6 +911,30 @@ netmask 255.255.255.0
 gateway 192.168.20.1
 dns-nameservers 192.168.20.1
 ```
+# NetworkManager管理相关
+
+## 永久不管理接口
+-  查看网卡状态
+```bash
+nmcli device status
+```
+- 编辑文件 /etc/NetworkManager/conf.d/99-unmanaged-devices.conf
+```
+unmanaged-devices=interface-name:interface_1;interface-name:interface_2;...
+```
+- 重启服务
+```bash
+systemctl reload NetworkManager
+```
+
+## 临时不管理接口
+```bash
+nmcli device set enp1s0 managed no
+```
+
+
+
+
 # iw指令
 
 ```
