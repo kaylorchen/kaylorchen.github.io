@@ -194,7 +194,8 @@ iptables -t filter -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
 iptables -A FORWARD -i eth3 -j ACCEPT
 ```
 ## 简单nat路由器
-环境介绍
+- 环境介绍
+  
 linux 2.4 +
 2个网络接口
 Lan口:10.1.1.254/24 eth0
@@ -203,39 +204,43 @@ Wan口:60.1.1.1/24 eth1
 首先将Lan的节点pc的网关指向10.1.1.254。
 
 确定你的linux的ip配置无误，可以正确的ping通内外的地址。同时用route命令查看linux的本地路由表，确认指定了可用的ISP提供的默认网关。
+- 操作
 
-打开linux的转发功能：sysctl net.ipv4.ip_forward=1
+   - 打开linux的转发功能：sysctl net.ipv4.ip_forward=1
 
-将FORWARD链的策略设置为DROP，这样做的目的是做到对内网ip的控制，你允许哪一个访问internet就可以增加一个规则，不在规则中的ip将无法访问internet.
-
+   - 将FORWARD链的策略设置为DROP，这样做的目的是做到对内网ip的控制，你允许哪一个访问internet就可以增加一个规则，不在规则中的ip将无法访问internet.
+```bash
 iptables -P FORWARD DROP
+```
 
-这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许lan IP访问没有用，至于为什么，下面我们再详细说。
-
+   - 这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许lan IP访问没有用，至于为什么，下面我们再详细说。
+```bash
 iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+```
+   - 这条规则做了一个SNAT，也就是源地址转换，将来自10.1.1.0/24的地址转换为60.1.1.1
 
-这条规则做了一个SNAT，也就是源地址转换，将来自10.1.1.0/24的地址转换为60.1.1.1
-
-(Deven：因为是让内网上网，因此对于代理服务器而言POSTROUTING（经过路由之后的包应该要把源地址改变为60.1.1.1，否则包无法返回）)
-
+(因为是让内网上网，因此对于代理服务器而言POSTROUTING（经过路由之后的包应该要把源地址改变为60.1.1.1，否则包无法返回）)
+```bash
 iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -j SNAT --to 60.1.1.1
+```
+   - 有这几条规则，一个简单的nat路由器就实现了。这时你可以将允许访问的ip添加至FORWARD链，他们就能访问internet了。
 
-有这几条规则，一个简单的nat路由器就实现了。这时你可以将允许访问的ip添加至FORWARD链，他们就能访问internet了。
-
-比如我想让10.1.1.9这个地址访问internet,那么你就加如下的命令就可以了。
-
+  比如我想让10.1.1.9这个地址访问internet,那么你就加如下的命令就可以了。
+```bash
 iptables -A FORWARD -s 10.1.1.9 -j ACCEPT
-
-也可以精确控制他的访问地址,比如我就允许10.1.1.99访问3.3.3.3这个ip
-
+```
+  也可以精确控制他的访问地址,比如我就允许10.1.1.99访问3.3.3.3这个ip
+  
+```bash
 iptables -A FORWARD -s 10.1.1.99 -d 3.3.3.3 -j ACCEPT
-
-或者只允许他们访问80端口。
-
+```
+  或者只允许他们访问80端口
+```bash
 iptables -A FORWARD -s 10.1.1.0/24 -p tcp --dport http -j ACCEPT
+```
 
 ## 端口转发
-借鉴 http://xstarcd.github.io/wiki/Linux/iptables_forward_internetshare.html
+借鉴[此链接](http://xstarcd.github.io/wiki/Linux/iptables_forward_internetshare.html)
  
 ## 保存 iptables指令
 - 使用iptables-restore
@@ -312,9 +317,10 @@ journalctl -p err -b
 ```
 journalctl -n 20
 ```
-追踪日志
+追踪日志/实时滚动日志
 ```
 journalctl -f
+journalctl  -u nginx.service  -f
 ```
 
 
@@ -530,11 +536,40 @@ id username
 
 # GIT
 
+- 变基
+
+```bash
+git checkout experiment
+git rebase master
+git checkout master
+git merge experiment
+```
+
 - clone 指定分支
 
 ```bash
  git clone -b dev_jk http://10.1.1.11/service/tmall-service.git
 ```
+
+--depth=1 参数，克隆最近一次的commit的，体积会变小
+
+```bash
+git clone https://github.com/xxx/xxx.git --depth=1
+```
+
+如果需要间该分支所有的commit克隆下来，需要
+
+```bash
+git fetch --unshallow
+```
+但会产生另外一个问题，他只会把默认分支clone下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：
+```bash
+git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
+git remote set-branches origin 'remote_branch_name'
+git fetch --depth 1 origin remote_branch_name
+git checkout remote_branch_name
+```
+
 
 - Windows git bash 显示中文
   
