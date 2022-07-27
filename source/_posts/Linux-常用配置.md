@@ -190,7 +190,8 @@ kaylor@kaylor-ThinkPad-T460:~$ showmount -e 192.168.20.200 #显示服务器共�
 Export list for 192.168.20.200:
 /home/ubuntu *
 kaylor@kaylor-ThinkPad-T460:~$ sudo mount 192.168.20.200:/home/ubuntu nfs
-
+#mac mount需要加参数
+sudo  mount -o vers=4,resvport 192.168.51.200:/home/ubuntu nfs
 ```
 
 
