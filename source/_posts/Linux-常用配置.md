@@ -65,6 +65,7 @@ bindkey '^B' backward-char
 bindkey '^F' forward-char
 
 zstyle ':completion:*' rehash true
+unsetopt no_match
 ```
 ## 安装配置fzf
 
