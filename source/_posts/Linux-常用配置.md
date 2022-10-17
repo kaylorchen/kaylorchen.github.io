@@ -922,6 +922,7 @@ nmcli device status
 ```
 - 编辑文件 /etc/NetworkManager/conf.d/99-unmanaged-devices.conf
 ```
+[keyfile]
 unmanaged-devices=interface-name:interface_1;interface-name:interface_2;...
 ```
 - 重启服务
