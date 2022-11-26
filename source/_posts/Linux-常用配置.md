@@ -888,7 +888,12 @@ netmask 255.255.255.0
 gateway 192.168.111.1
 dns-nameservers 192.168.111.1
 ```
-为了支持DNS，需要安装 apt install resolvconf ifupdown
+为了支持DNS，需要安装 apt install resolvconf ifupdown  
+如果为了保证有一个固定的DNS，可以编辑 **_/etc/resolvconf/resolv.conf.d/tail_**, 添加一个默认DNS
+```bash
+nameserver 114.114.114.114
+nameserver 119.29.29.29
+```
 
 - 无线网络配置
 

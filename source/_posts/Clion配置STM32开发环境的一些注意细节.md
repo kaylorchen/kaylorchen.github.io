@@ -1,7 +1,7 @@
 ---
 title: Clion配置STM32开发环境的一些注意细节
 comments: true
-date: 2021-07-28 10:41:15
+date: 2022-07-28 10:41:15
 tags:
 - STM32
 - CLion
