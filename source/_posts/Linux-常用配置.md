@@ -1,6 +1,6 @@
 ---
 title: Linux 常用配置
-date: 2022-02-15 15:37:02
+date: 2022-11-15 15:37:02
 tags:
   - Linux
   - Ubuntu
@@ -19,7 +19,7 @@ comments: true
 
 ```bash
 apt install zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh --depth=1
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 chsh -s /bin/zsh
 ```
@@ -492,35 +492,6 @@ example: nload -t 200 -i 1024 -o 128 -U M
 
 ```
 
-# Ubuntu 18.04 网络配置
-
-编辑 **_/etc/netplan/50-cloud-init.yaml_**
-
-```
-# This file is generated from information provided by
-# the datasource.  Changes to it will not persist across an instance.
-# To disable cloud-init's network configuration capabilities, write a file
-# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
-# network: {config: disabled}
-network:
-    version: 2
-    ethernets:
-        eth0:
-            dhcp4: true
-            match:
-                macaddress: b8:27:eb:d2:d7:1e
-            set-name: eth0
-            optional: true
-    wifis:
-        wlan0:
-            dhcp4: true
-            optional: true
-            access-points:
-                    "Xiaomi_kaylordut_5G":
-                            password: "kaylordut.com"
-
-```
-
 # SSH
 
 ## 服务器端
@@ -617,7 +588,7 @@ git merge experiment
 - clone 指定分支
 
 ```bash
- git clone -b dev_jk http://10.1.1.11/service/tmall-service.git
+ git clone -b dev_branch [url]
 ```
 
 --depth=1 参数，克隆最近一次的commit的，体积会变小
@@ -655,25 +626,16 @@ git rm --cached readme.txt #不跟踪，但保留文件
 git rm --f readme.txt #删除文件
 ```
 
-- 绑定远程仓库
+- 远程仓库(remote)
 
 ```
-git remote add origin git_link
+git remote add origin [url]
+git remote set-url origin [url] //更换URL
+git remote –v //查看remote信息
+git remote remove origin //取消远程关联
 ```
 
-- 查看现有远程仓库
-
-```
-git remote –v
-```
-
-- 取消本地目录关联下的远程库
-
-```
-git remote remove origin
-```
-
-- 推送主分支
+- 推送分支
 
 ```
 git push --set-upstream origin master
@@ -756,13 +718,6 @@ git config --unset https.proxy
 
 ```bash
 git config --global credential.helper store
-vim ~/.git-credentials
-```
-
-内容如下：
-
-```
-https://{username}:{passwd}@github.com
 ```
 
 编辑全局配置文件 **_~/.gitconfig_**
@@ -812,6 +767,37 @@ systemd-analyze plot > boot.svg
 
 # 网络配置
 
+## Ubuntu 18.04 网络配置
+
+编辑 **_/etc/netplan/50-cloud-init.yaml_**
+
+```
+# This file is generated from information provided by
+# the datasource.  Changes to it will not persist across an instance.
+# To disable cloud-init's network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    version: 2
+    ethernets:
+        eth0:
+            dhcp4: true
+            match:
+                macaddress: b8:27:eb:d2:d7:1e
+            set-name: eth0
+            optional: true
+    wifis:
+        wlan0:
+            dhcp4: true
+            optional: true
+            access-points:
+                    "Xiaomi_kaylordut_5G":
+                            password: "kaylordut.com"
+
+```
+
+## IP指令
+
 - ipv4:
 
 ```bash
@@ -824,41 +810,16 @@ ip -4 addr
 ip -6 addr
 ```
 
-- 查詢個別網卡的資訊:
+- 基本网卡操作:
 
 ```
 ip addr show eth0
 ip addr list eth0
 ip addr show dev eth0
-```
-
-- 給網卡定義 IP 地址:
-
-```
 sudo ip addr add 10.20.0.15/24 dev eth1
-```
-
-- 從網卡移除 IP 地址:
-
-```
 sudo ip addr del 10.20.0.15/24 dev eth1
-```
-
-- 啟動網卡:
-
-```
 sudo ip link set dev eth1 up
-```
-
-- 停用網卡:
-
-```
 sudo ip link set dev eth1 down
-```
-
-- 顯示 Routing Table
-
-```
 ip r
 ip route
 ip route show
@@ -872,6 +833,7 @@ ip route add default via 192.168.1.254
 route add default gw 192.168.1.254
 ```
 
+## 静态IP和DNS设置 
 
 - 设置静态IP
 
@@ -895,7 +857,7 @@ nameserver 114.114.114.114
 nameserver 119.29.29.29
 ```
 
-- 无线网络配置
+## 无线网络配置
 
 ```bash
 kaylor@kaylor-ThinkPad-T460:~$ wpa_passphrase ssid password
@@ -918,14 +880,16 @@ netmask 255.255.255.0
 gateway 192.168.20.1
 dns-nameservers 192.168.20.1
 ```
-# NetworkManager管理相关
+## NetworkManager管理相关
 
-## 永久不管理接口
+### 永久不管理接口
 -  查看网卡状态
 ```bash
 nmcli device status
 ```
-- 编辑文件 /etc/NetworkManager/conf.d/99-unmanaged-devices.conf
+- 编辑文件 /etc/NetworkManager/conf.d/99-unmanaged-devices.conf  
+NetworkManager的系统配置文件可能的位置还有 **_/lib/NetworkManager/conf.d/_** 和 **_/usr/lib/NetworkManager/conf.d/_**
+
 ```
 [keyfile]
 unmanaged-devices=interface-name:interface_1;interface-name:interface_2;...
@@ -935,15 +899,13 @@ unmanaged-devices=interface-name:interface_1;interface-name:interface_2;...
 systemctl reload NetworkManager
 ```
 
-## 临时不管理接口
+### 临时不管理接口
 ```bash
 nmcli device set enp1s0 managed no
 ```
 
 
-
-
-# iw指令
+## iw指令 (无线网络)
 
 ```
 iw help    # 帮助
