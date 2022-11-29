@@ -9,22 +9,25 @@ categories:
 ---
 
 # 格式化代码
-## VSCode
-- On Windows
-    shift + alt + F
-- On Linux
-    ctrl + shift + I
-- On MacOs
-    shift + option + I
+- VSCode
+  - On Windows
+      shift + alt + F
+  - On Linux
+      ctrl + shift + I
+  - On MacOs
+      shift + option + I
 
-## Clion
-ctrl + alt + L
+- Clion
+
+    ctrl + alt + L
 
 # 选择列编辑
-## Vscode
+- Vscode
+
 alt + shift + 鼠标选择
 
-## Clion
+- Clion
+
 alt + 鼠标选择
 
 # VSCode头文件路径配置
