@@ -964,6 +964,13 @@ KERNEL=="sd?1", KERNELS=="1-4.4:1.0", SYMLINK+="storage"
 KERNEL=="wlan*", SUBSYSTEMS=="usb", NAME="wfb"
 ```
 
+重命名网卡
+
+```
+KERNEL=="wlan*", SUBSYSTEMS=="sdio", NAME="hostapd"
+KERNEL=="wlan*", SUBSYSTEMS=="usb", NAME="wfb"
+```
+
 触发规则
 
 ```
