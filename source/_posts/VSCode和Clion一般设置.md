@@ -11,11 +11,13 @@ categories:
 # 格式化代码
 - VSCode
   - On Windows
-      shift + alt + F
+      shift + alt + f //格式化整个文件  
+      ctrl+k ctrl+f //格式化选中代码
   - On Linux
-      ctrl + shift + I
+      ctrl + shift + i
   - On MacOs
-      shift + option + I
+      shift + option + i //格式化整个文件  
+      cmd+k cmd+f //格式化选中代码
 
 - Clion
 
