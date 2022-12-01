@@ -46,6 +46,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
     sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     ```
     - 选择安装指定版本
+    
         - 列出可用版本
         ```bash
         # List the available versions:
@@ -57,17 +58,23 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
         5:20.10.13~3-0~ubuntu-jammy
         ``` 
         
+        
         - 安装指定版本
         ```bash
         VERSION_STRING=5:20.10.13~3-0~ubuntu-jammy
         sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin
         ``` 
 
+
+
+
 # 设置非root用户不使用sudo
 ```bash
 usermod -a -G docker username
 reboot
 ```
+
+
 # 跨平台使用
 windows和mac使用的是桌面版，默认已经启动了binfmt_misc, 我们使用的是Linux，可以手动启动该功能，但是我们有更好的方法，就是启动一个特权容器，指令如下：
 ```bash
