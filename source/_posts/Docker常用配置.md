@@ -1,5 +1,5 @@
 ---
-title: Docker常用指令
+title: Docker常用配置
 comments: true
 date: 2021-08-07 10:41:15
 tags:
@@ -7,6 +7,60 @@ tags:
 categories:
 - docker
 ---
+
+# 安装docker
+
+## 卸载旧版本
+
+```bash
+sudo apt-get remove docker docker-engine docker.io containerd runc
+```
+
+## 安装新版本
+
+- 设置仓库源
+  - 更新apt包索引，安装依赖
+    ```bash
+    sudo apt-get update
+    sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+    ```
+  - 添加docker官方GPG key
+    ```bash
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    ```
+  - 设置仓库源
+    ```bash
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    ```
+- 安装docker引擎
+    - 安装最新版本
+    ```bash
+    sudo apt update
+    sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    ```
+    - 选择安装指定版本
+        - 列出可用版本
+        ```bash
+        # List the available versions:
+        $ apt-cache madison docker-ce | awk '{ print $3 }'
+
+        5:20.10.16~3-0~ubuntu-jammy
+        5:20.10.15~3-0~ubuntu-jammy
+        5:20.10.14~3-0~ubuntu-jammy
+        5:20.10.13~3-0~ubuntu-jammy
+        ``` 
+        - 安装指定版本
+        ```bash
+        VERSION_STRING=5:20.10.13~3-0~ubuntu-jammy
+        sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin
+        ``` 
 
 # 设置非root用户不使用sudo
 ```bash
@@ -43,9 +97,11 @@ docker run -it rpi-env:20210507 /bin/bash
 我已经设置好了基础仓库，可以直接使用***docker pull kaylor/rpi-env***拉取
 
 # 共享宿主机文件夹
+
+/home/kaylor/aaa --> /share
 ```bash
 docker run -it -v /home/kaylor/aaa:/share kaylor/rpi-env:20210507 /bin/bash
 ```
-/home/kaylor/aaa --> /share
+
 
 
