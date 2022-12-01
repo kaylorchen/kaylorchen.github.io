@@ -56,6 +56,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
         5:20.10.14~3-0~ubuntu-jammy
         5:20.10.13~3-0~ubuntu-jammy
         ``` 
+        
         - 安装指定版本
         ```bash
         VERSION_STRING=5:20.10.13~3-0~ubuntu-jammy
