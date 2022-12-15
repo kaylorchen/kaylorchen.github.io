@@ -936,9 +936,9 @@ unmanaged-devices=interface-name:interface_1;interface-name:interface_2;...
 systemctl reload NetworkManager
 ```
 
-### 临时不管理接口
+### 临时更改接口管理状态
 ```bash
-nmcli device set enp1s0 managed no
+nmcli device set enp1s0 managed no/yes
 ```
 
 
