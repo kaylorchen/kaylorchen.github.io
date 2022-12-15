@@ -875,6 +875,25 @@ address 192.168.100.101
 netmask 255.255.255.0
 ```
 
+- CAN接口配置
+
+```bash
+edge@host-63b5d7:/etc/network/interfaces.d$ cat can0 
+auto can0
+iface can0 inet manual
+pre-up ip link set can0 type can bitrate 500000
+pre-up ip link set can0 type can restart-ms 1
+edge@host-63b5d7:/etc/network/interfaces.d$ ip -details link show can0
+5: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10
+    link/can  promiscuity 0 
+    can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 1 
+	  bitrate 498701 sample-point 0.870 
+	  tq 26 prop-seg 33 phase-seg1 33 phase-seg2 10 sjw 1
+	  mttcan: tseg1 2..255 tseg2 0..127 sjw 1..127 brp 1..511 brp-inc 1
+	  mttcan: dtseg1 1..31 dtseg2 0..15 dsjw 1..15 dbrp 1..15 dbrp-inc 1
+	  clock 38400000numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 
+```
+
 ## 无线网络配置
 
 ```bash
