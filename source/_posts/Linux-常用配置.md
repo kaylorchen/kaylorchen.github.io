@@ -857,6 +857,19 @@ nameserver 114.114.114.114
 nameserver 119.29.29.29
 ```
 
+- 桥接多网口
+  
+  安装桥接工具 **_sudo apt install bridge-utils_** , 生成网桥配置文件 **/etc/network/interfaces.d/br0** ，你会看到如下内容：
+
+```bash
+auto br0
+iface br0 inet static
+bridge_ports eth0 eth1
+address 192.168.23.10
+netmask 255.255.255.0
+gateway 192.168.23.100 
+```
+
 ## 无线网络配置
 
 ```bash
