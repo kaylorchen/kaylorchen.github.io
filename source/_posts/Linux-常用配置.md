@@ -868,6 +868,11 @@ bridge_ports eth0 eth1
 address 192.168.23.10
 netmask 255.255.255.0
 gateway 192.168.23.100 
+
+auto br0:0
+iface br0:0 inet static
+address 192.168.100.101
+netmask 255.255.255.0
 ```
 
 ## 无线网络配置
