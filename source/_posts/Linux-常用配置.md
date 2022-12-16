@@ -941,6 +941,19 @@ systemctl reload NetworkManager
 nmcli device set enp1s0 managed no/yes
 ```
 
+## NAT转发设置
+
+使用主机作为网关给其他设备上网
+```bash
+echo "Forward setting"
+sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+sudo iptables -F
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo sysctl -w net.ipv4.ip_forward=1
+```
+
 
 ## iw指令 (无线网络)
 
