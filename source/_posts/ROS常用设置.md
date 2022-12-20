@@ -27,7 +27,8 @@ rosdep update
 ## ROS主从机配置
 
 ros的主从机只需要配置ROS_IP和ROS_MASTER_URI就可以。
-主机配置的ROS_IP是主机的局域网的IP， ROS_MASTER_URI是应该是使用局域网的IP加端口，如 ROS_MASTER_URI=“http://192.168.23.10:11311”，如果不想配置死环境变量，可以使用roslaunch对针对性应用配置临时环境变量，比如：
+主机配置的ROS_IP是主机的局域网的IP， ROS_MASTER_URI是应该是使用局域网的IP加端口，如 ROS_MASTER_URI=“http://192.168.23.10:11311”，  
+如果不想配置死环境变量，可以使用roslaunch对针对性应用配置临时环境变量，比如：
 
 ```xml
 <launch>
