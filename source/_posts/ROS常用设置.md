@@ -39,3 +39,11 @@ ros的主从机只需要配置ROS_IP和ROS_MASTER_URI就可以。
 </launch>
 ```
 
+## 常用指令
+
+```bash
+catkin_make -DCMAKE_BUILD_TYPE=Release --only test
+catkin_create_pkg 包名 依赖1 依赖2 ...
+```
+
+
