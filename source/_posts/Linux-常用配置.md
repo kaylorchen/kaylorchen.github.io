@@ -1176,11 +1176,14 @@ ls -al /proc/sys/fs/binfmt_misc/
 
 ## 主机文件夹映射
 
+
 ```bash
 docker run -it -v /home/kaylor/wifibroadcast/:/data --name rpi_env kaylor/rpi-env:20210507 /bin/bash
 ``` 
 
+
 ## 镜像
+
 
 ```bash
 docker images [options] [repository]
@@ -1195,6 +1198,7 @@ docker rmi [options] IMAGE
 
 docker rmi ${docker images -q ubuntu} #删除ubuntu的所有镜像
 ```
+
 
 ## 查找 Images
 - 从网站查找

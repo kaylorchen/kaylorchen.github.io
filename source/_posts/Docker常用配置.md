@@ -115,8 +115,10 @@ docker run -it -v /home/kaylor/aaa:/share kaylor/rpi-env:20210507 /bin/bash
 # 从根文件系统构建docker镜像
 
 参考链接 https://docs.docker.com/engine/reference/commandline/import/
+
 ```bash
-sudo tar -c rootfs_dir | docker import - docker_name
+cd rootfs_path
+sudo tar -c . | docker import - docker_name
 ```
 
 
