@@ -24,11 +24,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
 
   ```bash
   sudo apt-get update
-  sudo apt-get install \
-  ca-certificates \
-  curl \
-  gnupg \
-  lsb-release
+  sudo apt-get install ca-certificates curl gnupg lsb-release
   ```
 
   - 添加docker官方GPG key
@@ -54,6 +50,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
     sudo apt update
     sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     ```
+    至此，你已经完成了docker最新稳定版本的安装！！！
 
     - 选择安装指定版本
   
@@ -71,6 +68,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
     ```
             
 # 设置非root用户不使用sudo
+
 ```bash
 usermod -a -G docker username
 reboot
@@ -78,6 +76,7 @@ reboot
 
 
 # 跨平台使用
+
 windows和mac使用的是桌面版，默认已经启动了binfmt_misc, 我们使用的是Linux，可以手动启动该功能，但是我们有更好的方法，就是启动一个特权容器，指令如下：
 ```bash
 docker run --rm --privileged docker/binfmt:a7996909642ee92942dcd6cff44b9b95f08dad64

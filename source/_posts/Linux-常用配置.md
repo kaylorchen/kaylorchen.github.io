@@ -392,6 +392,13 @@ journalctl -f
 journalctl  -u nginx.service  -f
 ```
 
+查看和删除系统日志
+```
+journalctl --disk-usage
+journalctl --vacuum-size=10M # 删除系统日志，只剩10M
+journalctl --vacuum-time=1min #删除一分钟之前的系统日志
+```
+
 
 
 # find指令
@@ -399,6 +406,7 @@ journalctl  -u nginx.service  -f
 指定目录搜索文件
 ```
 find dir -name "*pppoe*"
+find dir -perm /u+x -type f #查找dir下的可执行文件
 ```
 
 # Linux 内核编译指令
@@ -407,6 +415,9 @@ find dir -name "*pppoe*"
 
 ```bash
 make menuconfig
+# 跨平台配置的注意事项，比如
+export CROSS_COMPILE=/home/kaylor/rk3588/rk3588_sdk/prebuilts/gcc/linux-x86/aarch64/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+make ARCH=arm64 menuconfig
 ```
 
 根据已有的.config文件，补充缺失的配置
@@ -443,6 +454,7 @@ install -p -m 644 88XXau.ko  /lib/modules/5.10.17-v7l+/kernel/drivers/net/wirele
 ```bash
 make headers_install INSTALL_HDR_PATH=安装路径
 ```
+
 # nohup指令
 
 nohup 即不挂起，不会因为终端退出而终结
@@ -518,16 +530,28 @@ ServerAliveInterval 30
 ServerAliveCountMax 100
 ```
 
+# TMUX
+
+在home目录下创建 .tmux.conf文件
+
+```bash
+setw -g mode-keys vi
+set -g default-terminal "screen-256color"
+```
+
 # VIM
 
 编辑 **_/etc/vim/vimrc_**
 
 ```
-set nu
+set relativenumber
 colorscheme desert
 set ts=4
 set expandtab
 set paste
+set encoding=utf8
+set laststatus=2            " 设置状态栏在倒数第2行
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 ```
 # GRUB
 
@@ -554,6 +578,22 @@ update-grub
 
 ```
 groupadd groupname
+```
+
+- 添加一个新用户
+
+```bash
+adduser new_user
+```
+
+- 更改用户名
+
+使用root用户登录
+```bash
+killall -u old_username
+usermode -l new_username old_username
+groupmod -n new_groupname old_groupname
+usermod -d /home/new_username new_username -m
 ```
 
 - 添加现有用户到一个组：
@@ -585,6 +625,21 @@ git checkout master
 git merge experiment
 ```
 
+- 一般的合并
+
+
+把dev合并到master
+```bash
+git checkout master
+git merge dev
+```
+
+- 分支重命名
+
+```bash
+git branch -m new_name
+```
+
 - clone 指定分支
 
 ```bash
@@ -611,7 +666,7 @@ git checkout remote_branch_name
 ```
 
 
-- Windows git bash 显示中文
+- git bash 显示中文
   
 ```
 git config --global core.quotepath false
@@ -714,17 +769,11 @@ git config --unset https.proxy
 
 ```
 
-- Linux 设置免密
-
-```bash
-git config --global credential.helper store
-```
+- Linux配置文件
 
 编辑全局配置文件 **_~/.gitconfig_**
 
 ```
-[credential]
-	helper = store
 [user]
 	email = you@example.com
 [https]
@@ -767,7 +816,7 @@ systemd-analyze plot > boot.svg
 
 # 网络配置
 
-## Ubuntu 18.04 网络配置
+## netplan网络配置
 
 编辑 **_/etc/netplan/50-cloud-init.yaml_**
 
@@ -883,7 +932,7 @@ auto can0
 iface can0 inet manual
 pre-up ip link set can0 type can bitrate 500000
 pre-up ip link set can0 type can restart-ms 1
-edge@host-63b5d7:/etc/network/interfaces.d$ ip -details link show can0
+edge@host-63b5d7:/etc/network/interfaces.d$ ip -d -s link show can0
 5: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10
     link/can  promiscuity 0 
     can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 1 
@@ -917,6 +966,16 @@ netmask 255.255.255.0
 gateway 192.168.20.1
 dns-nameservers 192.168.20.1
 ```
+如果不使用指定的配置文件，也可以如下：
+
+```
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid "GUEST"
+wpa-psk "sangfor123"
+```
+
 ## NetworkManager管理相关
 
 ### 永久不管理接口
@@ -981,11 +1040,10 @@ iw wlan0 info #查看当前网络状态
 iw phy0 info #查看phy0物理网卡信息
 ```
 
-# SimpleHTTPServer with python
+# Python的简易httpserver
 
 ```bash
 python -m SimpleHTTPServer 8080
-
 python3 -m http.server 8080
 ```
 
@@ -1024,7 +1082,7 @@ KERNEL=="wlan*", SUBSYSTEMS=="usb", NAME="wfb"
 触发规则
 
 ```
-udevadm trigger
+sudo udevadm trigger
 ```
 
 # 查看文件夹大小

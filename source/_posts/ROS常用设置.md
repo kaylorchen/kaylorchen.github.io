@@ -1,7 +1,7 @@
 ---
 title: ROS常用设置
 comments: true
-date: 2021-08-07 10:42:15
+date: 2022-08-07 10:42:15
 tags:
 - ROS
 categories:
@@ -39,11 +39,48 @@ ros的主从机只需要配置ROS_IP和ROS_MASTER_URI就可以。
 </launch>
 ```
 
+切记，ROS_MASTER_URI就是局域网内主机的IP，两侧机器是一样的。但是ROS_IP是各自主机的IP。一切配hostname的教程都是大忽悠！！！！
+
 ## 常用指令
 
 ```bash
+rosdep install --from-paths src --ignore-src -r -y
 catkin_make -DCMAKE_BUILD_TYPE=Release --only test
+catkin_make install -DCATKIN_WHITELIST_PACKAGES="clean_robot_base;ultrasonic;tof_pointcloud" -DCMAKE_BUILD_TYPE=Debug
 catkin_create_pkg 包名 依赖1 依赖2 ...
+```
+
+## CMakeLists.txt的install选项
+
+```bash
+# 安装可执行文件
+install(TARGETS ${PROJECT_NAME}_node
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# 安装用户动态库
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+# 安装文件
+install(FILES
+  myfile1
+  myfile2
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+# 安装文件夹
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  PATTERN ".svn" EXCLUDE)
+
+install(DIRECTORY params
+DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+PATTERN ".svn" EXCLUDE)
+
 ```
 
 
