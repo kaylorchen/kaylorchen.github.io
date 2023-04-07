@@ -13,9 +13,9 @@ categories:
 comments: true
 ---
 
-# ZSH配置和FZF配置
+# ZSH 配置和 FZF 配置
 
-## zsh基本配置
+## zsh 基本配置
 
 ```bash
 apt install zsh
@@ -25,7 +25,8 @@ chsh -s /bin/zsh
 ```
 
 ## 添加插件
-在.zshrc上添加如下内容：
+
+在.zshrc 上添加如下内容：
 
 ```
 # zplug configruation
@@ -67,19 +68,21 @@ bindkey '^F' forward-char
 zstyle ':completion:*' rehash true
 unsetopt no_match
 ```
-## 安装配置fzf
+
+## 安装配置 fzf
 
 - Install
+
 ```bash
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
 - upgrade
+
 ```bash
 cd ~/.fzf && git pull && ./install
 ```
-
 
 # v4l2-ctl
 
@@ -89,7 +92,7 @@ cd ~/.fzf && git pull && ./install
 v4l2-ctl --list-formats-ext -d /dev/video0
 ```
 
-## 显示Camera所有信息(分辨率:Width/Height)
+## 显示 Camera 所有信息(分辨率:Width/Height)
 
 ```bash
 v4l2-ctl -d /dev/video0 --all
@@ -101,7 +104,7 @@ v4l2-ctl -d /dev/video0 --all
 v4l2-ctl  --list-formats -d /dev/video0
 ```
 
-## 获取支持的camera设备
+## 获取支持的 camera 设备
 
 ```bash
 v4l2-ctl --list-devices -d /dev/video0
@@ -113,25 +116,29 @@ v4l2-ctl --list-devices -d /dev/video0
 v4l2-ctl -d /dev/video0 --list-ctrls
 ```
 
-
 # Samba 相关
 
 ## 挂载
 
-vers参数要指定
+vers 参数要指定
+
 ```bash
 sudo mount  //192.168.100.1/share/ share/ -o vers=2.0
 sudo mount  //192.168.100.1/share/ share/ -o vers=2.0,uid=ubuntu,gid=ubuntu
 ```
 
-# NFS配置
+# NFS 配置
 
-## 安装NFS
+## 安装 NFS
+
 ```bash
 sudo apt install nfs-kernel-server
 ```
+
 ## 配置共享目录
+
 服务端的共享目录配置文件为　**_/etc/exports_**
+
 ```bash
 # /etc/exports: the access control list for filesystems which may be exported
 #		to NFS clients.  See exports(5).
@@ -145,47 +152,54 @@ sudo apt install nfs-kernel-server
 #
 /home/ubuntu *(rw,anonuid=1000,anongid=1000,sync,no_subtree_check)
 ```
+
 ```bash
 <输出目录> [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]
 ```
+
 - 输出目录：
+
   - 服务器共享的绝对目录地址
 
 - 客户端：
-  - 指定ip地址的主机：192.168.0.200
+
+  - 指定 ip 地址的主机：192.168.0.200
   - 指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0
   - 指定域名的主机：david.bsmart.cn
-  - 指定域中的所有主机：*.bsmart.cn
-  - 所有主机：*
+  - 指定域中的所有主机：\*.bsmart.cn
+  - 所有主机：\*
 
 - 选项：
   - 访问权限
     - 只读 ro
     - 读写 rw
   - 用户映射选项
-    -  all_squash：将远程访问的所有普通用户及所属组都映射为匿名用户或用户组（nfsnobody）；
-    - no_all_squash：与all_squash取反（默认设置）；
-    - root_squash：将root用户及所属组都映射为匿名用户或用户组（默认设置）；
-    - no_root_squash：与rootsquash取反；
+    - all_squash：将远程访问的所有普通用户及所属组都映射为匿名用户或用户组（nfsnobody）；
+    - no_all_squash：与 all_squash 取反（默认设置）；
+    - root_squash：将 root 用户及所属组都映射为匿名用户或用户组（默认设置）；
+    - no_root_squash：与 rootsquash 取反；
     - anonuid=xxx：将远程访问的所有用户都映射为匿名用户，并指定该用户为本地用户（UID=xxx）；
     - anongid=xxx：将远程访问的所有用户组都映射为匿名用户组账户，并指定该匿名用户组账户为本地用户组账户（GID=xxx）；
 - 其他选项
-  - secure：限制客户端只能从小于1024的tcp/ip端口连接nfs服务器（默认设置）；
-  - insecure：允许客户端从大于1024的tcp/ip端口连接服务器；
+  - secure：限制客户端只能从小于 1024 的 tcp/ip 端口连接 nfs 服务器（默认设置）；
+  - insecure：允许客户端从大于 1024 的 tcp/ip 端口连接服务器；
   - sync：将数据同步写入内存缓冲区与磁盘中，效率低，但可以保证数据的一致性；
   - async：将数据先保存在内存缓冲区中，必要时才写入磁盘；
   - wdelay：检查是否有相关的写操作，如果有则将这些写操作一起执行，这样可以提高效率（默认设置）；
-  - no_wdelay：若有写操作则立即执行，应与sync配合使用；
-  - subtree_check：若输出目录是一个子目录，则nfs服务器将检查其父目录的权限(默认设置)；
-  - no_subtree_check：即使输出目录是一个子目录，nfs服务器也不检查其父目录的权限，这样可以提高效率；
+  - no_wdelay：若有写操作则立即执行，应与 sync 配合使用；
+  - subtree_check：若输出目录是一个子目录，则 nfs 服务器将检查其父目录的权限(默认设置)；
+  - no_subtree_check：即使输出目录是一个子目录，nfs 服务器也不检查其父目录的权限，这样可以提高效率；
 
-配置完成之后，重启nfs service.
+配置完成之后，重启 nfs service.
+
 ```bash
 sudo /etc/init.d/nfs-kernel-server restart
 ```
 
-## 客户端mount
-假设服务IP为: 192.168.20.200,
+## 客户端 mount
+
+假设服务 IP 为: 192.168.20.200,
+
 ```bash
 kaylor@kaylor-ThinkPad-T460:~$ showmount -e 192.168.20.200 #显示服务器共享的目录
 Export list for 192.168.20.200:
@@ -195,15 +209,18 @@ kaylor@kaylor-ThinkPad-T460:~$ sudo mount 192.168.20.200:/home/ubuntu nfs
 sudo  mount -o vers=4,resvport 192.168.51.200:/home/ubuntu nfs
 ```
 
-
-
 # iptables 网络转发设置
+
 ## 设置内核转发
+
 - 即时开启内核转发
+
 ```bash
 echo "1" > /proc/sys/net/ipv4/ip_forward
 ```
+
 - 永久开启内核转发
+
 ```bash
 vim  /etc/sysctl.conf
 =========================================================================
@@ -211,109 +228,135 @@ net.ipv4.ip_forward = 1
 
 sysctl -p
 ```
+
 ## iptables 指令说明
+
 ![](/image/iptables_netfilter_chains.png)
-### PREROUTING(DNT) 
-这是chain的前端，是用来改变目标地址的
+
+### PREROUTING(DNT)
+
+这是 chain 的前端，是用来改变目标地址的
 
 ### FORWARD
-如果目标地址不是本机，机会进行转发。注意linux内核默认是禁止转发的，所以需要开启上面步骤的内核转发
+
+如果目标地址不是本机，机会进行转发。注意 linux 内核默认是禁止转发的，所以需要开启上面步骤的内核转发
 
 ### POSTROUTING(SNAT)
-它的作用是修改数据包的源地址，比如内网IP访问公网IP，出口路由会将数据包的源地址改为自己的公网IP，否者数据包有去无回。
+
+它的作用是修改数据包的源地址，比如内网 IP 访问公网 IP，出口路由会将数据包的源地址改为自己的公网 IP，否者数据包有去无回。
 
 ### 链操作
 
 操作参数
 
-|参数|描述|
-|--|--|
-|-I|插入|
-|-A|追加|
-|-R|替换|
-|-D|删除|
-|-L|列表显示|
+| 参数 | 描述     |
+| ---- | -------- |
+| -I   | 插入     |
+| -A   | 追加     |
+| -R   | 替换     |
+| -D   | 删除     |
+| -L   | 列表显示 |
 
 过滤参数
 
-| 参数 | 描述 |
-| -- | -- |
-| -s	| 匹配源地址 |
-|-d	|匹配目的地址|
-|-p	|协议匹配|
-|-i	|入接口匹配|
-|-o	|出接口匹配|
-|--sport，--dport	|源和目的端口匹配|
-|-j	|跳转,也就是包的方向|
-|!	|取反|
+| 参数             | 描述                |
+| ---------------- | ------------------- |
+| -s               | 匹配源地址          |
+| -d               | 匹配目的地址        |
+| -p               | 协议匹配            |
+| -i               | 入接口匹配          |
+| -o               | 出接口匹配          |
+| --sport，--dport | 源和目的端口匹配    |
+| -j               | 跳转,也就是包的方向 |
+| !                | 取反                |
 
-- 列出nat表的所有规则
+- 列出 nat 表的所有规则
+
 ```bash
 iptables -t nat -n -L
 ```
-使用 -n 选项是因为避免长时间的反向DNS查询
-- 添加一个规则到filter表的FORWARD链
+
+使用 -n 选项是因为避免长时间的反向 DNS 查询
+
+- 添加一个规则到 filter 表的 FORWARD 链
+
 ```bash
 iptables -t filter -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
 ```
-在iptables中，默认的表名就是filter，所以这里可以省略-t filter直接写成: iptables -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
 
-- 允许eth3接口过来的包通过FORWARD链
+在 iptables 中，默认的表名就是 filter，所以这里可以省略-t filter 直接写成: iptables -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT
+
+- 允许 eth3 接口过来的包通过 FORWARD 链
+
 ```bash
 iptables -A FORWARD -i eth3 -j ACCEPT
 ```
-## 简单nat路由器
-- 环境介绍
-  
-linux 2.4 +
-2个网络接口
-Lan口:10.1.1.254/24 eth0
-Wan口:60.1.1.1/24 eth1
-目的：实现内网中的节点（10.1.1.0/24）可控的访问internet。
-首先将Lan的节点pc的网关指向10.1.1.254。
 
-确定你的linux的ip配置无误，可以正确的ping通内外的地址。同时用route命令查看linux的本地路由表，确认指定了可用的ISP提供的默认网关。
+## 简单 nat 路由器
+
+- 环境介绍
+
+linux 2.4 +
+2 个网络接口
+Lan 口:10.1.1.254/24 eth0
+Wan 口:60.1.1.1/24 eth1
+目的：实现内网中的节点（10.1.1.0/24）可控的访问 internet。
+首先将 Lan 的节点 pc 的网关指向 10.1.1.254。
+
+确定你的 linux 的 ip 配置无误，可以正确的 ping 通内外的地址。同时用 route 命令查看 linux 的本地路由表，确认指定了可用的 ISP 提供的默认网关。
+
 - 操作
 
-   - 打开linux的转发功能：sysctl net.ipv4.ip_forward=1
+  - 打开 linux 的转发功能：sysctl net.ipv4.ip_forward=1
 
-   - 将FORWARD链的策略设置为DROP，这样做的目的是做到对内网ip的控制，你允许哪一个访问internet就可以增加一个规则，不在规则中的ip将无法访问internet.
+  - 将 FORWARD 链的策略设置为 DROP，这样做的目的是做到对内网 ip 的控制，你允许哪一个访问 internet 就可以增加一个规则，不在规则中的 ip 将无法访问 internet.
+
 ```bash
 iptables -P FORWARD DROP
 ```
 
-   - 这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许lan IP访问没有用，至于为什么，下面我们再详细说。
+- 这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许 lan IP 访问没有用，至于为什么，下面我们再详细说。
+
 ```bash
 iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
 ```
-   - 这条规则做了一个SNAT，也就是源地址转换，将来自10.1.1.0/24的地址转换为60.1.1.1
 
-(因为是让内网上网，因此对于代理服务器而言POSTROUTING（经过路由之后的包应该要把源地址改变为60.1.1.1，否则包无法返回）)
+- 这条规则做了一个 SNAT，也就是源地址转换，将来自 10.1.1.0/24 的地址转换为 60.1.1.1
+
+(因为是让内网上网，因此对于代理服务器而言 POSTROUTING（经过路由之后的包应该要把源地址改变为 60.1.1.1，否则包无法返回）)
+
 ```bash
 iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -j SNAT --to 60.1.1.1
 ```
-   - 有这几条规则，一个简单的nat路由器就实现了。这时你可以将允许访问的ip添加至FORWARD链，他们就能访问internet了。
 
-  比如我想让10.1.1.9这个地址访问internet,那么你就加如下的命令就可以了。
+- 有这几条规则，一个简单的 nat 路由器就实现了。这时你可以将允许访问的 ip 添加至 FORWARD 链，他们就能访问 internet 了。
+
+比如我想让 10.1.1.9 这个地址访问 internet,那么你就加如下的命令就可以了。
+
 ```bash
 iptables -A FORWARD -s 10.1.1.9 -j ACCEPT
 ```
-  也可以精确控制他的访问地址,比如我就允许10.1.1.99访问3.3.3.3这个ip
-  
+
+也可以精确控制他的访问地址,比如我就允许 10.1.1.99 访问 3.3.3.3 这个 ip
+
 ```bash
 iptables -A FORWARD -s 10.1.1.99 -d 3.3.3.3 -j ACCEPT
 ```
-  或者只允许他们访问80端口
+
+或者只允许他们访问 80 端口
+
 ```bash
 iptables -A FORWARD -s 10.1.1.0/24 -p tcp --dport http -j ACCEPT
 ```
 
 ## 端口转发
+
 借鉴[此链接](http://xstarcd.github.io/wiki/Linux/iptables_forward_internetshare.html)
- 
-## 保存 iptables指令
-- 使用iptables-restore
-设置了相关规则之后，保存到文件中
+
+## 保存 iptables 指令
+
+- 使用 iptables-restore
+  设置了相关规则之后，保存到文件中
 
 ```bash
 iptables-save > /etc/iptables-rules
@@ -321,37 +364,41 @@ ip6tables-save > /etc/ip6tables-rules
 ```
 
 然后新建一个脚本文件，保存到**_/etc/network/if-pre-up.d/_**目录下，记得修改脚本的权限：
+
 ```bash
 #!/bin/bash
 iptables-restore < /etc/iptables.rules
 ```
 
-- 使用iptables-persistent
+- 使用 iptables-persistent
 
 ```bash
 sudo apt install iptables-persistent
 ```
 
-每当设置了新的iptables规则后，使用如下命令保存规则即可，规则会根据ipv4和ipv6分别保存在了/etc/iptables/rules.v4和/etc/iptables/rules.v6文件中。
+每当设置了新的 iptables 规则后，使用如下命令保存规则即可，规则会根据 ipv4 和 ipv6 分别保存在了/etc/iptables/rules.v4 和/etc/iptables/rules.v6 文件中。
+
 ```bash
 netfilter-persistent  save
 ```
 
 # 日志分析
 
-查看日志
-```
-journalctl
-```
-显示全部最近一次重新引导后收集到的journal条目
+## 命令相关
+
+显示全部最近一次重新引导后收集到的 journal 条目
+
 ```
 journalctl -b
 ```
-要查看上次引导的journal记录，则可使用-1相对指针配合-b标记
+
+要查看上次引导的 journal 记录，则可使用-1 相对指针配合-b 标记
+
 ```
 journalctl -b -1
 ```
-通过以下命令查看全部2015年1月10日下午5：15之后的条目
+
+通过以下命令查看全部 2015 年 1 月 10 日下午 5：15 之后的条目
 
 ```
 journalctl --since "2015-01-10 17:15:00"
@@ -359,17 +406,23 @@ journalctl --since "2015-01-10" --until "2015-01-11 03:00"
 journalctl --since 09:00 --until "1 hour ago"
 journalctl –-since yesterday
 ```
+
 过滤
+
 ```
 journalctl -u nginx.service
 journalctl -u nginx.service --since today
 journalctl _PID=8088
 journalctl _UID=33 --since today
+journalctl /path/to/executable_file
 ```
+
 显示内核信息
+
 ```
 journalctl -k
 ```
+
 根据优先级显示
 0: emerg
 1: alert
@@ -379,31 +432,62 @@ journalctl -k
 5: notice
 6: info
 7: debug
+
 ```
 journalctl -p err -b
 ```
+
 显示近期日志
+
 ```
 journalctl -n 20
 ```
+
 追踪日志/实时滚动日志
+
 ```
 journalctl -f
 journalctl  -u nginx.service  -f
 ```
 
 查看和删除系统日志
+
 ```
 journalctl --disk-usage
 journalctl --vacuum-size=10M # 删除系统日志，只剩10M
 journalctl --vacuum-time=1min #删除一分钟之前的系统日志
 ```
 
+查看 journald 进程信息
 
+```
+sudo systemctl status systemd-journald.service
+```
 
-# find指令
+## 编码中使用系统 log
+
+安装依赖库
+
+```
+apt install -y libsystemd-dev
+```
+
+相关函数
+
+```
+#include <systemd/sd-journal.h>
+int sd_journal_print(int priority, const char *format, ...);
+int sd_journal_printv(int priority, const char *format, va_list ap);
+int sd_journal_send(const char *format, ...);
+int sd_journal_sendv(const struct iovec *iov, int n);
+int sd_journal_perror(const char *message);
+```
+The priority value is one of LOG_EMERG, LOG_ALERT, LOG_CRIT, LOG_ERR, LOG_WARNING, LOG_NOTICE, LOG_INFO, LOG_DEBUG, as defined in syslog.h
+
+# find 指令
 
 指定目录搜索文件
+
 ```
 find dir -name "*pppoe*"
 find dir -perm /u+x -type f #查找dir下的可执行文件
@@ -420,7 +504,8 @@ export CROSS_COMPILE=/home/kaylor/rk3588/rk3588_sdk/prebuilts/gcc/linux-x86/aarc
 make ARCH=arm64 menuconfig
 ```
 
-根据已有的.config文件，补充缺失的配置
+根据已有的.config 文件，补充缺失的配置
+
 ```
 make defconfig
 ```
@@ -437,33 +522,38 @@ make
 make modules
 make modules_install INSTALL_MOD_PATH=安装路径
 ```
+
 指定内核源码和模块源码所在的绝对路径
+
 ```bash
-make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules  
+make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules
 make ARCH=arm CROSS_COMPILE= -C /lib/modules/5.10.17-v7l+/build M=/home/pi/rtl8812au  modules
 ```
 
 安装模块具体操作
+
 ```
 install -p -m 644 88XXau.ko  /lib/modules/5.10.17-v7l+/kernel/drivers/net/wireless/
 /sbin/depmod -a 5.10.17-v7l+
 ```
 
-
 安装内核头文件
+
 ```bash
 make headers_install INSTALL_HDR_PATH=安装路径
 ```
 
-# nohup指令
+# nohup 指令
 
 nohup 即不挂起，不会因为终端退出而终结
-比如编译Openwrt
+比如编译 Openwrt
+
 ```
 nohup make -j1 V=s >& make.log & 2>&1
 ```
 
-# 客户定制USB设备号驱动加载
+# 客户定制 USB 设备号驱动加载
+
 ```bash
 sudo modprobe -r em28xx
 echo "modprobe finished"
@@ -532,7 +622,7 @@ ServerAliveCountMax 100
 
 # TMUX
 
-在home目录下创建 .tmux.conf文件
+在 home 目录下创建 .tmux.conf 文件
 
 ```bash
 setw -g mode-keys vi
@@ -553,21 +643,25 @@ set encoding=utf8
 set laststatus=2            " 设置状态栏在倒数第2行
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 ```
+
 # GRUB
 
-让grub记住你上一次的启动项
+让 grub 记住你上一次的启动项
 编辑 **_/etc/default/grub_**
+
 ```commandline
 GRUB_DEFAULT=saved
 GRUB_SAVEDEFAULT=true
 ```
 
-设置网卡名字为eth*的形式
+设置网卡名字为 eth\*的形式
+
 ```bash
 GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
 ```
 
-执行指令更新grub
+执行指令更新 grub
+
 ```bash
 update-grub
 ```
@@ -588,7 +682,8 @@ adduser new_user
 
 - 更改用户名
 
-使用root用户登录
+使用 root 用户登录
+
 ```bash
 killall -u old_username
 usermode -l new_username old_username
@@ -608,7 +703,7 @@ usermod -a -G groupname username
 useradd -G admins,ftp,www,developers user
 ```
 
-- 查看用户的ID信息
+- 查看用户的 ID 信息
 
 ```bash
 id username
@@ -627,8 +722,8 @@ git merge experiment
 
 - 一般的合并
 
+把 dev 合并到 master
 
-把dev合并到master
 ```bash
 git checkout master
 git merge dev
@@ -646,18 +741,20 @@ git branch -m new_name
  git clone -b dev_branch [url]
 ```
 
---depth=1 参数，克隆最近一次的commit的，体积会变小
+--depth=1 参数，克隆最近一次的 commit 的，体积会变小
 
 ```bash
 git clone https://github.com/xxx/xxx.git --depth=1
 ```
 
-如果需要间该分支所有的commit克隆下来，需要
+如果需要间该分支所有的 commit 克隆下来，需要
 
 ```bash
 git fetch --unshallow
 ```
-但会产生另外一个问题，他只会把默认分支clone下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：
+
+但会产生另外一个问题，他只会把默认分支 clone 下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：
+
 ```bash
 git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
 git remote set-branches origin 'remote_branch_name'
@@ -665,9 +762,8 @@ git fetch --depth 1 origin remote_branch_name
 git checkout remote_branch_name
 ```
 
-
 - git bash 显示中文
-  
+
 ```
 git config --global core.quotepath false
 ```
@@ -696,10 +792,11 @@ git remote remove origin //取消远程关联
 git push --set-upstream origin master
 git push --all origin
 ```
+
 - 拉取远程分支
 
 ```bash
-git pull <远程库名> <远程分支名>:<本地分支名> 
+git pull <远程库名> <远程分支名>:<本地分支名>
 git pull origin develop:develop #拉取远程分支中的develop分支和本地develop分支merge
 git pull origin develop #拉取远程分支中的develop与当前分支merge
 git pull --all
@@ -769,7 +866,7 @@ git config --unset https.proxy
 
 ```
 
-- Linux配置文件
+- Linux 配置文件
 
 编辑全局配置文件 **_~/.gitconfig_**
 
@@ -784,14 +881,13 @@ git config --unset https.proxy
 	editor = vim
 ```
 
-- tag使用
+- tag 使用
 
 ```bash
 git tag v1.0.0
 git push --tag
 git tag -d v1.0.0
 ```
-
 
 # ROS 常用指令
 
@@ -816,7 +912,7 @@ systemd-analyze plot > boot.svg
 
 # 网络配置
 
-## netplan网络配置
+## netplan 网络配置
 
 编辑 **_/etc/netplan/50-cloud-init.yaml_**
 
@@ -845,7 +941,7 @@ network:
 
 ```
 
-## IP指令
+## IP 指令
 
 - ipv4:
 
@@ -882,9 +978,9 @@ ip route add default via 192.168.1.254
 route add default gw 192.168.1.254
 ```
 
-## 静态IP和DNS设置 
+## 静态 IP 和 DNS 设置
 
-- 设置静态IP
+- 设置静态 IP
 
 ```bash
 hunter@hunter-Drone:~$ cat /etc/network/interfaces
@@ -899,15 +995,17 @@ netmask 255.255.255.0
 gateway 192.168.111.1
 dns-nameservers 192.168.111.1
 ```
-为了支持DNS，需要安装 apt install resolvconf ifupdown  
-如果为了保证有一个固定的DNS，可以编辑 **_/etc/resolvconf/resolv.conf.d/tail_**, 添加一个默认DNS
+
+为了支持 DNS，需要安装 apt install resolvconf ifupdown  
+如果为了保证有一个固定的 DNS，可以编辑 **_/etc/resolvconf/resolv.conf.d/tail_**, 添加一个默认 DNS
+
 ```bash
 nameserver 114.114.114.114
 nameserver 119.29.29.29
 ```
 
 - 桥接多网口
-  
+
   安装桥接工具 **_sudo apt install bridge-utils_** , 生成网桥配置文件 **/etc/network/interfaces.d/br0** ，你会看到如下内容：
 
 ```bash
@@ -916,7 +1014,7 @@ iface br0 inet static
 bridge_ports eth0 eth1
 address 192.168.23.10
 netmask 255.255.255.0
-gateway 192.168.23.100 
+gateway 192.168.23.100
 
 auto br0:0
 iface br0:0 inet static
@@ -924,23 +1022,23 @@ address 192.168.100.101
 netmask 255.255.255.0
 ```
 
-- CAN接口配置
+- CAN 接口配置
 
 ```bash
-edge@host-63b5d7:/etc/network/interfaces.d$ cat can0 
+edge@host-63b5d7:/etc/network/interfaces.d$ cat can0
 auto can0
 iface can0 inet manual
 pre-up ip link set can0 type can bitrate 500000
 pre-up ip link set can0 type can restart-ms 1
 edge@host-63b5d7:/etc/network/interfaces.d$ ip -d -s link show can0
 5: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10
-    link/can  promiscuity 0 
-    can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 1 
-	  bitrate 498701 sample-point 0.870 
+    link/can  promiscuity 0
+    can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 1
+	  bitrate 498701 sample-point 0.870
 	  tq 26 prop-seg 33 phase-seg1 33 phase-seg2 10 sjw 1
 	  mttcan: tseg1 2..255 tseg2 0..127 sjw 1..127 brp 1..511 brp-inc 1
 	  mttcan: dtseg1 1..31 dtseg2 0..15 dsjw 1..15 dbrp 1..15 dbrp-inc 1
-	  clock 38400000numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 
+	  clock 38400000numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535
 ```
 
 ## 无线网络配置
@@ -966,6 +1064,7 @@ netmask 255.255.255.0
 gateway 192.168.20.1
 dns-nameservers 192.168.20.1
 ```
+
 如果不使用指定的配置文件，也可以如下：
 
 ```
@@ -976,33 +1075,40 @@ wpa-ssid "GUEST"
 wpa-psk "sangfor123"
 ```
 
-## NetworkManager管理相关
+## NetworkManager 管理相关
 
 ### 永久不管理接口
--  查看网卡状态
+
+- 查看网卡状态
+
 ```bash
 nmcli device status
 ```
+
 - 编辑文件 /etc/NetworkManager/conf.d/99-unmanaged-devices.conf  
-NetworkManager的系统配置文件可能的位置还有 **_/lib/NetworkManager/conf.d/_** 和 **_/usr/lib/NetworkManager/conf.d/_**
+  NetworkManager 的系统配置文件可能的位置还有 **_/lib/NetworkManager/conf.d/_** 和 **_/usr/lib/NetworkManager/conf.d/_**
 
 ```
 [keyfile]
 unmanaged-devices=interface-name:interface_1;interface-name:interface_2;...
 ```
+
 - 重启服务
+
 ```bash
 systemctl reload NetworkManager
 ```
 
 ### 临时更改接口管理状态
+
 ```bash
 nmcli device set enp1s0 managed no/yes
 ```
 
-## NAT转发设置
+## NAT 转发设置
 
 使用主机作为网关给其他设备上网
+
 ```bash
 echo "Forward setting"
 sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
@@ -1013,23 +1119,22 @@ sudo iptables -P OUTPUT ACCEPT
 sudo sysctl -w net.ipv4.ip_forward=1
 ```
 
-
-## iw指令 (无线网络)
+## iw 指令 (无线网络)
 
 ```
 iw help    # 帮助
 iw list    # 获得所有设备的功能，如带宽信息（2.4GHz，和5GHz），和802.11n的信息
 iw dev wlan0 scan    # 扫描
-iw event    # 监听事件 
-iw dev wlan0 link    # 获得链路状态 
-iw wlan0 connect foo    # 连接到已禁用加密的AP，这里它的SSID是foo 
+iw event    # 监听事件
+iw dev wlan0 link    # 获得链路状态
+iw wlan0 connect foo    # 连接到已禁用加密的AP，这里它的SSID是foo
 iw wlan0 connect foo 2432  # 假设你有两个AP SSID 都是 foo ，你知道你要连接的是在 2432 频道
 iw wlan0 connect foo keys 0:abcde d:1:0011223344    # 连接到使用WEP的AP
 iw dev wlan1 station dump    # 获取station 的统计信息
 iw dev wlan1 station get     # 获得station对应的peer统计信息
-iw wlan0 set bitrates legacy-2.4 12 18 24    # 修改传输比特率 
-iw dev wlan0 set bitrates mcs-5 4    # 修改tx HT MCS的比特率 
-iw dev wlan0 set bitrates mcs-2.4 10  
+iw wlan0 set bitrates legacy-2.4 12 18 24    # 修改传输比特率
+iw dev wlan0 set bitrates mcs-5 4    # 修改tx HT MCS的比特率
+iw dev wlan0 set bitrates mcs-2.4 10
 iw dev wlan0 set bitrates mcs-5    # 清除所有 tx 比特率和设置的东西来恢复正常
 iw dev  set txpower  <auto|fixed|limit> [<tx power in mBm>]   #设置传输功率
 iw phy  set txpower  <auto|fixed|limit> [<tx power in mBm>]   #设置传输功率
@@ -1040,7 +1145,7 @@ iw wlan0 info #查看当前网络状态
 iw phy0 info #查看phy0物理网卡信息
 ```
 
-# Python的简易httpserver
+# Python 的简易 httpserver
 
 ```bash
 python -m SimpleHTTPServer 8080
@@ -1095,17 +1200,19 @@ du -m ./
 du -h ./
 ```
 
-# dd指令
-- 生成空的image和扩容
+# dd 指令
+
+- 生成空的 image 和扩容
 
 ```bash
 dd if=/dev/zero of=disk.img bs=1M count=256 #生成256MBytes的image
 cat blank.img >> old.img #将blank.img追加到old.img之后
 ```
-追加之后的扩容操作，需要参考接下来的“***使用parted扩容分区***”，对image进行分区，请参考我的另一个文章[***制作一个空的image***](https://blog.kaylordut.com/2021/08/07/%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9A%84image/#more)
 
-- 烧写image
-  
+追加之后的扩容操作，需要参考接下来的“**_使用 parted 扩容分区_**”，对 image 进行分区，请参考我的另一个文章[**_制作一个空的 image_**](https://blog.kaylordut.com/2021/08/07/%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9A%84image/#more)
+
+- 烧写 image
+
 ```bash
 gunzip -c kaylor.img.gz | dd of=/dev/xxx bs=20M
 ```
@@ -1222,26 +1329,27 @@ docker run -p 0.0.0.0:8080:80 -i -t ubuntu /bin/bash
 docker port CONTAINER_NAME/ID #查看端口映射情况
 ```
 
-## 跨平台使用docker
+## 跨平台使用 docker
+
 运行特权容器
+
 ```bash
 docker run --rm --privileged docker/binfmt:66f9012c56a8316f9244ffd7622d7c21c1f6f28d
 ```
-查看支持的CPU信息
+
+查看支持的 CPU 信息
+
 ```bash
 ls -al /proc/sys/fs/binfmt_misc/
 ```
 
 ## 主机文件夹映射
 
-
 ```bash
 docker run -it -v /home/kaylor/wifibroadcast/:/data --name rpi_env kaylor/rpi-env:20210507 /bin/bash
-``` 
-
+```
 
 ## 镜像
-
 
 ```bash
 docker images [options] [repository]
@@ -1257,19 +1365,21 @@ docker rmi [options] IMAGE
 docker rmi ${docker images -q ubuntu} #删除ubuntu的所有镜像
 ```
 
-
 ## 查找 Images
+
 - 从网站查找
-https://registry.hub.docker.com
+  https://registry.hub.docker.com
 - 使用命令
 
 ```bash
 docker search [options] term #最多返回25个结果
 --automated=false
 --no-trunc-false
--s, --stars=0 
+-s, --stars=0
 ```
+
 ## 拉取 Images
+
 ```bash
 docker pull [options] NAME[:TAG]
 -a, -all-tags=false
@@ -1277,23 +1387,26 @@ docker pull [options] NAME[:TAG]
 
 ## 推送镜像
 
-
 ```bash
 docker push repository
 ```
 
 ## 配置国内镜像地址
-编辑 ***/etc/docker/daemon.json***
+
+编辑 **_/etc/docker/daemon.json_**
+
 ```config
 {
   "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
 }
 ```
+
 ## 构建镜像
+
 ```bash
 docker commit #通过容器构建
 docker commit [options] CONTAINER [REPOSITORY[:TAG]]
-# -a, --author="" 
+# -a, --author=""
 # -m, --message="" Commit message
 # -p, --pause=true Pause container during commit
 docker build #通过Dockerfile文件构造
@@ -1306,14 +1419,16 @@ docker build [options] PATH | URL | -
 # -t,--tag=""
 ```
 
-## Doker的C/S模式
+## Doker 的 C/S 模式
+
 - Romote API
 
 unix:///var/run/docker.sock
 tcp://host:port
 fd://socketfd
 
-## Docker的守护进程
+## Docker 的守护进程
+
 docker -d [options]
 -D, --debug=false
 -e, --exec-driver="native"
@@ -1329,7 +1444,7 @@ docker -d [options]
 --tlscert="/home/kaylor/.docker/cert.pem"
 --tlskey="/home/kaylor/.docker/key.pem"
 --tlsverify=false
-Registry相关：
+Registry 相关：
 --insecure-registry=[]
 --registry-mirror=[]
 网络相关:
@@ -1346,7 +1461,8 @@ Registry相关：
 --ipv6=false
 --mtu=0
 
-## Docker环境变量
+## Docker 环境变量
+
 export DOCKER_HOST="tcp://x.x.x.x:2375"
 
 ## 镜像保存与加载
@@ -1358,7 +1474,8 @@ docker load --input 加载的文件名
 ```
 
 ## dockerfile 指令
-Dockerfile例子
+
+Dockerfile 例子
 
 ```bash
 FROM ubuntu:14.04
@@ -1367,52 +1484,73 @@ RUN apt update
 RUN apt install -y vim
 EXPOSE 80
 ```
+
 - FROM
+
 ```bash
-FROM <image> 
+FROM <image>
 FROM <image>:<tag>
 ```
-必须是dockerfile的第一条指令
+
+必须是 dockerfile 的第一条指令
+
 - MAINTAINER
+
 ```bash
 MAINTAINER <name>
 ```
+
 包含作者和联系信息
+
 - RUN
+
 ```bash
-RUN <command> 
+RUN <command>
 shell 模式： /bin/sh -c command
 RUN echo hello
 ```
+
 ```bash
 RUN ["executalbe", "param1", "param2"]
 exec 模式：
 RUN ["/bin/bash", "-c", "echo hello"]
 ```
+
 - EXPOSE
+
 ```bash
 EXPOSE <port> [<port>...]
 ```
-虽然我们在镜像构建中指定了暴露的端口号，但在容器运行时，我们仍需要手动的指定容器的端口映射，就像我们之前曾经使用的这个docker run命令。也就是说，在dockerfile中使用expose指令来指定的端口，只是告诉Docker，该容器内的应用程序会使用特定的端口儿，但是出于安全的考虑，Docker并不会自动地打开端口，是需要在使用时再run命令中添加对端口的映射指令。
+
+虽然我们在镜像构建中指定了暴露的端口号，但在容器运行时，我们仍需要手动的指定容器的端口映射，就像我们之前曾经使用的这个 docker run 命令。也就是说，在 dockerfile 中使用 expose 指令来指定的端口，只是告诉 Docker，该容器内的应用程序会使用特定的端口儿，但是出于安全的考虑，Docker 并不会自动地打开端口，是需要在使用时再 run 命令中添加对端口的映射指令。
+
 - CMD
+
 ```bash
 CMD ["executalbe", "param1", "param2"]
 CMD command param1 param2
 CMD ["param1", "param2"] #作为ENTRYPOINT指令的默认参数
 ```
-cmd是指定容器运行时的默认指令，如果docker run带指令，会覆盖cmd的指令
+
+cmd 是指定容器运行时的默认指令，如果 docker run 带指令，会覆盖 cmd 的指令
+
 - ENTRYPOINT
+
 ```bash
 ENTRYPOINT ["executalbe", "param1", "param2"]
 ENTRYPOINT command param1 param2
 ```
-docker run的指令不能覆盖该指令。
+
+docker run 的指令不能覆盖该指令。
+
 - ADD and COPY
+
 ```bash
 ADD/COPY src dest
 ADD/COPY ["src"..."dest"] #路径中有空格也可以使用
 ```
-add包含tar的解压缩功能，复制推荐使用copy
+
+add 包含 tar 的解压缩功能，复制推荐使用 copy
 
 - VOLUME
 - WORKDIR
@@ -1430,7 +1568,7 @@ fswebcam -S 10 -r 640x480 --no-banner 1.jpg
 --no-banner 隐藏banner
 ```
 
-# PVE指令
+# PVE 指令
 
 ```bash
 qm stop ID #关机
@@ -1440,7 +1578,7 @@ qm stop ID #关机
 
 fork (/directory/script.sh) ：如果 shell 中包含执行命令，那么子命令并不影响父级的命令，在子命令执行完后再执行父级命令。子级的环境变量不会影响到父级。
 
-fork是最普通的, 就是直接在脚本里面用 /directory/script.sh 来调用 script.sh 这个脚本. 运行的时候开一个 sub-shell 执行调用的脚本， sub-shell 执行的时候, parent-shell 还在。sub-shell执行完毕后返回 parent-shell 。 sub-shell 从 parent-shell 继承环境变量.但是 sub-shell 中的环境变量不会带回 parent-shell 。整个执行的过程是 fork + exec + waitpid (此三者均为系统调用)。
+fork 是最普通的, 就是直接在脚本里面用 /directory/script.sh 来调用 script.sh 这个脚本. 运行的时候开一个 sub-shell 执行调用的脚本， sub-shell 执行的时候, parent-shell 还在。sub-shell 执行完毕后返回 parent-shell 。 sub-shell 从 parent-shell 继承环境变量.但是 sub-shell 中的环境变量不会带回 parent-shell 。整个执行的过程是 fork + exec + waitpid (此三者均为系统调用)。
 
 exec (exec /directory/script.sh) ：执行子级的命令后，不再执行父级命令。
 
