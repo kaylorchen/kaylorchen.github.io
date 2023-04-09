@@ -57,8 +57,9 @@ WantedBy=multi-user.target
 
 ## [Unit] 启动顺序和依赖关系
 
+```bash
 After 字段：表示如果 network.target 或 sshd-keygen.service 需要启动，那么 sshd.service 应该在它们之后启动。
-
+```
 相应地，还有一个 Before 字段，定义 sshd.service 应该在哪些服务之前启动。
 
 注意，After 和 Before 字段只涉及启动顺序，不涉及依赖关系。
@@ -67,10 +68,11 @@ After 字段：表示如果 network.target 或 sshd-keygen.service 需要启动�
 
 设置依赖关系，需要使用 Wants 字段和 Requires 字段。
 
+```bash
 Wants 字段：表示 sshd.service 与 sshd-keygen.service 之间存在"弱依赖"关系，即如果"sshd-keygen.service"启动失败或停止运行，不影响 sshd.service 继续执行。
 
 Requires 字段则表示"强依赖"关系，即如果该服务启动失败或异常退出，那么 sshd.service 也必须退出。
-
+```
 注意，Wants 字段与 Requires 字段只涉及依赖关系，与启动顺序无关，默认情况下是同时启动的。
 
 ## [Service] 启动行为
@@ -78,15 +80,15 @@ Requires 字段则表示"强依赖"关系，即如果该服务启动失败或异
 ### 启动命令
 
 许多软件都有自己的环境参数文件，该文件可以用EnvironmentFile字段读取。
-
+```
 EnvironmentFile字段：指定当前服务的环境参数文件。该文件内部的key=value键值对，可以用$key的形式，在当前配置文件中获取。
-
+```
 上面的例子中，sshd 的环境参数文件是/etc/sysconfig/sshd。
 
 配置文件里面最重要的字段是ExecStart。
-
+```
 ExecStart字段：定义启动进程时执行的命令。
-
+```
 上面的例子中，启动sshd，执行的命令是/usr/sbin/sshd -D $OPTIONS，其中的变量$OPTIONS就来自EnvironmentFile字段指定的环境参数文件。
 
 与之作用相似的，还有如下这些字段。
