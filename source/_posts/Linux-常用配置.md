@@ -910,6 +910,20 @@ rqt_logger_level
 systemd-analyze plot > boot.svg
 ```
 
+# 分区自动挂载和格式化
+
+格式化分区的时候使用 -E root_owner=1000:1000 选项
+```bash
+sudo mkfs.ext4 -E root_owner=1000:1000 /dev/sda1
+```
+
+确认系统有autofs4内核模块的支持，如果没有将不能使用x-systemd.automount选项，编辑/etc/fstab，添加
+```bash
+/dev/sda1 /opt/storage ext4 nofail,user,exec,rw,x-systemd.automount  0 0
+```
+x-systemd.automount选项是使用是挂载，没有使用的时候不挂载。
+
+
 # 网络配置
 
 ## netplan 网络配置
