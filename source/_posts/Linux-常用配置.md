@@ -24,6 +24,17 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 chsh -s /bin/zsh
 ```
 
+修改一下on-my-zsh的默认插件和禁止其每次启动都启动更新, 请找到相应的行
+```bash
+zstyle ':omz:update' mode disabled
+plugins=(git sudo extract z cp safe-paste colored-man-pages)
+```
+sudo插件是当你忘记加sudo的时候，连续按两次esc，就会在指令上添加sudo  
+extract是解压指令，无脑解压各种压缩包，再也不需要查询参数了  
+z是一个目录跳转指令，使用它替代cd的话，可以记录你的常用目录  
+cp的使用指令是cpv，是一个带进度条的拷贝指令
+
+
 ## 添加插件
 
 在.zshrc 上添加如下内容：
