@@ -24,7 +24,7 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 chsh -s /bin/zsh
 ```
 
-修改一下on-my-zsh的默认插件和禁止其每次启动都启动更新, 请找到相应的行
+编辑~/.zshrc，修改一下on-my-zsh的默认插件和禁止其每次启动都启动更新, 请找到相应的行
 ```bash
 zstyle ':omz:update' mode disabled
 plugins=(git sudo extract z cp safe-paste colored-man-pages)
