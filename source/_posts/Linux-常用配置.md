@@ -71,6 +71,7 @@ unsetopt no_match
 
 ## 安装配置 fzf
 
+### 安装与升级
 - Install
 
 ```bash
@@ -78,11 +79,89 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-- upgrade
+- Upgrade
 
 ```bash
 cd ~/.fzf && git pull && ./install
 ```
+### 基础使用
+
+- 基础操作
+
+```bash
+fzf #输入fzf直接搜索
+fzf -m # 多选模式
+```
+使用CTRL-J/CTRL-K(或者CTRL-N/CTRL-P)进行上下选择  
+使用Enter选中条目, CTRL-C/ESC进行退出操作  
+在多选择模式(-m), 使用TAB和Shift-TAB标记多个条目  
+Emacs 风格按键绑定  
+支持鼠标操作  
+
+- 语法匹配
+
+| 标记       | 匹配类型       | 描述                |
+|----------|------------|-------------------|
+| sbtrkt   | 	模糊匹配      | 	内容匹配sbtrkt(字符匹配) |
+| ‘wild    | 	精确匹配(单引号) | 	内容包含单词wild(单词匹配) |
+| ^music   | 	前缀精确匹配    | 	以music开头         |
+| .mp3$	   | 后缀精确匹配	    | 以.mp3结尾           |
+| !fire	   | 反转匹配	      | 内容不包含fire         |
+| !^music	 | 前缀反转匹配	    | 不以music开头         |
+| !.mp3$	  | 后缀反转匹配	    | 不以.mp3结尾          |
+
+fzf的过滤默认是与操作，每个与操作之间使用空格间隔，如果需要使用或操作，参考下面的例子：
+```bash
+^core go$ | rb$ | py$ # 表示以`core`开头, 且以`go`或`rb`或`py`结尾
+```
+
+- 一般快捷键和环境变量
+
+| 按键      | 	描述                                  |
+|---------|--------------------------------------|
+| CTRL-T  | 	命令行打印选中内容                           |
+| CTRL-R	 | 命令行历史记录搜索, 并打印输出                     |
+| ALT-C	  | 模糊搜索目录, 并进入(cd)，macos可以使用 cd **[TAB] |
+
+| name	               | description example                                           |
+|---------------------|---------------------------------------------------------------|
+| FZF_DEFAULT_COMMAND | 	输入为 tty 时的默认命令 export FZF_DEFAULT_COMMAND=’fd –type f’       |
+| FZF_DEFAULT_OPTS	   | 设置默认选项 export FZF_DEFAULT_OPTS=”–layout=reverse –inline-info” |
+| FZF_CTRL_T_COMMAND	 | 按键映射行为设置                                                      |
+| FZF_CTRL_T_OPTS	    | 按键映射选项设置                                                      |
+| FZF_CTRL_R_OPTS	    | 按键映射选项设置                                                      |
+| FZF_ALT_C_COMMAND	  | 按键映射行为设置                                                      |
+| FZF_ALT_C_OPTS	     | 按键映射选项设置                                                      |
+
+### 个性化配置
+
+- 更换搜索引擎(可选)
+```bash
+brew install fd # Mac os 
+apt install fd-find # Ubuntu Linux
+```
+- 设置环境FZF的环境变量
+
+编辑 ~/.bashrc 或者 ~/.zshrc, 添加如下内容
+```bash
+exprot FZF_CTRL_T_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f --follow --hidden  --color=always"
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f --follow --hidden  --color=always"
+export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' --ansi"
+```
+FZF_DEFAULT_COMMAND 依赖于安装了fd搜索指令，如果没有安装，可以不设置。
+FZF_DEFAULT_OPTS 依赖于highlight指令，如果没有则会调用cat指令。Ubuntu可以通过**apt install highlight**安装该指令，MacOS可以通过**brew install highlight**安装该指令
+
+- shell命令补全
+
+fzf默认使用 ** + [TAB] 进行补全，常用的补全指令有：
+```bash
+kill -9 **
+vim **
+cd **
+ssh **
+export **
+```
+
 
 # v4l2-ctl
 
