@@ -64,9 +64,14 @@ zplug load
 bindkey '^K' kill-line
 bindkey '^B' backward-char
 bindkey '^F' forward-char
+bindkey '^U' backward-kill-line
 
 zstyle ':completion:*' rehash true
 unsetopt no_match
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 ```
 
 ## 安装配置 fzf
@@ -89,7 +94,7 @@ cd ~/.fzf && git pull && ./install
 - 基础操作
 
 ```bash
-fzf #输入fzf直接搜索
+fzf # 输入fzf直接搜索
 fzf -m # 多选模式
 ```
 使用CTRL-J/CTRL-K(或者CTRL-N/CTRL-P)进行上下选择  
@@ -144,7 +149,7 @@ apt install fd-find # Ubuntu Linux
 
 编辑 ~/.bashrc 或者 ~/.zshrc, 添加如下内容
 ```bash
-exprot FZF_CTRL_T_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f --follow --hidden  --color=always"
+export FZF_CTRL_T_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f --follow --hidden  --color=always"
 export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f --follow --hidden  --color=always"
 export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' --ansi"
 ```
