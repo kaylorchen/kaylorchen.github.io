@@ -1080,12 +1080,24 @@ ip route show
 ip route list
 ```
 
-- 添加路由和默认网关
+- 添加和删除路由和默认网关
 
 ```bash
 ip route add default via 192.168.1.254
+ip route add 192.168.0.0/24 via 192.168.1.1 dev eth0
+ip route del 192.168.0.0/24 via 192.168.1.1 dev eth0
 route add default gw 192.168.1.254
 ```
+- 特殊路由
+
+路由查找遵循“最长匹配原则”，当路由器收到一个IP数据包时，会将数据包的目的IP地址与自己本地路由表中的表项进行bit by bit的逐位查找，直到找到匹配度最长的条目，这叫最长匹配原则。  
+最简单的理解方式就是，当路由都匹配的时候，看看谁的子网掩码位数比较多。
+
+```bash
+ip route add 0.0.0.0/1 via 192.168.23.1 dev eth0
+ip route add 128.0.0.0/1 via 192.168.23.1 dev eth0
+```
+
 
 ## 静态 IP 和 DNS 设置
 
