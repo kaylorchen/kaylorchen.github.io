@@ -11,15 +11,14 @@ categories:
 # ROS1
 
 ## 安装ROS1
-如果是在深圳，推荐使用腾讯的官方源
+如果是在深圳，推荐使用腾讯的官方源，该教程默认安装noetic版本的ROS
 
 ```bash
 sudo sh -c 'echo "deb https://mirrors.tencent.com/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt install curl
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 sudo apt update
-sudo apt install ros-noetic-desktop
-sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+sudo apt install ros-noetic-ros-base python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 sudo rosdep init
 rosdep update
 ```
