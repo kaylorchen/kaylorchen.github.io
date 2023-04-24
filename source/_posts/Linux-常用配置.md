@@ -730,6 +730,7 @@ set -g default-terminal "screen-256color"
 
 ```
 set relativenumber
+set number
 colorscheme desert
 set ts=4
 set expandtab
