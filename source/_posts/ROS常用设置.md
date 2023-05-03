@@ -41,12 +41,11 @@ ros的主从机只需要配置ROS_IP和ROS_MASTER_URI就可以。
 
 切记，ROS_MASTER_URI就是局域网内主机的IP，两侧机器是一样的。但是ROS_IP是各自主机的IP。一切配hostname的教程都是大忽悠！！！！
 
-## 常用指令
+## 编译相关
 
 ```bash
-rosdep install --from-paths src --ignore-src -r -y
-catkin_make -DCMAKE_BUILD_TYPE=Release --only test
-catkin_make install -DCATKIN_WHITELIST_PACKAGES="clean_robot_base;ultrasonic;tof_pointcloud" -DCMAKE_BUILD_TYPE=Debug
+rosdep install --from-paths src --ignore-src -r -y #根据package.xml安装依赖
+catkcatkin_make install -DCATKIN_WHITELIST_PACKAGES="clean_robot_base;ultrasonic;tof_pointcloud" -DCMAKE_BUILD_TYPE=Debug
 catkin_create_pkg 包名 依赖1 依赖2 ...
 ```
 
@@ -57,7 +56,7 @@ ARCH = $(shell arch)
 all: 
  @echo CPU ARCH is ${ARCH}
  catkin_make install -DCATKIN_WHITELIST_PACKAGES="clean_robot_base;ultrasonic;tof_pointcloud" \
- -DCMAKE_BUILD_TYPE=Debug \
+ -DCMAKE_BUILD_TYPE=Release \
  -DCATKIN_DEVEL_PREFIX=./devel_${ARCH} \
  -DCMAKE_INSTALL_PREFIX=./install_${ARCH} \
  --build ./build_${ARCH}
@@ -97,4 +96,42 @@ PATTERN ".svn" EXCLUDE)
 
 ```
 
+## 安装部署
+ROS提供了一个robot_upstart的特殊节点作为安装服务。我们先看一下robot_upstart的用法：
+```bash
+> rosrun robot_upstart install -h
+usage: install [-h] [--job JOB] [--interface ethN] [--user NAME] [--setup path/to/setup.bash] [--rosdistro DISTRO] [--master http://MASTER:11311]
+               [--logdir path/to/logs] [--augment] [--provider [upstart|systemd]] [--symlink] [--wait] [--systemd-after After=]
+               pkg/path [pkg/path ...]
+
+Use this tool to quickly and easily create system startup jobs which run one or more ROS launch files as a daemonized background process on your computer.
+More advanced users will prefer to access the Python API from their own setup scripts, but this exists as a simple helper, an example, and a compatibility
+shim for previous versions of robot_upstart which were bash-based.
+
+positional arguments:
+  pkg/path             包名/需要安装的launch文件路劲，比如包名是test，launch文件路径是launch/test.launch，那么这个选项就是test/launch/test.launch 
+optional arguments:
+  -h, --help            show this help message and exit
+  --job JOB             给服务取一个指定的名字，可以不设置
+  --interface ethN      Specify network interface name to associate job with.
+  --user NAME           Specify user to launch job as.
+  --setup path/to/setup.bash 这里是指向一个包的setup.bash路径，为了避免不必要的麻烦，使用绝对路径
+  --rosdistro DISTRO    Specify ROS distro this is for.
+  --master http://MASTER:11311
+                        Specify an alternative ROS_MASTER_URI for the job launch context.
+  --logdir path/to/logs
+                        Specify an a value for ROS_LOG_DIR in the job launch context.
+  --augment             Bypass creating the job, and only copy user files. Assumes the job was previously created.
+  --provider [upstart|systemd]
+                        Specify provider if the autodetect fails to identify the correct provider
+  --symlink             不复制launch文件，使用软链接指向包的launch文件 
+  --wait                Pass a wait flag to roslaunch.
+  --systemd-after test.service 设置这个服务在test.service之后启动
+```
+
+参考指令
+```bash
+ rosrun robot_upstart install --job kaylor --setup $(pwd)/install/setup.bash --systemd-after AFTER="test.service network.target" test/launch/talker.launch
+```
+上面的指令，注意setup.bash一定是bash！！！如果需要加入环境变量，可以自己添加一个.bash文件，设置环境变量之后，再source这个ros的setup.bash。当然，也可以通过修改service文件引入环境变量
 
