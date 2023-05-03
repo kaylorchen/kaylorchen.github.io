@@ -131,7 +131,7 @@ optional arguments:
 
 参考指令
 ```bash
- rosrun robot_upstart install --job kaylor --setup $(pwd)/install/setup.bash --systemd-after AFTER="test.service network.target" test/launch/talker.launch
+ rosrun robot_upstart install --job kaylor --setup $(pwd)/install/setup.bash --systemd-after "test.service network.target" test/launch/talker.launch
 ```
 上面的指令，注意setup.bash一定是bash！！！如果需要加入环境变量，可以自己添加一个.bash文件，设置环境变量之后，再source这个ros的setup.bash。当然，也可以通过修改service文件引入环境变量
 
