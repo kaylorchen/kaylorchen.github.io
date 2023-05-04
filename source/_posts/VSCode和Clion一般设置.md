@@ -44,3 +44,6 @@ alt + 鼠标选择
 
 /*! + 回车 或者 /// + 回车
 
+# Clion快捷键
+
+更换runtime的时候，可以使用ctrl+shift+A，然后输入runtime 
