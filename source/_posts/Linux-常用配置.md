@@ -1196,6 +1196,41 @@ iface wlan0 inet dhcp
 wpa-ssid "GUEST"
 wpa-psk "sangfor123"
 ```
+## 网络启动等待的问题
+
+有时候设置了接口的DHCP服务，网络会一直在等待，最后只有网络服务启动超时了，才能启动系统。可以通过修改启动超时参数达到目的。
+
+```bash
+╰─ cat /lib/systemd/system/networking.service 
+[Unit]
+Description=Raise network interfaces
+Documentation=man:interfaces(5)
+DefaultDependencies=no
+Requires=ifupdown-pre.service
+Wants=network.target
+After=local-fs.target network-pre.target apparmor.service systemd-sysctl.service systemd-modules-load.service ifupdown-pre.service
+Before=network.target shutdown.target network-online.target
+Conflicts=shutdown.target
+
+[Install]
+WantedBy=multi-user.target
+WantedBy=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/default/networking
+ExecStart=/sbin/ifup -a --read-environment
+ExecStop=/sbin/ifdown -a --read-environment --exclude=lo
+RemainAfterExit=true
+TimeoutStartSec=5s
+```
+
+为再缩短启动时间，我们可以设置系统的systemd的默认启动超时时间，编辑 **/etc/systemd/system.conf**, 添加以下内容：   
+```bash
+DefaultTimeoutStartSec=10s
+DefaultTimeoutStopSec=10s
+
+```
 
 ## NetworkManager 管理相关
 
