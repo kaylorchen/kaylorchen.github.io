@@ -805,6 +805,30 @@ useradd -G admins,ftp,www,developers user
 id username
 ```
 
+# 文件传输
+
+- rsync
+
+拷贝文件不改变文件的权限和属性，记得使用sudo:  
+```bash
+sudo rsync -avz /path/to/source/ /path/to/destination/ # 同步source文件夹下的所有文件 
+sudo rsync -avz /path/to/source /path/to/destination/  # 同步source文件夹
+```  
+以下命令将从源目录拷贝所有文件和子目录到目标目录，但不拷贝符号链接:
+```bash
+rsync -av --no-links /path/to/source/ /path/to/destination/
+```   
+如果您想要拷贝符号链接的目标文件，可以使用“-L”选项，如下所示：
+```bash
+rsync -avL /path/to/source/ /path/to/destination/
+```  
+请注意，“-L”选项会将符号链接的目标文件拷贝到目标目录中，而不是链接本身。如果您想要拷贝链接本身，可以使用“-a”选项和“--copy-links”选项，如下所示：
+```bash
+rsync -a --copy-links /path/to/source/ /path/to/destination/
+```
+这将拷贝符号链接本身，而不是链接的目标文件。
+
+
 # GIT
 
 - 变基
