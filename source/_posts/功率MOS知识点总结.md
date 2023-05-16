@@ -1,6 +1,7 @@
 ---
 title: 功率MOS知识点总结
 comments: true
+mathjax: true
 date: 2022-08-07 10:42:15
 tags:
 - 电路
@@ -12,10 +13,10 @@ categories:
 
 本文参考Nexperia的AN11158应用手册计算，链接在[这里](https://assets.nexperia.com/documents/application-note/AN11158.pdf)
 
-## 估算不同温度的$I_{d}$
+## 估算不同温度的$I_{d}$  
 
-
-$P=I^{2}\times R_{DS_{on}}$ 是器件在结温的时候的耗散功率，这里假定$R_{DS_{on}}$恒定且是最高结温的时候的导通电阻。有
+$$P=I^{2} \times R_{DS_{on}}$$
+器件在结温的时候的耗散功率，这里假定${R_{DS_{on}}}$ 恒定且是最高结温的时候的导通电阻。有
 
 $$I_{d}^{2}(T_{mb})\propto \frac{T_{j}-T_{mb}}{T_{j}-25^\circ C}$$
 
