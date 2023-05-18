@@ -1365,6 +1365,7 @@ address 192.168.111.205
 netmask 255.255.255.0
 gateway 192.168.111.1
 dns-nameservers 192.168.111.1
+hwaddress ether 70:f7:54:55:0b:9a
 ```
 
 为了支持 DNS，需要安装 apt install resolvconf ifupdown  
@@ -1392,6 +1393,27 @@ iface br0:0 inet static
 address 192.168.100.101
 netmask 255.255.255.0
 ```
+- interfaces的一些特殊配置  
+
+|||  
+|---|---|
+|pre-up|网卡启动前的动作|
+|up|启动时的动作|
+|post-up|启动后的动作|
+|down|关闭时的动作|
+|pre-down|关闭前的动作|
+|post-down|关闭后的动作|
+
+比如我们在网卡启动之后添加特殊的路由表
+```bash
+auto eth0
+iface eth0 inet static
+address 192.168.23.10
+netmask 255.255.255.0
+post-up ip route add 128.0.0.0/1 via 192.168.23.1
+post-up ip route add 0.0.0.0/1 via 192.168.23.1
+```
+
 
 - CAN 接口配置
 
@@ -1399,8 +1421,8 @@ netmask 255.255.255.0
 edge@host-63b5d7:/etc/network/interfaces.d$ cat can0
 auto can0
 iface can0 inet manual
-pre-up ip link set can0 type can bitrate 500000
-pre-up ip link set can0 type can restart-ms 1
+pre-up ip link set $IFACE type can bitrate 500000
+pre-up ip link set $IFACE type can restart-ms 1
 edge@host-63b5d7:/etc/network/interfaces.d$ ip -d -s link show can0
 5: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10
     link/can  promiscuity 0
