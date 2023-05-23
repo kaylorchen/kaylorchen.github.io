@@ -135,3 +135,32 @@ optional arguments:
 ```
 上面的指令，注意setup.bash一定是bash！！！如果需要加入环境变量，可以自己添加一个.bash文件，设置环境变量之后，再source这个ros的setup.bash。当然，也可以通过修改service文件引入环境变量
 
+
+# ROS2
+
+## 编译相关
+
+### colcon build
+- 使用symlink选项，install文件夹的文件生成软连接，否则生成的是拷贝  
+colcon build --symlink-install
+- 编译指定的包  
+colcon build --packages-select package_name
+- 编译指定的包和它的依赖  
+colcon build --packages-up-to package_name
+- 编译时忽略的包  
+colcon build --packages-ignore package_name
+- 编译的时候添加cmake参数选项   
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug/Release
+- 编译一个package 并且把log 显示在屏幕上  
+colcon build --packages-select rmw_coredds_shared_cpp --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Debug --event-handlers=console_direct+
+- 编译之前构建的包，不包括先前已经中止的包  
+colcon build --packages-select-build-failed
+- 跳过之前之前已经完成构建的包
+colcon build --packages-skip-build-finished
+- 指定编译的build base  
+colcon build --build-base path
+- 指定安装目录
+colcon build --install-base path
+- 并行编译参数
+colcon build --parallel-worker Number
+
