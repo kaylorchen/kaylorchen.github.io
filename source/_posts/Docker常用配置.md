@@ -74,6 +74,84 @@ usermod -a -G docker username
 reboot
 ```
 
+# 一些基本指令
+
+## 拉取镜像
+```bash
+docker pull ubuntu:20.04
+```
+从远程拉取名仓库为ubuntu的，tag为20.04的镜像到本地
+
+## 运行容器
+我们前面已经拉取了一个ubuntu 20.04的基础容器，现在我们可以试着运行这个容器。进入容器并执行bash命令。
+```bash
+docker run --name=network_test --net=host -it ubuntu:20.04 bash
+```
+- --name 给即将运行的容器命名一个别名
+- --net 这个参数默认是使用doker的内置网桥，这里使用host说明容器直接使用主机网络
+- -it 这里-i表示标准输出，-t表示生成tty
+- bash 是表示进入容器之后需要运行的指令
+
+## 重新运行容器
+实际操作里面，我们时常想重新进入容器。比如
+```bash
+╰─ docker ps -l           
+CONTAINER ID   IMAGE          COMMAND   CREATED          STATUS                     PORTS     NAMES
+e977e612b806   ubuntu:20.04   "bash"    41 minutes ago   Exited (0) 2 minutes ago             network_test
+
+```
+从上面的信息看到，这个容器执行指令bash，在2分钟之前退出了。可是使用以下指令重启容器
+```bash
+docker start network_test
+或者
+docker start e977e612b806
+```
+容器启动之后，我们可以使用docker attach指令重新进入终端,如：
+```bash
+docker attach network_test 
+```
+但是，有时候可能需要加入多个终端，所以可以使用docker exec来实现
+```bash
+docker exec -it network_test bash
+```
+
+## 文件夹映射
+在实际的开发过程中，我们经常需要共享主机和docker的文件。所以我们可以把主机某些文件夹映射到docker的目录下
+```bash
+docker run -it -v /opt/kaylor/:/root/data/ --name=map_test ubuntu:20.04 bash
+```
+-v 主机文件夹路径：docker的文件夹映射路径
+
+
+## 保存与加载
+
+```bash
+docker save -o rk3588_docker.tar kaylor/rk3588_dev_env:latest
+```
+将本机的名为kaylor/rk3588_dev_env，tag为latest的镜像保存输出为rk3588_docker.tar
+
+```bash
+docker load --input rk3588_docker.tar
+```
+这里注意，加载的tar包需要时通过docker save保存的，通过docker save的镜像会带有原始的提交信息。
+
+
+## 构建镜像
+通常我们会在容器中添加了我们的一些自定义的操作，我们可以通过构建镜像的方式，把容器保存成镜像。
+比如：
+```bash
+docker container ps -a ##查看所有容器的信息
+CONTAINER ID   IMAGE                         COMMAND       CREATED        STATUS                    PORTS     NAMES
+05cd5820058b   deb7cc07afe8                  "/bin/bash"   2 months ago   Exited (0) 2 weeks ago              musing_aryabhata
+```
+上面的命令我们知道容器的ID是05cd5820058b，下面的命令是将这个容器提交生成image  
+-a 是添加作者信息  
+-m 是添加commit的信息  
+kaylor/rk3588_dev_env:v1 镜像名为kaylor/rk3588_dev_env tag为v1
+```bash
+docker commit -a "kaylorchen" -m "add libsystemd-dev" 05cd5820058b kaylor/rk3588_dev_env:v1
+```
+
 
 # 跨平台使用
 
