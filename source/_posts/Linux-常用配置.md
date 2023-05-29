@@ -85,6 +85,31 @@ alias la='ls -A'
 alias l='ls -CF'
 ```
 
+## 私人化指令配置
+
+有时候需要定制以下私人的指令，可以在 **~/.zshrc** 文件中加入一行
+```bash
+[[ ! -f ~/.user.zsh ]] || source ~/.user.zsh
+或
+[[ ! -f ~/.user.bash ]] || source ~/.user.bash
+```
+然后创建并编辑 **~/.user.zsh** 或者 **~/.user.bash**, 输入你想要的指令
+```bash
+alias open='nautilus'
+alias zsh_reload='source ~/.zshrc'
+
+_systemctl_unit_state() {
+  typeset -gA _sys_unit_state
+  _sys_unit_state=( $(__systemctl list-unit-files "$PREFIX*" | awk '{print $1, $2}') ) }
+
+function full_tar_with_sudo {
+        sudo tar -cvpzf $1 $2
+}
+function full_untar_with_sudo {
+        sudo tar -xvpzf $1 -C $2
+}
+```
+
 ## 安装配置 fzf
 
 ### 安装与升级
