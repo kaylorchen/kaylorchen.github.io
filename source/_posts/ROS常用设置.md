@@ -138,6 +138,18 @@ optional arguments:
 
 # ROS2
 
+## 常用指令
+
+- 创建包
+```bash
+ros2 pkg create --build-type ament_cmake --dependencies geometry_msgs rclcpp tf2 tf2_ros turtlesim -- learning_tf2_cpp
+```
+
+- 安装依赖包
+```bash 
+rosdep install -i --from-path src --rosdistro foxy -y
+```
+
 ## 编译相关
 
 ### colcon build
