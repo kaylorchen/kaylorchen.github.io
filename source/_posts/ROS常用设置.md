@@ -45,7 +45,7 @@ ros的主从机只需要配置ROS_IP和ROS_MASTER_URI就可以。
 
 ```bash
 rosdep install --from-paths src --ignore-src -r -y #根据package.xml安装依赖
-catkcatkin_make install -DCATKIN_WHITELIST_PACKAGES="clean_robot_base;ultrasonic;tof_pointcloud" -DCMAKE_BUILD_TYPE=Debug
+catkin_make install -DCATKIN_WHITELIST_PACKAGES="clean_robot_base;ultrasonic;tof_pointcloud" -DCMAKE_BUILD_TYPE=Debug
 catkin_create_pkg 包名 依赖1 依赖2 ...
 ```
 
@@ -151,6 +151,28 @@ rosdep install -i --from-path src --rosdistro foxy -y
 ```
 
 ## 编译相关
+
+### cmake 设置相关
+
+```cmake
+# Install launch files.
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+# Install parameters files.
+install(DIRECTORY
+  params
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+install(TARGETS
+clean_robot_base
+  DESTINATION lib/${PROJECT_NAME})
+
+
+```
 
 ### colcon build
 - 使用symlink选项，install文件夹的文件生成软连接，否则生成的是拷贝  
