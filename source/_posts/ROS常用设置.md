@@ -174,6 +174,14 @@ clean_robot_base
 
 ```
 
+### 添加依赖选项
+- 第一，需要在package.xml里添加<depend>tf2_geometry_msgs</depend>
+- 第二，在cmake里添加
+```cmake
+find_package(tf2_geometry_msgs REQUIRED)
+ament_target_dependencies(target tf2_geometry_msgs)
+```
+
 ### colcon build
 - 使用symlink选项，install文件夹的文件生成软连接，否则生成的是拷贝  
 ```
