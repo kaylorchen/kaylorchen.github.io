@@ -227,4 +227,8 @@ colcon build --install-base path
 ```
 colcon build --parallel-worker Number
 ```
+- 安装不添加子目录
+```
+colcon build --merge-install
+```
 
