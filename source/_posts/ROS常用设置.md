@@ -232,3 +232,15 @@ colcon build --parallel-worker Number
 colcon build --merge-install
 ```
 
+## 部署
+
+- 安装robot-upstart包
+- source自己的包的setup.bash
+> 这里的目的是为了下一步的运行的指令能找到要安装的包
+- 添加启动任务
+```bash
+# 举例说明
+ros2 run robot_upstart install --job test --setup your_package_setup.bash_path your_package_name/launch/test.launch.py --logdir logdir_path
+```
+> 注意那个launch文件的命名一定要launch.py结尾，不然启动到时候会有问题。  
+> --setup选项需要的是一个路径，但是后面的launch文件路径是需要“包名/launch/launch文件名”

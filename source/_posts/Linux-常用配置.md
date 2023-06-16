@@ -502,7 +502,7 @@ sudo apt install iptables-persistent
 netfilter-persistent  save
 ```
 
-# 日志分析
+# 日志相关
 
 ## 命令相关
 
@@ -582,6 +582,13 @@ journalctl --vacuum-time=1min #删除一分钟之前的系统日志
 
 ```
 sudo systemctl status systemd-journald.service
+```
+
+## 更换系统log和开启log滚动
+
+```bash
+sudo apt install syslog-ng
+sudo apt install logrotate
 ```
 
 ## 编码中使用系统 log
@@ -1736,6 +1743,12 @@ sudo resize2fs /dev/sdb1
 
 ```
 apt-cache madison package-name
+```
+
+- 查看当前apt配置
+
+```bash
+apt-config dump
 ```
 
 # docker
