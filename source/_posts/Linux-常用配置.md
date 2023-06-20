@@ -1750,6 +1750,43 @@ apt-cache madison package-name
 ```bash
 apt-config dump
 ```
+> 这个指令可以过滤Install，设置一下apt默认的安装设置,比如
+```bash
+❯ cat /etc/apt/apt.conf.d/99user               
+APT::Install-Recommends "0";
+APT::Install-Suggests "0";
+```
+
+- 查看某个软件包的可用版本
+
+```bash
+apt policy syslog-ng
+```
+
+# GDB设置
+
+- 设置ulimited
+     1. 临时设置
+     ```bash
+      ❯ ulimit -c
+      0
+      ❯ ulimit -c unlimited
+      ❯ ulimit -c          
+      unlimited
+     ```
+     2. 永久设置
+     编辑/etc/security/limits.conf文件，在文件末尾添加
+     ```bash
+      * soft core unlimited
+      * hard core unlimited
+     ```
+
+ - 设置coredump文件格式和位置  
+ 在/etc/sysctl.conf中添加
+     ```bash
+     kernel.core_pattern = ./core_%e_%t_%p
+     kernel.core_uses_pid = 0
+     ```
 
 # docker
 
