@@ -243,4 +243,5 @@ colcon build --merge-install
 ros2 run robot_upstart install --job test --setup your_package_setup.bash_path your_package_name/launch/test.launch.py --logdir logdir_path
 ```
 > 注意那个launch文件的命名一定要launch.py结尾，不然启动到时候会有问题。  
-> --setup选项需要的是一个路径，但是后面的launch文件路径是需要“包名/launch/launch文件名”
+> --setup选项需要的是一个路径，但是后面的launch文件路径是需要“包名/launch/launch文件名”  
+> 如果ROS需要操作一些外设，可能存在权限问题，这时候生成启动任务的指令，最好在root用户下进行
