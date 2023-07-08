@@ -17,9 +17,12 @@ apt install mosquitto
 # Configure and Start MQTT Service
 Edit ***/etc/mosquitto/mosquitto.conf***, and append the following contents:
 ```
-port 11111 #change default port
-allow_anonymous false #deny anonymous
-password_file /etc/mosquitto/passwd #select password file
+#change default port
+port 11111 
+#deny anonymous
+allow_anonymous false 
+#select password file
+password_file /etc/mosquitto/passwd 
 ```
 Then, generate password file for MQTT service.
 ```
