@@ -1206,6 +1206,11 @@ git branch -D xxx
 git push origin --delete branch_name
 ```
 
+远程分支已经删除，删除本地的origin/branch  
+```
+git branch -D -r origin/branch
+```
+
 - 补丁
 
 ```bash
