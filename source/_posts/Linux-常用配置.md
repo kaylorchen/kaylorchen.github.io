@@ -1108,8 +1108,21 @@ git merge dev
 
 - 分支重命名
 
+
+本地分支重命名  
 ```bash
 git branch -m new_name
+```
+
+远程分支重命名为本地分支名  
+```
+git branch -m <旧分支名> <新分支名>
+```
+
+- 解绑上游分支
+
+```
+git branch --unset-upstream
 ```
 
 - clone 指定分支
@@ -1206,10 +1219,17 @@ git branch -D xxx
 git push origin --delete branch_name
 ```
 
-远程分支已经删除，删除本地的origin/branch  
+远程分支已经删除，删除本地的origin/branch引用  
+```
+git branch -d -r origin/branch
+```
+
+远程分支和本地代码都删除  
 ```
 git branch -D -r origin/branch
 ```
+
+
 
 - 补丁
 
