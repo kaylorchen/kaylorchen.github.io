@@ -1,5 +1,5 @@
 ---
-title: aptly使用笔记
+title: aptly和GPG使用笔记
 date: 2023-09-10 11:45:41
 tags:
 - aptly
@@ -7,6 +7,36 @@ categories:
 - aptly
 comments: true
 ---
+
+# GPG
+
+## 生成GPG密钥对
+不要使用sudo，否则还有权限问题
+```
+gpg --full-generate-key
+```
+
+## 导出私钥和公钥
+```
+gpg --export-secret-keys --armor your@email.com > your.gpg
+gpg --export --armor your@email.com > your-pubkey.gpg
+```
+
+## 列出gpg keys
+```
+gpg --list-keys 
+```
+
+## 将公钥提交到公共服务器
+```
+gpg --keyserver keyserver.ubuntu.com --send-key 56779B056333DC6B2EC50D0E7C2253769D312CAD
+```
+
+## 导入公钥私钥
+```
+gpg --import public-file.key / private-file.key
+```
+
 
 # aptly配置
 
