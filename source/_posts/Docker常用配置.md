@@ -76,6 +76,14 @@ reboot
 
 # 一些基本指令
 
+## 合并不同平台容器到同一个tag
+
+```bash
+docker manifest create image:tag image1:tag1 image2:tag2
+docker manifest push image:tag
+```
+
+
 ## 拉取镜像
 ```bash
 docker pull ubuntu:20.04
