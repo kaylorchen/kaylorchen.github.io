@@ -747,6 +747,13 @@ ServerAliveInterval 30
 ServerAliveCountMax 100
 ```
 
+## MacOS ssh转发
+ssh的转发一般来说只要添加-A选项就可以了，但是macos默认没有把自己的秘钥添加，所以
+```
+ssh-add -l
+ssh-add ~/.ssh/id_rsa
+```
+
 # TMUX
 
 在 home 目录下创建 .tmux.conf 文件
