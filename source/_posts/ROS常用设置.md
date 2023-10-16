@@ -138,6 +138,27 @@ optional arguments:
 
 # ROS2
 
+# 安装ROS2 Humble
+安装官方通用通用源(这里使用腾讯的镜像源)
+```bash
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://mirrors.cloud.tencent.com/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+```
+如果你的系统是ubuntu20.04，仍然想使用humble，做如下设置：
+```bash
+sudo curl -sSL http://apt.kaylordut.cn/kaylor-keyring.gpg -o /usr/share/keyrings/kaylor-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/kaylor-keyring.gpg] http://apt.kaylordut.cn/ros2/ubuntu/ focal main" | sudo tee /etc/apt/sources.list.d/kaylor-ros2.list > /dev/null
+```
+最后，安装你需要的版本：
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install ros-humble-desktop
+sudo apt install ros-humble-ros-base
+sudo apt install ros-dev-tools
+```
+> 如果你需要的安装包找不到，请邮件到kaylor.chen@qq.com，我会抽空做好适配
+
 ## 常用指令
 
 - 创建包
