@@ -138,7 +138,7 @@ optional arguments:
 
 # ROS2
 
-# 安装ROS2 Humble
+## 安装ROS2 Humble
 安装官方通用通用源(这里使用腾讯的镜像源)
 ```bash
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
@@ -158,6 +158,14 @@ sudo apt install ros-humble-ros-base
 sudo apt install ros-dev-tools
 ```
 > 如果你需要的安装包找不到，请邮件到kaylor.chen@qq.com，我会抽空做好适配
+
+## 常用代码
+### 只订阅一次topic
+```C++
+msg_type tmp;
+bool ret = rclcpp::wait_for_message(tmp, this->shared_from_this(), topic_name, std::chrono::seconds(3));
+```
+> 注意，这个方法不能在自身构造函数里使用，所以一般可以写成成员函数调用。
 
 ## 常用指令
 
