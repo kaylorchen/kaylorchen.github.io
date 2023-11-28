@@ -1817,6 +1817,11 @@ APT::Install-Suggests "0";
 apt policy syslog-ng
 ```
 
+- 重新安装某个包的时候，询问是否覆盖配置文件
+```bash
+apt reinstall package -o Dpkg::Options::="--force-confask"
+```
+
 # GDB设置
 
 - 设置ulimited
