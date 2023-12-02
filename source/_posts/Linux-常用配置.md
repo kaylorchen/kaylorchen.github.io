@@ -1175,10 +1175,10 @@ git fetch --unshallow
 但会产生另外一个问题，他只会把默认分支 clone 下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：
 
 ```bash
-git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
-git remote set-branches origin 'remote_branch_name'
-git fetch --depth 1 origin remote_branch_name
-git checkout remote_branch_name
+git remote show origin
+git remote set-branches --add origin '*'
+git fetch origin your_branch
+git checkout your_branch
 ```
 
 - git bash 显示中文
