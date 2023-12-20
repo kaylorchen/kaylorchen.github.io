@@ -1815,6 +1815,13 @@ APT::Install-Suggests "0";
 
 ```bash
 apt policy syslog-ng
+apt policy # 可以打印
+```
+
+```bash
+Package: *
+Pin: release a=ubuntu-updates # 可以是用apt policy获取相关信息
+Pin-Priority: 999
 ```
 
 - 重新安装某个包的时候，询问是否覆盖配置文件
