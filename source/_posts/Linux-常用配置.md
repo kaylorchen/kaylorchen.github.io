@@ -776,6 +776,21 @@ sudo service ssh restart
 
 如果问题仍然存在，请确保您的SSH私钥文件存在且您具有正确的访问权限。如果问题仍然无法解决，可能需要进一步调查您的操作系统和SSH配置。
 
+## X11应用转发
+
+服务端安装X11服务和测试app
+```bash
+apt install xorg x11-utils
+```
+
+客户端使用-X选项连接，并运行xclock测试
+```
+ssh kaylor@192.168.111.222 -X
+
+xclock # 该指令运行在ssh的终端中
+```
+
+
 # TMUX
 
 在 home 目录下创建 .tmux.conf 文件
@@ -1113,7 +1128,6 @@ rsync -a --copy-links /path/to/source/ /path/to/destination/
 #### 过滤恶意的包
 
     tcpdump 'ip[6] & 128 != 0'
-
 
 # GIT
 
