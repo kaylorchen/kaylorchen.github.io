@@ -64,6 +64,9 @@ $ aptly repo remove stable percona-server-client-5.5
 Loading packages...
 [-] percona-server-client-5.5_5.5.35-rel33.0-611.squeeze_i386 removed
 [-] percona-server-client-5.5_5.5.35-rel33.0-611.squeeze_amd64 removed
+
+$ aptly repo remove 3rd-party 'google-chrome-stable (<122.0.6261.111-1)'
+$ aptly db cleanup
 ```
 
 ## 发布软件包
