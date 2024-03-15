@@ -56,7 +56,7 @@ Convert onnx to rknn
 host # docker run -it -v ${PWD}:root/ws kaylor/rk3588_onnx2rknn bash
 ----------------------------------
 docker # cd /root/ws
-docker # python convert.py yolov8n.pt rk3588 i8 yolov8n.rknn
+docker # python convert.py yolov8n.onnx rk3588 i8 yolov8n.rknn
 docker # exit
 ```
 

@@ -345,7 +345,6 @@ echo "1" > /proc/sys/net/ipv4/ip_forward
 vim  /etc/sysctl.conf
 =========================================================================
 net.ipv4.ip_forward = 1
-
 sysctl -p
 ```
 
@@ -435,7 +434,7 @@ Wan 口:60.1.1.1/24 eth1
 iptables -P FORWARD DROP
 ```
 
-- 这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许 lan IP 访问没有用，至于为什么，下面我们再详细说。
+- 这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许 lan IP 访问没有用
 
 ```bash
 iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
@@ -1135,9 +1134,7 @@ rsync -a --copy-links /path/to/source/ /path/to/destination/
 
 ```bash
 git checkout experiment
-git rebase master
-git checkout master
-git merge experiment
+git rebase -i master # 这里是就是把experiment当做枝条剪下来，嫁接到master上，base到master上的意思
 ```
 
 - 一般的合并
@@ -1212,11 +1209,11 @@ git rm --f readme.txt #删除文件
 
 - 远程仓库(remote)
 
-```
+```bash
 git remote add origin [url]
-git remote set-url origin [url] //更换URL
-git remote –v //查看remote信息
-git remote remove origin //取消远程关联
+git remote set-url origin [url] # 更换URL
+git remote –v # 查看remote信息
+git remote remove origin # 取消远程关联
 ```
 
 - 推送分支
@@ -1353,6 +1350,7 @@ rqt_logger_level
 
 ```
 systemd-analyze plot > boot.svg
+systemd-analyze blame
 ```
 
 # 分区自动挂载和格式化
@@ -1640,10 +1638,8 @@ nmcli device set enp1s0 managed no/yes
 ```bash
 echo "Forward setting"
 sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
-sudo iptables -F
-sudo iptables -P INPUT ACCEPT
-sudo iptables -P FORWARD ACCEPT
-sudo iptables -P OUTPUT ACCEPT
+sudo iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -s 192.168.111.0/24 -j ACCEPT
 sudo sysctl -w net.ipv4.ip_forward=1
 ```
 
