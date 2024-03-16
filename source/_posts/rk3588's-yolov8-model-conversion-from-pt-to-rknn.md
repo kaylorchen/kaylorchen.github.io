@@ -35,10 +35,10 @@ Convert pt to onnx...
 ```bash
 host # docker run -it -v ${PWD}:/root/ws kaylor/rk3588_pt2onnx bash
 ----------------------------------
-docker # cd /root/ws
-docker # export PYTHONPATH=./ 
-docker # python ./ultralytics/engine/exporter.py
-docker # exit
+docker $ cd /root/ws
+docker $ export PYTHONPATH=./ 
+docker $ python ./ultralytics/engine/exporter.py
+docker $ exit
 ```
 
 # onnx to rknn
@@ -53,11 +53,11 @@ docker # exit
  ```
 Convert onnx to rknn
 ```bash
-host # docker run -it -v ${PWD}:root/ws kaylor/rk3588_onnx2rknn bash
+host $ docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn bash
 ----------------------------------
-docker # cd /root/ws
-docker # python convert.py yolov8n.onnx rk3588 i8 yolov8n.rknn
-docker # exit
+docker $ cd /root/ws
+docker $ python convert.py yolov8n.onnx rk3588 i8 yolov8n.rknn
+docker $ exit
 ```
 
 Enjoy ~~
