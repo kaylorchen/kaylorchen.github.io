@@ -33,12 +33,14 @@ model: yolov8n.pt # (str, optional) path to model file, i.e. yolov8n.pt, yolov8n
 ```
 Convert pt to onnx...
 ```bash
-host # docker run -it -v ${PWD}:/root/ws kaylor/rk3588_pt2onnx bash
+# run the command in your host 
+docker run -it -v ${PWD}:/root/ws kaylor/rk3588_pt2onnx bash
 ----------------------------------
-docker $ cd /root/ws
-docker $ export PYTHONPATH=./ 
-docker $ python ./ultralytics/engine/exporter.py
-docker $ exit
+# run commnads in your container
+cd /root/ws
+export PYTHONPATH=./ 
+python ./ultralytics/engine/exporter.py
+exit
 ```
 
 # onnx to rknn
@@ -53,11 +55,13 @@ docker $ exit
  ```
 Convert onnx to rknn
 ```bash
-host $ docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn bash
+# run the command in your host 
+docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn bash
 ----------------------------------
-docker $ cd /root/ws
-docker $ python convert.py yolov8n.onnx rk3588 i8 yolov8n.rknn
-docker $ exit
+# run commnads in your container
+cd /root/ws
+python convert.py yolov8n.onnx rk3588 i8 yolov8n.rknn
+exit
 ```
 
 Enjoy ~~
