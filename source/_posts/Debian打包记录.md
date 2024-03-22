@@ -18,3 +18,10 @@ apt install devscripts equivs
 mk-build-deps --install --remove
 ```
 
+# 生成软件包
+
+```bash
+dpkg-buildpackage -j -us -uc -aarm64 -b
+# 或者
+fakeroot debian/rules binary
+```
