@@ -15,7 +15,7 @@ apt-get install easy-rsa
 ```
 ### Generate Certificates
 ```bash
-cp -r  /usr/share/easy-rsa/ etc/openvpn/
+cp -r  /usr/share/easy-rsa/ /etc/openvpn/
 cd /etc/openvpn/easy-rsa
 ```
 you can edit vars flie, I wanted 1024bit DH parms, so I changed KEY_SIZE from 2048 to 1024.  Some options may be changed with yourself informations. For example, the KEY_EMAIL is modified by me with my private e-mail.
