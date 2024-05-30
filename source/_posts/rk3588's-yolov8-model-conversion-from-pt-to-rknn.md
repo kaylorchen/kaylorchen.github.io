@@ -56,7 +56,8 @@ exit
 Convert onnx to rknn
 ```bash
 # run the command in your host 
-docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn bash
+docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn bash # for yolov8
+docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn:beta bash # for yolov10
 ----------------------------------
 # run commnads in your container
 cd /root/ws
