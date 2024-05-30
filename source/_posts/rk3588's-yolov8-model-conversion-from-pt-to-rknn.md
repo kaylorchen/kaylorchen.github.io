@@ -48,7 +48,8 @@ exit
  Clone rk3588-convert-to-rknn repository and pull docker
  ```bash
  cd ../
- docker pull kaylor/rk3588_onnx2rknn
+ docker pull kaylor/rk3588_onnx2rknn # for yolov8 
+ docker pull kaylor/rk3588_onnx2rknn:beta # for yolov10
  git clone https://github.com/kaylorchen/rk3588-convert-to-rknn.git
  cp ultralytics_yolov8/yolov8n.onnx rk3588-convert-to-rknn
  cd rk3588-convert-to-rknn
