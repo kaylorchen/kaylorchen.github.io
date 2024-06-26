@@ -5,7 +5,7 @@ on:
       - hexo
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
@@ -14,9 +14,9 @@ jobs:
           ref: hexo
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12'
+          node-version: '14'
 
       - name: Configuration environment
         env:
@@ -29,8 +29,8 @@ jobs:
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             git config --global user.email "kaylor.chen@qq.com"
             git config --global user.name "kaylorchen"
-            wget https://github.com/jgm/pandoc/releases/download/2.7/pandoc-2.7-1-amd64.deb
-            sudo dpkg -i ./pandoc-2.7-1-amd64.deb
+            wget https://github.com/jgm/pandoc/releases/download/3.2.1/pandoc-3.2.1-1-amd64.deb
+            sudo dpkg -i ./pandoc-*-amd64.deb
             npm install hexo-cli -g
             npm install hexo --save
 
