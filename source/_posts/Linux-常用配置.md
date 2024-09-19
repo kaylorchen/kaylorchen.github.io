@@ -470,6 +470,12 @@ iptables -A FORWARD -s 10.1.1.0/24 -p tcp --dport http -j ACCEPT
 
 ## 端口转发
 
+```bash
+iptables -t nat -A PREROUTING -d 10.8.1.24 -p tcp --dport 80 -j DNAT --to 192.168.111.111:80
+iptables -A FORWARD -d 192.168.111.111 -p tcp --dport 80 -j ACCEPT
+iptabels -t nat -A POSTROUTING -d 192.168.111.111 -p tcp --dport 80 -j SNAT --to 192.168.111.1
+```
+
 借鉴[此链接](http://xstarcd.github.io/wiki/Linux/iptables_forward_internetshare.html)
 
 ## 保存 iptables 指令
