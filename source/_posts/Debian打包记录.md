@@ -15,7 +15,7 @@ apt install devscripts equivs
 ```
 进入源码目录
 ```bash
-mk-build-deps --install --remove
+mk-build-deps debian/control --install --remove
 ```
 
 # 生成软件包
