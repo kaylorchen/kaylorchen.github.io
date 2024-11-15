@@ -59,6 +59,7 @@ Convert onnx to rknn
 # run the command in your host 
 docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn bash # for yolov8
 docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn:beta bash # for yolov10
+docker run -it -v ${PWD}:/root/ws kaylor/rk3588_onnx2rknn:2.3.0 bash # for all the yolos
 ----------------------------------
 # run commnads in your container
 cd /root/ws
