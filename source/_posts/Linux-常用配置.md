@@ -863,7 +863,7 @@ adduser new_user
 
 ```bash
 killall -u old_username
-usermode -l new_username old_username
+usermod -l new_username old_username
 groupmod -n new_groupname old_groupname
 usermod -d /home/new_username new_username -m
 ```
