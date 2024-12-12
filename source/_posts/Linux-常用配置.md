@@ -13,6 +13,34 @@ categories:
 comments: true
 ---
 
+# MQTT服务器部署
+
+下载mqttx客户端 https://mqttx.app/downloads， 用于测试  
+
+使用docker启动服务
+```bash
+docker pull eclipse-mosquitto:2.0.20
+docker run --name mqtt -d -p 1883:1883 eclipse-mosquitto:2.0.20
+docker cp mqtt:/mosquitto $PWD/
+docker stop mqtt
+docker rm mqtt
+```
+修改配置文件 mosquitto/config/mosquitto.conf
+```
+listener 1883 0.0.0.0
+persistence true
+persistence_location /mosquitto/data/
+log_dest file /mosquitto/log/mosquitto.log
+allow_anonymous false
+password_file /mosquitto/config/pwfile
+```
+正式启动
+```
+touch mosquitto/config/pwfile
+docker run --restart=always -d --name mqtt -p 1883:1883 -v ${PWD}/mosquitto:/mosquitto eclipse-mosquitto:2.0.20
+docker exec -it mqtt mosquitto_passwd -c /mosquitto/config/pwfile  kaylor
+```
+
 # ZSH 配置和 FZF 配置
 
 ## zsh 基本配置
