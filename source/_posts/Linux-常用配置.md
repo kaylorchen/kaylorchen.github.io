@@ -1,5 +1,6 @@
 ---
 title: Linux 常用配置
+top: 1000
 date: 2022-11-15 15:37:02
 tags:
   - Linux
