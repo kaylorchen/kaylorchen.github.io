@@ -14,9 +14,26 @@ categories:
 comments: true
 ---
 
-# MQTT服务器部署
+# gh指令说明
+```bash
+gh repo list kaylorchen
+gh repo create kaylorchen/demo --private
+gh repo clone kaylorchen/demo
+gh run list --repo kaylorchen/demo # 显示ci的信息
+gh run view RUN_ID --repo kaylorchen/demo
+gh run download RUN_ID --repo kaylorchen/demo -n git
+```
 
-下载mqttx客户端 https://mqttx.app/downloads， 用于测试  
+# MQTT服务器部署
+## 使用emqx
+```bash
+docker run --restart=always -d --name emqx -v ${PWD}/data:/opt/emqx/data -v ${PWD}/log:/opt/emqx/log -p 18083:18083 -p 1883:1883 emqx
+```
+默认的账号密码是admin:public
+
+
+## 传统mqtt服务器
+下载mqttx客户端 https://mqttx.app/downloads 用于测试  
 
 使用docker启动服务
 ```bash
