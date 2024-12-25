@@ -195,6 +195,13 @@ docker commit -a "kaylorchen" -m "add libsystemd-dev" 05cd5820058b kaylor/rk3588
   docker run --gpus="1" images_id
   ```
 
+## 创建自定义子网使用固定IP
+
+```bash
+docker network create --subnet=192.168.77.0/24 kaylor_bridge
+docker run -d --name kaylor --net kaylor_bridge --ip 192.168.77.2 ubuntu:22.04
+```
+
 # 跨平台使用
 
 - 使用特权容器
