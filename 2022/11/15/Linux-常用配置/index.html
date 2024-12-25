@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="gh指令说明123456gh repo list kaylorchengh repo create kaylorchen/demo --privategh repo clone kaylorchen/demogh run list --repo kaylorchen/demo # 显示ci的信息gh run view RUN_ID --repo kaylorchen/demogh run down">
+<meta name="keywords" content="Ubuntu,docker,Linux,vim,git,ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 常用配置">
+<meta property="og:url" content="http://blog.kaylordut.com/2022/11/15/Linux-常用配置/index.html">
+<meta property="og:site_name" content="Memories">
+<meta property="og:description" content="gh指令说明123456gh repo list kaylorchengh repo create kaylorchen/demo --privategh repo clone kaylorchen/demogh run list --repo kaylorchen/demo # 显示ci的信息gh run view RUN_ID --repo kaylorchen/demogh run down">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://blog.kaylordut.com/image/iptables_netfilter_chains.png">
+<meta property="og:updated_time" content="2024-12-25T01:49:06.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 常用配置">
+<meta name="twitter:description" content="gh指令说明123456gh repo list kaylorchengh repo create kaylorchen/demo --privategh repo clone kaylorchen/demogh run list --repo kaylorchen/demo # 显示ci的信息gh run view RUN_ID --repo kaylorchen/demogh run down">
+<meta name="twitter:image" content="http://blog.kaylordut.com/image/iptables_netfilter_chains.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://blog.kaylordut.com/2022/11/15/Linux-常用配置/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux 常用配置 | Memories</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Memories</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">有阴天，就会有晴天</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/kaylorchen" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.kaylordut.com/2022/11/15/Linux-常用配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kaylor">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Memories">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux 常用配置
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2022-11-15 15:37:02" itemprop="dateCreated datePublished" datetime="2022-11-15T15:37:02+00:00">2022-11-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2024-12-25 01:49:06" itemprop="dateModified" datetime="2024-12-25T01:49:06+00:00">2024-12-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2022/11/15/Linux-常用配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2022/11/15/Linux-常用配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="gh指令说明"><a href="#gh指令说明" class="headerlink" title="gh指令说明"></a>gh指令说明</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gh repo list kaylorchen</span><br><span class="line">gh repo create kaylorchen/demo --private</span><br><span class="line">gh repo <span class="built_in">clone</span> kaylorchen/demo</span><br><span class="line">gh run list --repo kaylorchen/demo <span class="comment"># 显示ci的信息</span></span><br><span class="line">gh run view RUN_ID --repo kaylorchen/demo</span><br><span class="line">gh run download RUN_ID --repo kaylorchen/demo -n git</span><br></pre></td></tr></table></figure>
+<h1 id="MQTT服务器部署"><a href="#MQTT服务器部署" class="headerlink" title="MQTT服务器部署"></a>MQTT服务器部署</h1><h2 id="使用emqx"><a href="#使用emqx" class="headerlink" title="使用emqx"></a>使用emqx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart=always -d --name emqx -v <span class="variable">$&#123;PWD&#125;</span>/data:/opt/emqx/data -v <span class="variable">$&#123;PWD&#125;</span>/<span class="built_in">log</span>:/opt/emqx/<span class="built_in">log</span> -p 18083:18083 -p 1883:1883 emqx</span><br></pre></td></tr></table></figure>
+<p>默认的账号密码是admin:public</p>
+<h2 id="传统mqtt服务器"><a href="#传统mqtt服务器" class="headerlink" title="传统mqtt服务器"></a>传统mqtt服务器</h2><p>下载mqttx客户端 <a href="https://mqttx.app/downloads" target="_blank" rel="noopener">https://mqttx.app/downloads</a> 用于测试  </p>
+<p>使用docker启动服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker pull eclipse-mosquitto:2.0.20</span><br><span class="line">docker run --name mqtt -d -p 1883:1883 eclipse-mosquitto:2.0.20</span><br><span class="line">docker cp mqtt:/mosquitto <span class="variable">$PWD</span>/</span><br><span class="line">docker stop mqtt</span><br><span class="line">docker rm mqtt</span><br></pre></td></tr></table></figure></p>
+<p>修改配置文件 mosquitto/config/mosquitto.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">listener 1883 0.0.0.0</span><br><span class="line">persistence true</span><br><span class="line">persistence_location /mosquitto/data/</span><br><span class="line">log_dest file /mosquitto/log/mosquitto.log</span><br><span class="line">allow_anonymous false</span><br><span class="line">password_file /mosquitto/config/pwfile</span><br></pre></td></tr></table></figure></p>
+<p>正式启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">touch mosquitto/config/pwfile</span><br><span class="line">docker run --restart=always -d --name mqtt -p 1883:1883 -v $&#123;PWD&#125;/mosquitto:/mosquitto eclipse-mosquitto:2.0.20</span><br><span class="line">docker exec -it mqtt mosquitto_passwd -c /mosquitto/config/pwfile  kaylor</span><br></pre></td></tr></table></figure></p>
+<h1 id="ZSH-配置和-FZF-配置"><a href="#ZSH-配置和-FZF-配置" class="headerlink" title="ZSH 配置和 FZF 配置"></a>ZSH 配置和 FZF 配置</h1><h2 id="zsh-基本配置"><a href="#zsh-基本配置" class="headerlink" title="zsh 基本配置"></a>zsh 基本配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt install zsh</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh --depth=1</span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+<p>编辑~/.zshrc，修改一下on-my-zsh的默认插件和禁止其每次启动都启动更新, 请找到相应的行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">zstyle</span> <span class="string">':omz:update'</span> mode disabled</span><br><span class="line">plugins=(git sudo extract z cp safe-paste colored-man-pages)</span><br></pre></td></tr></table></figure></p>
+<p>sudo插件是当你忘记加sudo的时候，连续按两次esc，就会在指令上添加sudo<br>extract是解压指令，无脑解压各种压缩包，再也不需要查询参数了<br>z是一个目录跳转指令，使用它替代cd的话，可以记录你的常用目录<br>cp的使用指令是cpv，是一个带进度条的拷贝指令</p>
+<h2 id="添加插件"><a href="#添加插件" class="headerlink" title="添加插件"></a>添加插件</h2><p>在.zshrc 上添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># zplug configruation</span><br><span class="line">if [[ ! -d &quot;$&#123;ZPLUG_HOME&#125;&quot; ]]; then</span><br><span class="line">    if [[ ! -d ~/.zplug ]]; then</span><br><span class="line">        git clone https://github.com/zplug/zplug ~/.zplug</span><br><span class="line">        # If we can&apos;t get zplug, it&apos;ll be a very sobering shell experience. To at</span><br><span class="line">        # least complete the sourcing of this file, we&apos;ll define an always-false</span><br><span class="line">        # returning zplug function.</span><br><span class="line">        if [[ $? != 0 ]]; then</span><br><span class="line">            function zplug() &#123;</span><br><span class="line">                return 1</span><br><span class="line">            &#125;</span><br><span class="line">        fi</span><br><span class="line">    fi</span><br><span class="line">    export ZPLUG_HOME=~/.zplug</span><br><span class="line">fi</span><br><span class="line">if [[ -d &quot;$&#123;ZPLUG_HOME&#125;&quot; ]]; then</span><br><span class="line">    source &quot;$&#123;ZPLUG_HOME&#125;/init.zsh&quot;</span><br><span class="line">fi</span><br><span class="line">zplug &apos;plugins/git&apos;, from:oh-my-zsh, if:&apos;which git&apos;</span><br><span class="line">zplug &apos;romkatv/powerlevel10k&apos;, use:powerlevel10k.zsh-theme</span><br><span class="line">zplug &quot;plugins/vi-mode&quot;, from:oh-my-zsh</span><br><span class="line">zplug &apos;zsh-users/zsh-autosuggestions&apos;</span><br><span class="line">zplug &apos;zsh-users/zsh-completions&apos;, defer:2</span><br><span class="line">zplug &apos;zsh-users/zsh-history-substring-search&apos;</span><br><span class="line">zplug &apos;zsh-users/zsh-syntax-highlighting&apos;, defer:2</span><br><span class="line"></span><br><span class="line">if ! zplug check; then</span><br><span class="line">    zplug install</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">zplug load</span><br><span class="line"></span><br><span class="line">bindkey &apos;^K&apos; kill-line</span><br><span class="line">bindkey &apos;^B&apos; backward-char</span><br><span class="line">bindkey &apos;^F&apos; forward-char</span><br><span class="line">bindkey &apos;^U&apos; backward-kill-line</span><br><span class="line"></span><br><span class="line">zstyle &apos;:completion:*&apos; rehash true</span><br><span class="line">unsetopt no_match</span><br><span class="line"></span><br><span class="line">alias ll=&apos;ls -alF&apos;</span><br><span class="line">alias la=&apos;ls -A&apos;</span><br><span class="line">alias l=&apos;ls -CF&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="私人化指令配置"><a href="#私人化指令配置" class="headerlink" title="私人化指令配置"></a>私人化指令配置</h2><p>有时候需要定制以下私人的指令，可以在 <strong>~/.zshrc</strong> 文件中加入一行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[ ! -f ~/.user.zsh ]] || <span class="built_in">source</span> ~/.user.zsh</span><br><span class="line">或</span><br><span class="line">[[ ! -f ~/.user.bash ]] || <span class="built_in">source</span> ~/.user.bash</span><br></pre></td></tr></table></figure></p>
+<p>然后创建并编辑 <strong>~/.user.zsh</strong> 或者 <strong>~/.user.bash</strong>, 输入你想要的指令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> open=<span class="string">'nautilus'</span></span><br><span class="line"><span class="built_in">alias</span> zsh_reload=<span class="string">'source ~/.zshrc'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">_systemctl_unit_state</span></span>() &#123;</span><br><span class="line">  <span class="built_in">typeset</span> -gA _sys_unit_state</span><br><span class="line">  _sys_unit_state=( $(__systemctl list-unit-files <span class="string">"<span class="variable">$PREFIX</span>*"</span> | awk <span class="string">'&#123;print $1, $2&#125;'</span>) ) &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> full_tar_with_sudo &#123;</span><br><span class="line">        sudo tar -cvpzf <span class="variable">$1</span> <span class="variable">$2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> full_untar_with_sudo &#123;</span><br><span class="line">        sudo tar -xvpzf <span class="variable">$1</span> -C <span class="variable">$2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装配置-fzf"><a href="#安装配置-fzf" class="headerlink" title="安装配置 fzf"></a>安装配置 fzf</h2><h3 id="安装与升级"><a href="#安装与升级" class="headerlink" title="安装与升级"></a>安装与升级</h3><ul>
+<li>Install</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Upgrade</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.fzf &amp;&amp; git pull &amp;&amp; ./install</span><br></pre></td></tr></table></figure>
+<h3 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h3><ul>
+<li>基础操作</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fzf <span class="comment"># 输入fzf直接搜索</span></span><br><span class="line">fzf -m <span class="comment"># 多选模式</span></span><br></pre></td></tr></table></figure>
+<p>使用CTRL-J/CTRL-K(或者CTRL-N/CTRL-P)进行上下选择<br>使用Enter选中条目, CTRL-C/ESC进行退出操作<br>在多选择模式(-m), 使用TAB和Shift-TAB标记多个条目<br>Emacs 风格按键绑定<br>支持鼠标操作  </p>
+<ul>
+<li>语法匹配</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>匹配类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sbtrkt</td>
+<td>模糊匹配</td>
+<td>内容匹配sbtrkt(字符匹配)</td>
+</tr>
+<tr>
+<td>‘wild</td>
+<td>精确匹配(单引号)</td>
+<td>内容包含单词wild(单词匹配)</td>
+</tr>
+<tr>
+<td>^music</td>
+<td>前缀精确匹配</td>
+<td>以music开头</td>
+</tr>
+<tr>
+<td>.mp3$</td>
+<td>后缀精确匹配</td>
+<td>以.mp3结尾</td>
+</tr>
+<tr>
+<td>!fire</td>
+<td>反转匹配</td>
+<td>内容不包含fire</td>
+</tr>
+<tr>
+<td>!^music</td>
+<td>前缀反转匹配</td>
+<td>不以music开头</td>
+</tr>
+<tr>
+<td>!.mp3$</td>
+<td>后缀反转匹配</td>
+<td>不以.mp3结尾</td>
+</tr>
+</tbody>
+</table>
+<p>fzf的过滤默认是与操作，每个与操作之间使用空格间隔，如果需要使用或操作，参考下面的例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^core go$ | rb$ | py$ <span class="comment"># 表示以`core`开头, 且以`go`或`rb`或`py`结尾</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>一般快捷键和环境变量</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CTRL-T</td>
+<td>命令行打印选中内容</td>
+</tr>
+<tr>
+<td>CTRL-R</td>
+<td>命令行历史记录搜索, 并打印输出</td>
+</tr>
+<tr>
+<td>ALT-C</td>
+<td>模糊搜索目录, 并进入(cd)，macos可以使用 cd **[TAB]</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FZF_DEFAULT_COMMAND</td>
+<td>输入为 tty 时的默认命令 export FZF_DEFAULT_COMMAND=’fd –type f’</td>
+</tr>
+<tr>
+<td>FZF_DEFAULT_OPTS</td>
+<td>设置默认选项 export FZF_DEFAULT_OPTS=”–layout=reverse –inline-info”</td>
+</tr>
+<tr>
+<td>FZF_CTRL_T_COMMAND</td>
+<td>按键映射行为设置</td>
+</tr>
+<tr>
+<td>FZF_CTRL_T_OPTS</td>
+<td>按键映射选项设置</td>
+</tr>
+<tr>
+<td>FZF_CTRL_R_OPTS</td>
+<td>按键映射选项设置</td>
+</tr>
+<tr>
+<td>FZF_ALT_C_COMMAND</td>
+<td>按键映射行为设置</td>
+</tr>
+<tr>
+<td>FZF_ALT_C_OPTS</td>
+<td>按键映射选项设置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="个性化配置"><a href="#个性化配置" class="headerlink" title="个性化配置"></a>个性化配置</h3><ul>
+<li><p>更换搜索引擎(可选)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install fd <span class="comment"># Mac os </span></span><br><span class="line">apt install fd-find <span class="comment"># Ubuntu Linux</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置环境FZF的环境变量</p>
+</li>
+</ul>
+<p>编辑 ~/.bashrc 或者 ~/.zshrc, 添加如下内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> FZF_CTRL_T_COMMAND=<span class="string">"fd --exclude=&#123;.git,.idea,.vscode,.sass-cache,node_modules,build&#125; --type f --follow --hidden  --color=always"</span></span><br><span class="line"><span class="built_in">export</span> FZF_DEFAULT_COMMAND=<span class="string">"fd --exclude=&#123;.git,.idea,.vscode,.sass-cache,node_modules,build&#125; --type f --follow --hidden  --color=always"</span></span><br><span class="line"><span class="built_in">export</span> FZF_DEFAULT_OPTS=<span class="string">"--height 60% --layout=reverse --preview '(highlight -O ansi &#123;&#125; || cat &#123;&#125;) 2&gt; /dev/null | head -500' --ansi"</span></span><br></pre></td></tr></table></figure></p>
+<p>FZF_DEFAULT_COMMAND 依赖于安装了fd搜索指令，如果没有安装，可以不设置。<br>FZF_DEFAULT_OPTS 依赖于highlight指令，如果没有则会调用cat指令。Ubuntu可以通过<strong>apt install highlight</strong>安装该指令，MacOS可以通过<strong>brew install highlight</strong>安装该指令</p>
+<ul>
+<li>shell命令补全</li>
+</ul>
+<p>fzf默认使用 ** + [TAB] 进行补全，常用的补全指令有：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 **</span><br><span class="line">vim **</span><br><span class="line"><span class="built_in">cd</span> **</span><br><span class="line">ssh **</span><br><span class="line"><span class="built_in">export</span> **</span><br></pre></td></tr></table></figure></p>
+<h1 id="v4l2-ctl"><a href="#v4l2-ctl" class="headerlink" title="v4l2-ctl"></a>v4l2-ctl</h1><h2 id="获取支持的分辨率和编码格式"><a href="#获取支持的分辨率和编码格式" class="headerlink" title="获取支持的分辨率和编码格式"></a>获取支持的分辨率和编码格式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v4l2-ctl --list-formats-ext -d /dev/video0</span><br></pre></td></tr></table></figure>
+<h2 id="显示-Camera-所有信息-分辨率-Width-Height"><a href="#显示-Camera-所有信息-分辨率-Width-Height" class="headerlink" title="显示 Camera 所有信息(分辨率:Width/Height)"></a>显示 Camera 所有信息(分辨率:Width/Height)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v4l2-ctl -d /dev/video0 --all</span><br></pre></td></tr></table></figure>
+<h2 id="获取支持的编码格式"><a href="#获取支持的编码格式" class="headerlink" title="获取支持的编码格式"></a>获取支持的编码格式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v4l2-ctl  --list-formats -d /dev/video0</span><br></pre></td></tr></table></figure>
+<h2 id="获取支持的-camera-设备"><a href="#获取支持的-camera-设备" class="headerlink" title="获取支持的 camera 设备"></a>获取支持的 camera 设备</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v4l2-ctl --list-devices -d /dev/video0</span><br></pre></td></tr></table></figure>
+<h2 id="获取摄像头控制参数"><a href="#获取摄像头控制参数" class="headerlink" title="获取摄像头控制参数"></a>获取摄像头控制参数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v4l2-ctl -d /dev/video0 --list-ctrls</span><br></pre></td></tr></table></figure>
+<h1 id="Samba-相关"><a href="#Samba-相关" class="headerlink" title="Samba 相关"></a>Samba 相关</h1><h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>vers 参数要指定</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mount  //192.168.100.1/share/ share/ -o vers=2.0</span><br><span class="line">sudo mount  //192.168.100.1/share/ share/ -o vers=2.0,uid=ubuntu,gid=ubuntu</span><br></pre></td></tr></table></figure>
+<h1 id="NFS-配置"><a href="#NFS-配置" class="headerlink" title="NFS 配置"></a>NFS 配置</h1><h2 id="安装-NFS"><a href="#安装-NFS" class="headerlink" title="安装 NFS"></a>安装 NFS</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nfs-kernel-server</span><br></pre></td></tr></table></figure>
+<h2 id="配置共享目录"><a href="#配置共享目录" class="headerlink" title="配置共享目录"></a>配置共享目录</h2><p>服务端的共享目录配置文件为　<strong><em>/etc/exports</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/exports: the access control list for filesystems which may be exported</span></span><br><span class="line"><span class="comment">#		to NFS clients.  See exports(5).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example for NFSv2 and NFSv3:</span></span><br><span class="line"><span class="comment"># /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example for NFSv4:</span></span><br><span class="line"><span class="comment"># /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)</span></span><br><span class="line"><span class="comment"># /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">/home/ubuntu *(rw,anonuid=1000,anongid=1000,sync,no_subtree_check)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;输出目录&gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>输出目录：</p>
+<ul>
+<li>服务器共享的绝对目录地址</li>
+</ul>
+</li>
+<li><p>客户端：</p>
+<ul>
+<li>指定 ip 地址的主机：192.168.0.200</li>
+<li>指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0</li>
+<li>指定域名的主机：david.bsmart.cn</li>
+<li>指定域中的所有主机：*.bsmart.cn</li>
+<li>所有主机：*</li>
+</ul>
+</li>
+<li><p>选项：</p>
+<ul>
+<li>访问权限<ul>
+<li>只读 ro</li>
+<li>读写 rw</li>
+</ul>
+</li>
+<li>用户映射选项<ul>
+<li>all_squash：将远程访问的所有普通用户及所属组都映射为匿名用户或用户组（nfsnobody）；</li>
+<li>no_all_squash：与 all_squash 取反（默认设置）；</li>
+<li>root_squash：将 root 用户及所属组都映射为匿名用户或用户组（默认设置）；</li>
+<li>no_root_squash：与 rootsquash 取反；</li>
+<li>anonuid=xxx：将远程访问的所有用户都映射为匿名用户，并指定该用户为本地用户（UID=xxx）；</li>
+<li>anongid=xxx：将远程访问的所有用户组都映射为匿名用户组账户，并指定该匿名用户组账户为本地用户组账户（GID=xxx）；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他选项<ul>
+<li>secure：限制客户端只能从小于 1024 的 tcp/ip 端口连接 nfs 服务器（默认设置）；</li>
+<li>insecure：允许客户端从大于 1024 的 tcp/ip 端口连接服务器；</li>
+<li>sync：将数据同步写入内存缓冲区与磁盘中，效率低，但可以保证数据的一致性；</li>
+<li>async：将数据先保存在内存缓冲区中，必要时才写入磁盘；</li>
+<li>wdelay：检查是否有相关的写操作，如果有则将这些写操作一起执行，这样可以提高效率（默认设置）；</li>
+<li>no_wdelay：若有写操作则立即执行，应与 sync 配合使用；</li>
+<li>subtree_check：若输出目录是一个子目录，则 nfs 服务器将检查其父目录的权限(默认设置)；</li>
+<li>no_subtree_check：即使输出目录是一个子目录，nfs 服务器也不检查其父目录的权限，这样可以提高效率；</li>
+</ul>
+</li>
+</ul>
+<p>配置完成之后，重启 nfs service.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nfs-kernel-server restart</span><br></pre></td></tr></table></figure>
+<h2 id="客户端-mount"><a href="#客户端-mount" class="headerlink" title="客户端 mount"></a>客户端 mount</h2><p>假设服务 IP 为: 192.168.20.200,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kaylor@kaylor-ThinkPad-T460:~$ showmount -e 192.168.20.200 <span class="comment">#显示服务器共享的目录</span></span><br><span class="line">Export list <span class="keyword">for</span> 192.168.20.200:</span><br><span class="line">/home/ubuntu *</span><br><span class="line">kaylor@kaylor-ThinkPad-T460:~$ sudo mount 192.168.20.200:/home/ubuntu nfs</span><br><span class="line"><span class="comment">#mac mount需要加参数</span></span><br><span class="line">sudo  mount -o vers=4,resvport 192.168.51.200:/home/ubuntu nfs</span><br></pre></td></tr></table></figure>
+<h1 id="iptables-网络转发设置"><a href="#iptables-网络转发设置" class="headerlink" title="iptables 网络转发设置"></a>iptables 网络转发设置</h1><h2 id="设置内核转发"><a href="#设置内核转发" class="headerlink" title="设置内核转发"></a>设置内核转发</h2><ul>
+<li>即时开启内核转发</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
+<ul>
+<li>永久开启内核转发</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/sysctl.conf</span><br><span class="line">=========================================================================</span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<h2 id="iptables-指令说明"><a href="#iptables-指令说明" class="headerlink" title="iptables 指令说明"></a>iptables 指令说明</h2><p><img src="/image/iptables_netfilter_chains.png" alt></p>
+<h3 id="PREROUTING-DNT"><a href="#PREROUTING-DNT" class="headerlink" title="PREROUTING(DNT)"></a>PREROUTING(DNT)</h3><p>这是 chain 的前端，是用来改变目标地址的</p>
+<h3 id="FORWARD"><a href="#FORWARD" class="headerlink" title="FORWARD"></a>FORWARD</h3><p>如果目标地址不是本机，机会进行转发。注意 linux 内核默认是禁止转发的，所以需要开启上面步骤的内核转发</p>
+<h3 id="POSTROUTING-SNAT"><a href="#POSTROUTING-SNAT" class="headerlink" title="POSTROUTING(SNAT)"></a>POSTROUTING(SNAT)</h3><p>它的作用是修改数据包的源地址，比如内网 IP 访问公网 IP，出口路由会将数据包的源地址改为自己的公网 IP，否者数据包有去无回。</p>
+<h3 id="链操作"><a href="#链操作" class="headerlink" title="链操作"></a>链操作</h3><p>操作参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-I</td>
+<td>插入</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>追加</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>替换</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>删除</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>列表显示</td>
+</tr>
+</tbody>
+</table>
+<p>过滤参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s</td>
+<td>匹配源地址</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>匹配目的地址</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>协议匹配</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>入接口匹配</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>出接口匹配</td>
+</tr>
+<tr>
+<td>–sport，–dport</td>
+<td>源和目的端口匹配</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>跳转,也就是包的方向</td>
+</tr>
+<tr>
+<td>!</td>
+<td>取反</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>列出 nat 表的所有规则</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -n -L</span><br></pre></td></tr></table></figure>
+<p>使用 -n 选项是因为避免长时间的反向 DNS 查询</p>
+<ul>
+<li>添加一个规则到 filter 表的 FORWARD 链</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t filter -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>在 iptables 中，默认的表名就是 filter，所以这里可以省略-t filter 直接写成: iptables -A FORWARD -s 10.1.1.11 -d 202.1.1.1 -j ACCEPT</p>
+<ul>
+<li>允许 eth3 接口过来的包通过 FORWARD 链</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A FORWARD -i eth3 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h2 id="简单-nat-路由器"><a href="#简单-nat-路由器" class="headerlink" title="简单 nat 路由器"></a>简单 nat 路由器</h2><ul>
+<li>环境介绍</li>
+</ul>
+<p>linux 2.4 +<br>2 个网络接口<br>Lan 口:10.1.1.254/24 eth0<br>Wan 口:60.1.1.1/24 eth1<br>目的：实现内网中的节点（10.1.1.0/24）可控的访问 internet。<br>首先将 Lan 的节点 pc 的网关指向 10.1.1.254。</p>
+<p>确定你的 linux 的 ip 配置无误，可以正确的 ping 通内外的地址。同时用 route 命令查看 linux 的本地路由表，确认指定了可用的 ISP 提供的默认网关。</p>
+<ul>
+<li><p>操作</p>
+<ul>
+<li><p>打开 linux 的转发功能：sysctl net.ipv4.ip_forward=1</p>
+</li>
+<li><p>将 FORWARD 链的策略设置为 DROP，这样做的目的是做到对内网 ip 的控制，你允许哪一个访问 internet 就可以增加一个规则，不在规则中的 ip 将无法访问 internet.</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -P FORWARD DROP</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这条规则规定允许任何地址到任何地址的确认包和关联包通过。一定要加这一条，否则你只允许 lan IP 访问没有用</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这条规则做了一个 SNAT，也就是源地址转换，将来自 10.1.1.0/24 的地址转换为 60.1.1.1</li>
+</ul>
+<p>(因为是让内网上网，因此对于代理服务器而言 POSTROUTING（经过路由之后的包应该要把源地址改变为 60.1.1.1，否则包无法返回）)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -j SNAT --to 60.1.1.1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>有这几条规则，一个简单的 nat 路由器就实现了。这时你可以将允许访问的 ip 添加至 FORWARD 链，他们就能访问 internet 了。</li>
+</ul>
+<p>比如我想让 10.1.1.9 这个地址访问 internet,那么你就加如下的命令就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A FORWARD -s 10.1.1.9 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>也可以精确控制他的访问地址,比如我就允许 10.1.1.99 访问 3.3.3.3 这个 ip</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A FORWARD -s 10.1.1.99 -d 3.3.3.3 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>或者只允许他们访问 80 端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A FORWARD -s 10.1.1.0/24 -p tcp --dport http -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h2 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -d 10.8.1.24 -p tcp --dport 80 -j DNAT --to 192.168.111.111:80</span><br><span class="line">iptables -A FORWARD -d 192.168.111.111 -p tcp --dport 80 -j ACCEPT</span><br><span class="line">iptabels -t nat -A POSTROUTING -d 192.168.111.111 -p tcp --dport 80 -j SNAT --to 192.168.111.1</span><br></pre></td></tr></table></figure>
+<p>借鉴<a href="http://xstarcd.github.io/wiki/Linux/iptables_forward_internetshare.html" target="_blank" rel="noopener">此链接</a></p>
+<h2 id="保存-iptables-指令"><a href="#保存-iptables-指令" class="headerlink" title="保存 iptables 指令"></a>保存 iptables 指令</h2><ul>
+<li>使用 iptables-restore<br>设置了相关规则之后，保存到文件中</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables-save &gt; /etc/iptables-rules</span><br><span class="line">ip6tables-save &gt; /etc/ip6tables-rules</span><br></pre></td></tr></table></figure>
+<p>然后新建一个脚本文件，保存到<strong><em>/etc/network/if-pre-up.d/</em></strong>目录下，记得修改脚本的权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">iptables-restore &lt; /etc/iptables.rules</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 iptables-persistent</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install iptables-persistent</span><br></pre></td></tr></table></figure>
+<p>每当设置了新的 iptables 规则后，使用如下命令保存规则即可，规则会根据 ipv4 和 ipv6 分别保存在了/etc/iptables/rules.v4 和/etc/iptables/rules.v6 文件中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netfilter-persistent  save</span><br></pre></td></tr></table></figure>
+<h1 id="日志相关"><a href="#日志相关" class="headerlink" title="日志相关"></a>日志相关</h1><h2 id="命令相关"><a href="#命令相关" class="headerlink" title="命令相关"></a>命令相关</h2><p>显示全部最近一次重新引导后收集到的 journal 条目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl -b</span><br></pre></td></tr></table></figure>
+<p>要查看上次引导的 journal 记录，则可使用-1 相对指针配合-b 标记</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl -b -1</span><br></pre></td></tr></table></figure>
+<p>通过以下命令查看全部 2015 年 1 月 10 日下午 5：15 之后的条目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">journalctl --since &quot;2015-01-10 17:15:00&quot;</span><br><span class="line">journalctl --since &quot;2015-01-10&quot; --until &quot;2015-01-11 03:00&quot;</span><br><span class="line">journalctl --since 09:00 --until &quot;1 hour ago&quot;</span><br><span class="line">journalctl –-since yesterday</span><br></pre></td></tr></table></figure>
+<p>过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">journalctl -u nginx.service</span><br><span class="line">journalctl -u nginx.service --since today</span><br><span class="line">journalctl _PID=8088</span><br><span class="line">journalctl _UID=33 --since today</span><br><span class="line">journalctl /path/to/executable_file</span><br></pre></td></tr></table></figure>
+<p>显示内核信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl -k</span><br></pre></td></tr></table></figure>
+<p>根据优先级显示<br>0: emerg<br>1: alert<br>2: crit<br>3: err<br>4: warning<br>5: notice<br>6: info<br>7: debug</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl -p err -b</span><br></pre></td></tr></table></figure>
+<p>显示近期日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl -n 20</span><br></pre></td></tr></table></figure>
+<p>追踪日志/实时滚动日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">journalctl -f</span><br><span class="line">journalctl  -u nginx.service  -f</span><br></pre></td></tr></table></figure>
+<p>查看和删除系统日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">journalctl --disk-usage</span><br><span class="line">journalctl --vacuum-size=10M # 删除系统日志，只剩10M</span><br><span class="line">journalctl --vacuum-time=1min #删除一分钟之前的系统日志</span><br></pre></td></tr></table></figure>
+<p>查看 journald 进程信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status systemd-journald.service</span><br></pre></td></tr></table></figure>
+<h2 id="更换系统log和开启log滚动"><a href="#更换系统log和开启log滚动" class="headerlink" title="更换系统log和开启log滚动"></a>更换系统log和开启log滚动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install syslog-ng</span><br><span class="line">sudo apt install logrotate</span><br></pre></td></tr></table></figure>
+<h2 id="编码中使用系统-log"><a href="#编码中使用系统-log" class="headerlink" title="编码中使用系统 log"></a>编码中使用系统 log</h2><p>安装依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y libsystemd-dev</span><br></pre></td></tr></table></figure>
+<p>相关函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;systemd/sd-journal.h&gt;</span><br><span class="line">int sd_journal_print(int priority, const char *format, ...);</span><br><span class="line">int sd_journal_printv(int priority, const char *format, va_list ap);</span><br><span class="line">int sd_journal_send(const char *format, ...);</span><br><span class="line">int sd_journal_sendv(const struct iovec *iov, int n);</span><br><span class="line">int sd_journal_perror(const char *message);</span><br></pre></td></tr></table></figure>
+<p>The priority value is one of LOG_EMERG, LOG_ALERT, LOG_CRIT, LOG_ERR, LOG_WARNING, LOG_NOTICE, LOG_INFO, LOG_DEBUG, as defined in syslog.h</p>
+<h1 id="find-指令"><a href="#find-指令" class="headerlink" title="find 指令"></a>find 指令</h1><p>指定目录搜索文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find dir -name &quot;*pppoe*&quot;</span><br><span class="line">find dir -perm /u+x -type f #查找dir下的可执行文件</span><br></pre></td></tr></table></figure>
+<h1 id="Linux-内核编译指令"><a href="#Linux-内核编译指令" class="headerlink" title="Linux 内核编译指令"></a>Linux 内核编译指令</h1><p>配置 config 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig</span><br><span class="line"><span class="comment"># 跨平台配置的注意事项，比如</span></span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE=/home/kaylor/rk3588/rk3588_sdk/prebuilts/gcc/linux-x86/aarch64/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-</span><br><span class="line">make ARCH=arm64 menuconfig</span><br></pre></td></tr></table></figure>
+<p>根据已有的.config 文件，补充缺失的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make defconfig</span><br></pre></td></tr></table></figure>
+<p>编译内核和模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>单独编译模块和安装（不要轻易安装内核模块，如果不指定安装路径，容易损坏系统）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make modules</span><br><span class="line">make modules_install INSTALL_MOD_PATH=安装路径</span><br></pre></td></tr></table></figure>
+<p>指定内核源码和模块源码所在的绝对路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make -C 内核源码绝对路径 M=模块源码文件所在的绝对路径 modules</span><br><span class="line">make ARCH=arm CROSS_COMPILE= -C /lib/modules/5.10.17-v7l+/build M=/home/pi/rtl8812au  modules</span><br></pre></td></tr></table></figure>
+<p>安装模块具体操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install -p -m 644 88XXau.ko  /lib/modules/5.10.17-v7l+/kernel/drivers/net/wireless/</span><br><span class="line">/sbin/depmod -a 5.10.17-v7l+</span><br></pre></td></tr></table></figure>
+<p>安装内核头文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make headers_install INSTALL_HDR_PATH=安装路径</span><br></pre></td></tr></table></figure>
+<h1 id="nohup-指令"><a href="#nohup-指令" class="headerlink" title="nohup 指令"></a>nohup 指令</h1><p>nohup 即不挂起，不会因为终端退出而终结<br>比如编译 Openwrt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup make -j1 V=s &gt;&amp; make.log &amp; 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<h1 id="客户定制-USB-设备号驱动加载"><a href="#客户定制-USB-设备号驱动加载" class="headerlink" title="客户定制 USB 设备号驱动加载"></a>客户定制 USB 设备号驱动加载</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe -r em28xx</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"modprobe finished"</span></span><br><span class="line">sudo modprobe em28xx card=65</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"em28xx configured"</span></span><br><span class="line">sudo su -c <span class="string">"echo '2694 0008' &gt; /sys/bus/usb/drivers/em28xx/new_id"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Custom VID and PID enabled"</span></span><br></pre></td></tr></table></figure>
+<h1 id="nload-分析网卡流量"><a href="#nload-分析网卡流量" class="headerlink" title="nload 分析网卡流量"></a>nload 分析网卡流量</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-a period       Sets the length in seconds of the time window for average</span><br><span class="line">                calculation.</span><br><span class="line">                Default is 300.</span><br><span class="line">-i max_scaling  Specifies the 100% mark in kBit/s of the graph indicating the</span><br><span class="line">                incoming bandwidth usage. Ignored if max_scaling is 0 or the</span><br><span class="line">                switch -m is given.</span><br><span class="line">                Default is 10240.</span><br><span class="line">-m              Show multiple devices at a time; no traffic graphs.</span><br><span class="line">-o max_scaling  Same as -i but for the graph indicating the outgoing bandwidth</span><br><span class="line">                usage.</span><br><span class="line">                Default is 10240.</span><br><span class="line">-t interval     Determines the refresh interval of the display in milliseconds.</span><br><span class="line">                Default is 500.</span><br><span class="line">-u h|b|k|m|g    Sets the type of unit used for the display of traffic numbers.</span><br><span class="line">   H|B|K|M|G    h: auto, b: Bit/s, k: kBit/s, m: MBit/s etc.</span><br><span class="line">                H: auto, B: Byte/s, K: kByte/s, M: MByte/s etc.</span><br><span class="line">                Default is h.</span><br><span class="line">-U h|b|k|m|g    Same as -u, but for a total amount of data (without &quot;/s&quot;).</span><br><span class="line">   H|B|K|M|G    Default is H.</span><br><span class="line">devices         Network devices to use.</span><br><span class="line">                Default is to use all auto-detected devices.</span><br><span class="line">--help</span><br><span class="line">-h              Print this help.</span><br><span class="line"></span><br><span class="line">example: nload -t 200 -i 1024 -o 128 -U M</span><br></pre></td></tr></table></figure>
+<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><h2 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h2><p>编辑 <strong>/etc/ssh/sshd_config</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ClientAliveInterval 30</span><br><span class="line">ClientAliveCountMax 6</span><br></pre></td></tr></table></figure>
+<p>ClientAliveInterval 表示每隔多少秒，服务器端向客户端发送心跳，是的，你没看错。</p>
+<p>下面的 ClientAliveInterval 表示上述多少次心跳无响应之后，会认为 Client 已经断开。</p>
+<p>所以，总共允许无响应的时间是 60*3=180 秒。</p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>编辑 <strong>/etc/ssh/ssh_config</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerAliveInterval 30</span><br><span class="line">ServerAliveCountMax 100</span><br></pre></td></tr></table></figure>
+<h2 id="MacOS-ssh转发"><a href="#MacOS-ssh转发" class="headerlink" title="MacOS ssh转发"></a>MacOS ssh转发</h2><p>ssh的转发一般来说只要添加-A选项就可以了，但是macos默认没有把自己的秘钥添加，所以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure></p>
+<p>无法打开到身份验证代理的连接意味着您的计算机无法与身份验证代理程序通信。这通常发生在尝试使用SSH密钥进行身份验证时。要解决此问题，请执行以下步骤：</p>
+<p>确保您的身份验证代理正在运行：<br>运行以下命令检查代理是否已启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(ssh-agent -s)&quot;</span><br></pre></td></tr></table></figure></p>
+<p>如果代理未运行，请运行以下命令启动代理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent /bin/bash</span><br></pre></td></tr></table></figure></p>
+<p>添加您的SSH私钥：<br>运行以下命令将私钥添加到身份验证代理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add /path/to/your/private_key</span><br></pre></td></tr></table></figure></p>
+<p>如果您的私钥位于默认位置（如~/.ssh/id_rsa），则无需指定路径。</p>
+<p>如果上述步骤不起作用，请尝试重新启动SSH服务：<br>sudo service ssh restart</p>
+<p>如果问题仍然存在，请确保您的SSH私钥文件存在且您具有正确的访问权限。如果问题仍然无法解决，可能需要进一步调查您的操作系统和SSH配置。</p>
+<h2 id="X11应用转发"><a href="#X11应用转发" class="headerlink" title="X11应用转发"></a>X11应用转发</h2><p>服务端安装X11服务和测试app<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install xorg x11-utils</span><br></pre></td></tr></table></figure></p>
+<p>客户端使用-X选项连接，并运行xclock测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh kaylor@192.168.111.222 -X</span><br><span class="line"></span><br><span class="line">xclock # 该指令运行在ssh的终端中</span><br></pre></td></tr></table></figure></p>
+<h1 id="TMUX"><a href="#TMUX" class="headerlink" title="TMUX"></a>TMUX</h1><p>在 home 目录下创建 .tmux.conf 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setw -g mode-keys vi</span><br><span class="line"><span class="built_in">set</span> -g default-terminal <span class="string">"screen-256color"</span></span><br></pre></td></tr></table></figure>
+<h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><p>编辑 <strong><em>/etc/vim/vimrc</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">set relativenumber</span><br><span class="line">set number</span><br><span class="line">colorscheme desert</span><br><span class="line">set ts=4</span><br><span class="line">set expandtab</span><br><span class="line">set paste</span><br><span class="line">set encoding=utf8</span><br><span class="line">set laststatus=2            &quot; 设置状态栏在倒数第2行</span><br><span class="line">set statusline=%F%m%r%h%w\ [FORMAT=%&#123;&amp;ff&#125;]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]</span><br></pre></td></tr></table></figure>
+<h1 id="GRUB"><a href="#GRUB" class="headerlink" title="GRUB"></a>GRUB</h1><p>让 grub 记住你上一次的启动项<br>编辑 <strong><em>/etc/default/grub</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRUB_DEFAULT=saved</span><br><span class="line">GRUB_SAVEDEFAULT=true</span><br></pre></td></tr></table></figure>
+<p>设置网卡名字为 eth*的形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX=<span class="string">"net.ifnames=0 biosdevname=0"</span></span><br></pre></td></tr></table></figure>
+<p>执行指令更新 grub</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></table></figure>
+<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><ul>
+<li>添加一个组</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd groupname</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加一个新用户</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser new_user</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更改用户名</li>
+</ul>
+<p>使用 root 用户登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">killall -u old_username</span><br><span class="line">usermod -l new_username old_username</span><br><span class="line">groupmod -n new_groupname old_groupname</span><br><span class="line">usermod -d /home/new_username new_username -m</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加现有用户到一个组：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -a -G groupname username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同时将 user 增加到 admins, ftp, www, 和 developers 用户组中，可以输入以下命令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -G admins,ftp,www,developers user</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看用户的 ID 信息</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id username</span><br></pre></td></tr></table></figure>
+<h1 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h1><ul>
+<li>rsync</li>
+</ul>
+<p>拷贝文件不改变文件的权限和属性，记得使用sudo:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo rsync -avz /path/to/<span class="built_in">source</span>/ /path/to/destination/ <span class="comment"># 同步source文件夹下的所有文件 </span></span><br><span class="line">sudo rsync -avz /path/to/<span class="built_in">source</span> /path/to/destination/  <span class="comment"># 同步source文件夹</span></span><br><span class="line">```  </span><br><span class="line">以下命令将从源目录拷贝所有文件和子目录到目标目录，但不拷贝符号链接:</span><br><span class="line">```bash</span><br><span class="line">rsync -av --no-links /path/to/<span class="built_in">source</span>/ /path/to/destination/</span><br><span class="line">```   </span><br><span class="line">如果您想要拷贝符号链接的目标文件，可以使用“-L”选项，如下所示：</span><br><span class="line">```bash</span><br><span class="line">rsync -avL /path/to/<span class="built_in">source</span>/ /path/to/destination/</span><br><span class="line">```  </span><br><span class="line">请注意，“-L”选项会将符号链接的目标文件拷贝到目标目录中，而不是链接本身。如果您想要拷贝链接本身，可以使用“-a”选项和“--copy-links”选项，如下所示：</span><br><span class="line">```bash</span><br><span class="line">rsync -a --copy-links /path/to/<span class="built_in">source</span>/ /path/to/destination/</span><br></pre></td></tr></table></figure></p>
+<p>这将拷贝符号链接本身，而不是链接的目标文件。</p>
+<h1 id="网络抓包"><a href="#网络抓包" class="headerlink" title="网络抓包"></a>网络抓包</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>下面是一些用来配置 <strong>tcpdump</strong> 的选项，它们非常容易被遗忘，也容易和其它类型的过滤器比如Wireshark等混淆。</p>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><ul>
+<li><strong>-i any</strong> 监听所有的网卡接口，用来查看是否有网络流量</li>
+<li><strong>-i eth0</strong> 只监听eth0网卡接口</li>
+<li><strong>-D</strong> 显示可用的接口列表</li>
+<li><strong>-n</strong> 不要解析主机名</li>
+<li><strong>-nn</strong> 不要解析主机名或者端口名</li>
+<li><strong>-q</strong> 显示更少的输出(更加quiet)</li>
+<li><strong>-t</strong> 输出可读的时间戳</li>
+<li><strong>-tttt</strong> 输出最大程度可读的时间戳</li>
+<li><strong>-X</strong> 以hex和ASCII两种形式显示包的内容</li>
+<li><strong>-XX</strong> 与 <strong>-X</strong>类似，增加以太网header的显示</li>
+<li><strong>-v, -vv, -vvv</strong> 显示更加多的包信息</li>
+<li><strong>-c</strong> 只读取x个包，然后停止</li>
+<li><strong>-s</strong> 指定每一个包捕获的长度，单位是byte，使用<code>-s0</code>可以捕获整个包的内容</li>
+<li><strong>-S</strong> 输出绝对的序列号</li>
+<li><strong>-e</strong> 获取以太网header</li>
+<li><strong>-E</strong> 使用提供的秘钥解密IPSEC流量</li>
+</ul>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p>在<strong>tcpdump</strong>中，可以使用表达式过滤指定类型的流量。有三种主要的表达式类型：<strong>type</strong>，<strong>dir</strong>，<strong>proto</strong>。</p>
+<ul>
+<li>类型（type）选项包含：<strong>host</strong>，<strong>net</strong>，<strong>port</strong></li>
+<li>方向（dir）选项包含：<strong>src</strong>，<strong>dst</strong></li>
+<li>协议（proto）选项包含：<strong>tcp</strong>，<strong>udp</strong>，<strong>icmp</strong>，<strong>ah</strong>等</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="捕获所有流量"><a href="#捕获所有流量" class="headerlink" title="捕获所有流量"></a>捕获所有流量</h3><p>查看所有网卡接口上发生了什么</p>
+<pre><code>tcpdump -i any
+</code></pre><h3 id="指定网卡接口"><a href="#指定网卡接口" class="headerlink" title="指定网卡接口"></a>指定网卡接口</h3><p>查看指定网卡上发生了什么</p>
+<pre><code>tcpdump -i eth0
+</code></pre><h3 id="原生输出"><a href="#原生输出" class="headerlink" title="原生输出"></a>原生输出</h3><p>查看更多的信息，不解析主机名和端口号，显示绝对序列号，可读的时间戳</p>
+<pre><code>tcpdump -ttttnnvvS
+</code></pre><h3 id="查看指定IP的流量"><a href="#查看指定IP的流量" class="headerlink" title="查看指定IP的流量"></a>查看指定IP的流量</h3><p>这是最常见的方式，这里只查看来自或者发送到IP地址1.2.3.4的流量。</p>
+<pre><code>tcpdump host 1.2.3.4
+</code></pre><h3 id="查看更多的包信息，输出HEX"><a href="#查看更多的包信息，输出HEX" class="headerlink" title="查看更多的包信息，输出HEX"></a>查看更多的包信息，输出HEX</h3><p>当你需要查看包中的内容时，使用hex格式输出是非常有用的。</p>
+<pre><code># tcpdump -nnvXSs 0 -c1 icmp
+
+tcpdump: data link type PKTAP
+tcpdump: listening on pktap, link-type PKTAP (Apple DLT_PKTAP), capture size 262144 bytes
+16:08:16.791604 IP (tos 0x0, ttl 64, id 34318, offset 0, flags [none], proto ICMP (1), length 56)
+    192.168.102.35 &gt; 114.114.114.114: ICMP 192.168.102.35 udp port 50694 unreachable, length 36
+    IP (tos 0x0, ttl 152, id 0, offset 0, flags [none], proto UDP (17), length 112)
+    114.114.114.114.53 &gt; 192.168.102.35.50694: [|domain]
+    0x0000:  5869 6c88 7f64 784f 4392 ed7e 0800 4500  Xil..dxOC..~..E.
+    0x0010:  0038 860e 0000 4001 e906 c0a8 6623 7272  .8....@.....f#rr
+    0x0020:  7272 0303 3665 0000 0000 4500 0070 0000  rr..6e....E..p..
+    0x0030:  0000 9811 16cd 7272 7272 c0a8 6623 0035  ......rrrr..f#.5
+    0x0040:  c606 005c 0000                           ...\..
+1 packet captured
+357 packets received by filter
+0 packets dropped by kernel
+</code></pre><h3 id="使用源和目的地址过滤"><a href="#使用源和目的地址过滤" class="headerlink" title="使用源和目的地址过滤"></a>使用源和目的地址过滤</h3><pre><code>tcpdump src 2.3.4.6
+tcpdump dst 3.4.5.6
+</code></pre><h3 id="过滤某个子网的数据包"><a href="#过滤某个子网的数据包" class="headerlink" title="过滤某个子网的数据包"></a>过滤某个子网的数据包</h3><pre><code>tcpdump net 1.2.3.0/24
+</code></pre><h3 id="过滤指定端口相关的流量"><a href="#过滤指定端口相关的流量" class="headerlink" title="过滤指定端口相关的流量"></a>过滤指定端口相关的流量</h3><pre><code>tcpdump port 3389
+tcpdump src port 1025
+</code></pre><h3 id="过滤指定协议的流量"><a href="#过滤指定协议的流量" class="headerlink" title="过滤指定协议的流量"></a>过滤指定协议的流量</h3><pre><code>tcpdump icmp
+</code></pre><h3 id="只显示IPV6流量"><a href="#只显示IPV6流量" class="headerlink" title="只显示IPV6流量"></a>只显示IPV6流量</h3><pre><code>tcpdump ip6
+</code></pre><h3 id="使用端口范围过滤"><a href="#使用端口范围过滤" class="headerlink" title="使用端口范围过滤"></a>使用端口范围过滤</h3><pre><code>tcpdump portrange 21-23
+</code></pre><h3 id="基于包的大小过滤流量"><a href="#基于包的大小过滤流量" class="headerlink" title="基于包的大小过滤流量"></a>基于包的大小过滤流量</h3><pre><code>tcpdump less 32
+tcpdump greater 64
+tcpdump &lt;=128
+</code></pre><h3 id="将捕获的内容写入文件"><a href="#将捕获的内容写入文件" class="headerlink" title="将捕获的内容写入文件"></a>将捕获的内容写入文件</h3><p>使用<code>-w</code>选项可以将捕获的数据包信息写入文件以供以后分析，这些文件就是著名的PCAP(PEE-cap)文件，很多应用都可以处理它。</p>
+<pre><code>tcpdump port 80 -w capture_file
+</code></pre><p>使用tcpdump加载之前保存的文件进行分析</p>
+<pre><code>tcpdump -r capture_file
+</code></pre><h2 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h2><p>使用组合语句可以完成更多高级的过滤。</p>
+<ul>
+<li>AND: <strong>and</strong> or <strong>&amp;&amp;</strong></li>
+<li>OR: <strong>or</strong> or <strong>||</strong></li>
+<li>EXCEPT: <strong>not</strong> or <strong>!</strong></li>
+</ul>
+<h3 id="过滤指定源IP和目的端口"><a href="#过滤指定源IP和目的端口" class="headerlink" title="过滤指定源IP和目的端口"></a>过滤指定源IP和目的端口</h3><pre><code>tcpdump -nnvvS src 10.5.2.3 and dst port 3389
+</code></pre><h3 id="过滤指定网络到另一个网络"><a href="#过滤指定网络到另一个网络" class="headerlink" title="过滤指定网络到另一个网络"></a>过滤指定网络到另一个网络</h3><p>比如下面这个，查看来自192.168.x.x的，并且目的为10.x或者172.16.x.x的所有流量，这里使用了hex输出，同时不解析主机名</p>
+<pre><code>tcpdump -nvX src net 192.168.0.0/16 and dst net 10.0.0.0/8 or 172.16.0.0/16
+</code></pre><h3 id="过滤到指定IP的非ICMP报文"><a href="#过滤到指定IP的非ICMP报文" class="headerlink" title="过滤到指定IP的非ICMP报文"></a>过滤到指定IP的非ICMP报文</h3><pre><code>tcpdump dst 192.168.0.2 and src net and not icmp
+</code></pre><h3 id="过滤来自非指定端口的指定主机的流量"><a href="#过滤来自非指定端口的指定主机的流量" class="headerlink" title="过滤来自非指定端口的指定主机的流量"></a>过滤来自非指定端口的指定主机的流量</h3><p>下面这个过滤出所有来自某个主机的非ssh流量</p>
+<pre><code>tcpdump -vv src mars and not dst port 22
+</code></pre><h3 id="复杂分组和特殊字符"><a href="#复杂分组和特殊字符" class="headerlink" title="复杂分组和特殊字符"></a>复杂分组和特殊字符</h3><p>当构建复杂的过滤规则的时候，使用单引号将规则放到一起是个很好的选择。特别是在包含<strong>()</strong>的规则中。比如下面的规则就是错误的，因为括号在shell中会被错误的解析，可以对括号使用<code>\</code>进行转义或者使用单引号</p>
+<pre><code>tcpdump src 10.0.2.3 and (dst port 3389 or 22)
+</code></pre><p>应该修改为</p>
+<pre><code>tcpdump &apos;src 10.0.2.3 and (dst port 3389 or 22)&apos;
+</code></pre><h3 id="隔离指定的TCP标识"><a href="#隔离指定的TCP标识" class="headerlink" title="隔离指定的TCP标识"></a>隔离指定的TCP标识</h3><p>可以基于指定的TCP标识（flag）来过滤流量。</p>
+<blockquote>
+<p>下面的过滤规则中，<strong>tcp[13]</strong> 表示在TCP header中的偏移位置13开始，后面的数字代表了匹配的byte数。</p>
+</blockquote>
+<h4 id="显示所有的URGENT-URG-包"><a href="#显示所有的URGENT-URG-包" class="headerlink" title="显示所有的URGENT (URG)包"></a>显示所有的URGENT (URG)包</h4><pre><code>tcpdump &apos;tcp[13] &amp; 32!=0&apos;
+</code></pre><h4 id="显示所有的ACKNOWLEDGE-ACK-包"><a href="#显示所有的ACKNOWLEDGE-ACK-包" class="headerlink" title="显示所有的ACKNOWLEDGE (ACK)包"></a>显示所有的ACKNOWLEDGE (ACK)包</h4><pre><code>tcpdump &apos;tcp[13] &amp; 16!=0&apos;
+</code></pre><h4 id="显示所有的PUSH-PSH-包"><a href="#显示所有的PUSH-PSH-包" class="headerlink" title="显示所有的PUSH(PSH)包"></a>显示所有的PUSH(PSH)包</h4><pre><code>tcpdump &apos;tcp[13] &amp; 8!=0&apos;
+</code></pre><h4 id="显示所有的RESET-RST-包"><a href="#显示所有的RESET-RST-包" class="headerlink" title="显示所有的RESET(RST)包"></a>显示所有的RESET(RST)包</h4><pre><code>tcpdump &apos;tcp[13] &amp; 4!=0&apos;
+</code></pre><h4 id="显示所有的SYNCHRONIZE-SYN-包"><a href="#显示所有的SYNCHRONIZE-SYN-包" class="headerlink" title="显示所有的SYNCHRONIZE (SYN) 包"></a>显示所有的SYNCHRONIZE (SYN) 包</h4><pre><code>tcpdump &apos;tcp[13] &amp; 2!=0&apos;
+</code></pre><h4 id="显示所有的FINISH-FIN-包"><a href="#显示所有的FINISH-FIN-包" class="headerlink" title="显示所有的FINISH(FIN)包"></a>显示所有的FINISH(FIN)包</h4><pre><code>tcpdump &apos;tcp[13] &amp; 1!=0&apos;
+</code></pre><h4 id="显示说有的SYNCHRONIZE-ACKNOWLEDGE-SYNACK-包"><a href="#显示说有的SYNCHRONIZE-ACKNOWLEDGE-SYNACK-包" class="headerlink" title="显示说有的SYNCHRONIZE/ACKNOWLEDGE (SYNACK)包"></a>显示说有的SYNCHRONIZE/ACKNOWLEDGE (SYNACK)包</h4><pre><code>tcpdump &apos;tcp[13]=18&apos;
+</code></pre><h4 id="其它方式"><a href="#其它方式" class="headerlink" title="其它方式"></a>其它方式</h4><p>与大多数工具一样，也可以使用下面这种方式来捕获指定TCP标识的流量</p>
+<pre><code>tcpdump &apos;tcp[tcpflags] == tcp-syn&apos;
+tcpdump &apos;tcp[tcpflags] == tcp-rst&apos;
+tcpdump &apos;tcp[tcpflags] == tcp-fin&apos;
+</code></pre><h3 id="识别重要流量"><a href="#识别重要流量" class="headerlink" title="识别重要流量"></a>识别重要流量</h3><p>最后，这里有一些重要的代码片段你可能需要，它们用于过滤指定的流量，例如畸形的或者恶意的流量。</p>
+<h4 id="过滤同时设置SYN和RST标识的包（这在正常情况下不应该发生）"><a href="#过滤同时设置SYN和RST标识的包（这在正常情况下不应该发生）" class="headerlink" title="过滤同时设置SYN和RST标识的包（这在正常情况下不应该发生）"></a>过滤同时设置SYN和RST标识的包（这在正常情况下不应该发生）</h4><pre><code>tcpdump &apos;tcp[13] = 6&apos;
+</code></pre><h4 id="过滤明文的HTTP-GET请求"><a href="#过滤明文的HTTP-GET请求" class="headerlink" title="过滤明文的HTTP GET请求"></a>过滤明文的HTTP GET请求</h4><pre><code>tcpdump &apos;tcp[32:4] = 0x47455420&apos;
+</code></pre><h4 id="通过横幅文本过滤任意端口的SSH连接"><a href="#通过横幅文本过滤任意端口的SSH连接" class="headerlink" title="通过横幅文本过滤任意端口的SSH连接"></a>通过横幅文本过滤任意端口的SSH连接</h4><pre><code>tcpdump &apos;tcp[(tcp[12]&gt;&gt;2):4] = 0x5353482D&apos;
+</code></pre><h4 id="过滤TTL小于10的包（通常情况下是存在问题或者在使用traceroute）"><a href="#过滤TTL小于10的包（通常情况下是存在问题或者在使用traceroute）" class="headerlink" title="过滤TTL小于10的包（通常情况下是存在问题或者在使用traceroute）"></a>过滤TTL小于10的包（通常情况下是存在问题或者在使用traceroute）</h4><pre><code>tcpdump &apos;ip[8] &lt; 10&apos;
+</code></pre><h4 id="过滤恶意的包"><a href="#过滤恶意的包" class="headerlink" title="过滤恶意的包"></a>过滤恶意的包</h4><pre><code>tcpdump &apos;ip[6] &amp; 128 != 0&apos;
+</code></pre><h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><ul>
+<li>变基</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout experiment</span><br><span class="line">git rebase -i master <span class="comment"># 这里是就是把experiment当做枝条剪下来，嫁接到master上，base到master上的意思</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>一般的合并</li>
+</ul>
+<p>把 dev 合并到 master</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+<ul>
+<li>分支重命名</li>
+</ul>
+<p>本地分支重命名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m new_name</span><br></pre></td></tr></table></figure></p>
+<p>远程分支重命名为本地分支名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m &lt;旧分支名&gt; &lt;新分支名&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>解绑上游分支</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --unset-upstream</span><br></pre></td></tr></table></figure>
+<ul>
+<li>clone 指定分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b dev_branch [url]</span><br></pre></td></tr></table></figure>
+<p>–depth=1 参数，克隆最近一次的 commit 的，体积会变小</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/xxx/xxx.git --depth=1</span><br></pre></td></tr></table></figure>
+<p>如果需要间该分支所有的 commit 克隆下来，需要</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch --unshallow</span><br></pre></td></tr></table></figure>
+<p>但会产生另外一个问题，他只会把默认分支 clone 下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git remote show origin</span><br><span class="line">git remote <span class="built_in">set</span>-branches --add origin <span class="string">'*'</span></span><br><span class="line">git fetch origin your_branch</span><br><span class="line">git checkout your_branch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>git bash 显示中文</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>取消文件跟踪</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached dir <span class="comment">#不跟踪，但保留文件</span></span><br><span class="line">git rm -r --f dir <span class="comment">#删除文件</span></span><br><span class="line">git rm --cached readme.txt <span class="comment">#不跟踪，但保留文件</span></span><br><span class="line">git rm --f readme.txt <span class="comment">#删除文件</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>远程仓库(remote)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin [url]</span><br><span class="line">git remote <span class="built_in">set</span>-url origin [url] <span class="comment"># 更换URL</span></span><br><span class="line">git remote –v <span class="comment"># 查看remote信息</span></span><br><span class="line">git remote remove origin <span class="comment"># 取消远程关联</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>推送分支</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br><span class="line">git push --all origin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>拉取远程分支</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git pull &lt;远程库名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line">git pull origin develop:develop <span class="comment">#拉取远程分支中的develop分支和本地develop分支merge</span></span><br><span class="line">git pull origin develop <span class="comment">#拉取远程分支中的develop与当前分支merge</span></span><br><span class="line">git pull --all</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看分支，并 checkout</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch –av</span><br><span class="line">git checkout -t origin/xxx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除本地分支</li>
+</ul>
+<p>删除 merge 了的分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d xxx</span><br></pre></td></tr></table></figure>
+<p>删除分支（不管它有没有 merge）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D xxx</span><br></pre></td></tr></table></figure>
+<p>删除远程分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete branch_name</span><br></pre></td></tr></table></figure>
+<p>远程分支已经删除，删除本地的origin/branch引用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d -r origin/branch</span><br></pre></td></tr></table></figure></p>
+<p>远程分支和本地代码都删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D -r origin/branch</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>补丁</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git format-patch xxxxxxxxxx</span><br><span class="line">git am *.patch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 commit 的 message</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend -m <span class="string">"I miss you"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>代理</li>
+</ul>
+<p>加代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">'socks5://127.0.0.1:1080'</span></span><br><span class="line">git config --global https.proxy <span class="string">'socks5://127.0.0.1:1080'</span></span><br><span class="line">git config http.proxy <span class="string">'socks5://127.0.0.1:1080'</span></span><br><span class="line">git config https.proxy <span class="string">'socks5://127.0.0.1:1080'</span></span><br><span class="line"><span class="comment">#只对github.com</span></span><br><span class="line">git config --global http.https://github.com.proxy socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<p>取消代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.https://github.com.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br><span class="line">git config --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Linux 配置文件</li>
+</ul>
+<p>编辑全局配置文件 <strong><em>~/.gitconfig</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">	email = you@example.com</span><br><span class="line">[https]</span><br><span class="line">    proxy = socks://192.168.15.1:10808</span><br><span class="line">[http]</span><br><span class="line">    proxy = socks://192.168.15.1:10808</span><br><span class="line">[core]</span><br><span class="line">	editor = vim</span><br></pre></td></tr></table></figure>
+<ul>
+<li>tag 使用</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git tag v1.0.0</span><br><span class="line">git push --tag</span><br><span class="line">git tag -d v1.0.0</span><br></pre></td></tr></table></figure>
+<h1 id="ROS-常用指令"><a href="#ROS-常用指令" class="headerlink" title="ROS 常用指令"></a>ROS 常用指令</h1><ul>
+<li>配置 ROS 环境变量（临时）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ROS_IP=192.168.15.147</span><br><span class="line"><span class="built_in">export</span> ROS_MASTER_URI=<span class="string">"http://192.168.15.3:11311"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置 ROS Log 等级</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rqt_logger_level</span><br></pre></td></tr></table></figure>
+<h1 id="Ubuntu-启动分析"><a href="#Ubuntu-启动分析" class="headerlink" title="Ubuntu 启动分析"></a>Ubuntu 启动分析</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemd-analyze plot &gt; boot.svg</span><br><span class="line">systemd-analyze blame</span><br></pre></td></tr></table></figure>
+<h1 id="分区自动挂载和格式化"><a href="#分区自动挂载和格式化" class="headerlink" title="分区自动挂载和格式化"></a>分区自动挂载和格式化</h1><p>格式化分区的时候使用 -E root_owner=1000:1000 选项<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs.ext4 -E root_owner=1000:1000 /dev/sda1</span><br></pre></td></tr></table></figure></p>
+<p>确认系统有autofs4内核模块的支持，如果没有将不能使用x-systemd.automount选项，编辑/etc/fstab，添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda1 /opt/storage ext4 nofail,user,<span class="built_in">exec</span>,rw,x-systemd.automount  0 0</span><br></pre></td></tr></table></figure></p>
+<p>x-systemd.automount选项是使用是挂载，没有使用的时候不挂载。</p>
+<h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><h2 id="netplan-网络配置"><a href="#netplan-网络配置" class="headerlink" title="netplan 网络配置"></a>netplan 网络配置</h2><p>编辑 <strong><em>/etc/netplan/50-cloud-init.yaml</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># This file is generated from information provided by</span><br><span class="line"># the datasource.  Changes to it will not persist across an instance.</span><br><span class="line"># To disable cloud-init&apos;s network configuration capabilities, write a file</span><br><span class="line"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span><br><span class="line"># network: &#123;config: disabled&#125;</span><br><span class="line">network:</span><br><span class="line">    version: 2</span><br><span class="line">    ethernets:</span><br><span class="line">        eth0:</span><br><span class="line">            dhcp4: true</span><br><span class="line">            match:</span><br><span class="line">                macaddress: b8:27:eb:d2:d7:1e</span><br><span class="line">            set-name: eth0</span><br><span class="line">            optional: true</span><br><span class="line">    wifis:</span><br><span class="line">        wlan0:</span><br><span class="line">            dhcp4: true</span><br><span class="line">            optional: true</span><br><span class="line">            access-points:</span><br><span class="line">                    &quot;Xiaomi_kaylordut_5G&quot;:</span><br><span class="line">                            password: &quot;kaylordut.com&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="IP-指令"><a href="#IP-指令" class="headerlink" title="IP 指令"></a>IP 指令</h2><ul>
+<li>ipv4:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip -4 addr</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ipv6:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip -6 addr</span><br></pre></td></tr></table></figure>
+<ul>
+<li>基本网卡操作:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ip addr show eth0</span><br><span class="line">ip addr list eth0</span><br><span class="line">ip addr show dev eth0</span><br><span class="line">sudo ip addr add 10.20.0.15/24 dev eth1</span><br><span class="line">sudo ip addr del 10.20.0.15/24 dev eth1</span><br><span class="line">sudo ip link set dev eth1 up</span><br><span class="line">sudo ip link set dev eth1 down</span><br><span class="line">ip r</span><br><span class="line">ip route</span><br><span class="line">ip route show</span><br><span class="line">ip route list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加和删除路由和默认网关</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ip route add default via 192.168.1.254</span><br><span class="line">ip route add 192.168.0.0/24 via 192.168.1.1 dev eth0</span><br><span class="line">ip route del 192.168.0.0/24 via 192.168.1.1 dev eth0</span><br><span class="line">route add default gw 192.168.1.254</span><br></pre></td></tr></table></figure>
+<ul>
+<li>特殊路由</li>
+</ul>
+<p>路由查找遵循“最长匹配原则”，当路由器收到一个IP数据包时，会将数据包的目的IP地址与自己本地路由表中的表项进行bit by bit的逐位查找，直到找到匹配度最长的条目，这叫最长匹配原则。<br>最简单的理解方式就是，当路由都匹配的时候，看看谁的子网掩码位数比较多。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip route add 0.0.0.0/1 via 192.168.23.1 dev eth0</span><br><span class="line">ip route add 128.0.0.0/1 via 192.168.23.1 dev eth0</span><br></pre></td></tr></table></figure>
+<h2 id="静态-IP-和-DNS-设置"><a href="#静态-IP-和-DNS-设置" class="headerlink" title="静态 IP 和 DNS 设置"></a>静态 IP 和 DNS 设置</h2><ul>
+<li>设置静态 IP</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hunter@hunter-Drone:~$ cat /etc/network/interfaces</span><br><span class="line"><span class="comment"># interfaces(5) file used by ifup(8) and ifdown(8)</span></span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.111.205</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.111.1</span><br><span class="line">dns-nameservers 192.168.111.1</span><br><span class="line">hwaddress ether 70:f7:54:55:0b:9a</span><br></pre></td></tr></table></figure>
+<p>为了支持 DNS，需要安装 apt install resolvconf ifupdown<br>如果为了保证有一个固定的 DNS，可以编辑 <strong><em>/etc/resolvconf/resolv.conf.d/tail</em></strong>, 添加一个默认 DNS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 114.114.114.114</span><br><span class="line">nameserver 119.29.29.29</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>桥接多网口</p>
+<p>安装桥接工具 <strong><em>sudo apt install bridge-utils</em></strong> , 生成网桥配置文件 <strong>/etc/network/interfaces.d/br0</strong> ，你会看到如下内容：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">auto br0</span><br><span class="line">iface br0 inet static</span><br><span class="line">bridge_ports eth0 eth1</span><br><span class="line">address 192.168.23.10</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.23.100</span><br><span class="line"></span><br><span class="line">auto br0:0</span><br><span class="line">iface br0:0 inet static</span><br><span class="line">address 192.168.100.101</span><br><span class="line">netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>interfaces的一些特殊配置  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre-up</td>
+<td>网卡启动前的动作</td>
+</tr>
+<tr>
+<td>up</td>
+<td>启动时的动作</td>
+</tr>
+<tr>
+<td>post-up</td>
+<td>启动后的动作</td>
+</tr>
+<tr>
+<td>down</td>
+<td>关闭时的动作</td>
+</tr>
+<tr>
+<td>pre-down</td>
+<td>关闭前的动作</td>
+</tr>
+<tr>
+<td>post-down</td>
+<td>关闭后的动作</td>
+</tr>
+</tbody>
+</table>
+<p>比如我们在网卡启动之后添加特殊的路由表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.23.10</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">post-up ip route add 128.0.0.0/1 via 192.168.23.1</span><br><span class="line">post-up ip route add 0.0.0.0/1 via 192.168.23.1</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>CAN 接口配置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">edge@host-63b5d7:/etc/network/interfaces.d$ cat can0</span><br><span class="line">auto can0</span><br><span class="line">iface can0 inet manual</span><br><span class="line">pre-up ip link <span class="built_in">set</span> <span class="variable">$IFACE</span> <span class="built_in">type</span> can bitrate 500000</span><br><span class="line">pre-up ip link <span class="built_in">set</span> <span class="variable">$IFACE</span> <span class="built_in">type</span> can restart-ms 1</span><br><span class="line">edge@host-63b5d7:/etc/network/interfaces.d$ ip -d -s link show can0</span><br><span class="line">5: can0: &lt;NOARP,UP,LOWER_UP,ECHO&gt; mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10</span><br><span class="line">    link/can  promiscuity 0</span><br><span class="line">    can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 1</span><br><span class="line">	  bitrate 498701 sample-point 0.870</span><br><span class="line">	  tq 26 prop-seg 33 phase-seg1 33 phase-seg2 10 sjw 1</span><br><span class="line">	  mttcan: tseg1 2..255 tseg2 0..127 sjw 1..127 brp 1..511 brp-inc 1</span><br><span class="line">	  mttcan: dtseg1 1..31 dtseg2 0..15 dsjw 1..15 dbrp 1..15 dbrp-inc 1</span><br><span class="line">	  clock 38400000numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535</span><br></pre></td></tr></table></figure>
+<h2 id="无线网络配置"><a href="#无线网络配置" class="headerlink" title="无线网络配置"></a>无线网络配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kaylor@kaylor-ThinkPad-T460:~$ wpa_passphrase ssid password</span><br><span class="line">network=&#123;</span><br><span class="line">	ssid=<span class="string">"ssid"</span></span><br><span class="line">	<span class="comment">#psk="password"</span></span><br><span class="line">	psk=44116ea881531996d8a23af58b376d70f196057429c258f529577a26e727ec1b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用以上指令生成配置文件，然后在 <strong><em>/etc/network/interfaces.d/</em></strong> 下建立 wlan0 文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">allow-hotplug wlan0</span><br><span class="line">iface wlan0 inet manual</span><br><span class="line">wpa-roam /etc/wpa_supplicant/wpa.conf</span><br><span class="line">iface default inet static</span><br><span class="line">address 192.168.20.200</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.20.1</span><br><span class="line">dns-nameservers 192.168.20.1</span><br></pre></td></tr></table></figure>
+<p>如果不使用指定的配置文件，也可以如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">auto wlan0</span><br><span class="line">allow-hotplug wlan0</span><br><span class="line">iface wlan0 inet dhcp</span><br><span class="line">wpa-ssid &quot;GUEST&quot;</span><br><span class="line">wpa-psk &quot;sangfor123&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="网络启动等待的问题"><a href="#网络启动等待的问题" class="headerlink" title="网络启动等待的问题"></a>网络启动等待的问题</h2><p>有时候设置了接口的DHCP服务，网络会一直在等待，最后只有网络服务启动超时了，才能启动系统。可以通过修改启动超时参数达到目的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">╰─ cat /lib/systemd/system/networking.service </span><br><span class="line">[Unit]</span><br><span class="line">Description=Raise network interfaces</span><br><span class="line">Documentation=man:interfaces(5)</span><br><span class="line">DefaultDependencies=no</span><br><span class="line">Requires=ifupdown-pre.service</span><br><span class="line">Wants=network.target</span><br><span class="line">After=<span class="built_in">local</span>-fs.target network-pre.target apparmor.service systemd-sysctl.service systemd-modules-load.service ifupdown-pre.service</span><br><span class="line">Before=network.target shutdown.target network-online.target</span><br><span class="line">Conflicts=shutdown.target</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">WantedBy=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">EnvironmentFile=-/etc/default/networking</span><br><span class="line">ExecStart=/sbin/ifup -a --<span class="built_in">read</span>-environment</span><br><span class="line">ExecStop=/sbin/ifdown -a --<span class="built_in">read</span>-environment --exclude=lo</span><br><span class="line">RemainAfterExit=<span class="literal">true</span></span><br><span class="line">TimeoutStartSec=5s</span><br></pre></td></tr></table></figure>
+<p>为再缩短启动时间，我们可以设置系统的systemd的默认启动超时时间，编辑 <strong>/etc/systemd/system.conf</strong>, 添加以下内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DefaultTimeoutStartSec=10s</span><br><span class="line">DefaultTimeoutStopSec=10s</span><br></pre></td></tr></table></figure></p>
+<h2 id="NetworkManager-管理相关"><a href="#NetworkManager-管理相关" class="headerlink" title="NetworkManager 管理相关"></a>NetworkManager 管理相关</h2><h3 id="永久不管理接口"><a href="#永久不管理接口" class="headerlink" title="永久不管理接口"></a>永久不管理接口</h3><ul>
+<li>查看网卡状态</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli device status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑文件 /etc/NetworkManager/conf.d/99-unmanaged-devices.conf<br>NetworkManager 的系统配置文件可能的位置还有 <strong><em>/lib/NetworkManager/conf.d/</em></strong> 和 <strong><em>/usr/lib/NetworkManager/conf.d/</em></strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[keyfile]</span><br><span class="line">unmanaged-devices=interface-name:interface_1;interface-name:interface_2;...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启服务</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload NetworkManager</span><br></pre></td></tr></table></figure>
+<h3 id="临时更改接口管理状态"><a href="#临时更改接口管理状态" class="headerlink" title="临时更改接口管理状态"></a>临时更改接口管理状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli device <span class="built_in">set</span> enp1s0 managed no/yes</span><br></pre></td></tr></table></figure>
+<h2 id="NAT-转发设置"><a href="#NAT-转发设置" class="headerlink" title="NAT 转发设置"></a>NAT 转发设置</h2><p>使用主机作为网关给其他设备上网</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"Forward setting"</span></span><br><span class="line">sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE</span><br><span class="line">sudo iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line">sudo iptables -A FORWARD -s 192.168.111.0/24 -j ACCEPT</span><br><span class="line">sudo sysctl -w net.ipv4.ip_forward=1</span><br></pre></td></tr></table></figure>
+<h2 id="iw-指令-无线网络"><a href="#iw-指令-无线网络" class="headerlink" title="iw 指令 (无线网络)"></a>iw 指令 (无线网络)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">iw help    # 帮助</span><br><span class="line">iw list    # 获得所有设备的功能，如带宽信息（2.4GHz，和5GHz），和802.11n的信息</span><br><span class="line">iw dev wlan0 scan    # 扫描</span><br><span class="line">iw event    # 监听事件</span><br><span class="line">iw dev wlan0 link    # 获得链路状态</span><br><span class="line">iw wlan0 connect foo    # 连接到已禁用加密的AP，这里它的SSID是foo</span><br><span class="line">iw wlan0 connect foo 2432  # 假设你有两个AP SSID 都是 foo ，你知道你要连接的是在 2432 频道</span><br><span class="line">iw wlan0 connect foo keys 0:abcde d:1:0011223344    # 连接到使用WEP的AP</span><br><span class="line">iw dev wlan1 station dump    # 获取station 的统计信息</span><br><span class="line">iw dev wlan1 station get     # 获得station对应的peer统计信息</span><br><span class="line">iw wlan0 set bitrates legacy-2.4 12 18 24    # 修改传输比特率</span><br><span class="line">iw dev wlan0 set bitrates mcs-5 4    # 修改tx HT MCS的比特率</span><br><span class="line">iw dev wlan0 set bitrates mcs-2.4 10</span><br><span class="line">iw dev wlan0 set bitrates mcs-5    # 清除所有 tx 比特率和设置的东西来恢复正常</span><br><span class="line">iw dev  set txpower  &lt;auto|fixed|limit&gt; [&lt;tx power in mBm&gt;]   #设置传输功率</span><br><span class="line">iw phy  set txpower  &lt;auto|fixed|limit&gt; [&lt;tx power in mBm&gt;]   #设置传输功率</span><br><span class="line">iw dev wlan0 set power_save on  #设置省电模式</span><br><span class="line">iw dev wlan0 get power_save  #查询当前的节电设定</span><br><span class="line">iw phy phy0 interface add moni0 type monitor  #添加一个 monitor 接口</span><br><span class="line">iw wlan0 info #查看当前网络状态</span><br><span class="line">iw phy0 info #查看phy0物理网卡信息</span><br></pre></td></tr></table></figure>
+<h1 id="Python-的简易-httpserver"><a href="#Python-的简易-httpserver" class="headerlink" title="Python 的简易 httpserver"></a>Python 的简易 httpserver</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m SimpleHTTPServer 8080</span><br><span class="line">python3 -m http.server 8080</span><br></pre></td></tr></table></figure>
+<h1 id="Udev-检查指令"><a href="#Udev-检查指令" class="headerlink" title="Udev 检查指令"></a>Udev 检查指令</h1><p>查看某个设备的详细信息，如/dev/video0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">udevadm info -a /dev/video0</span><br></pre></td></tr></table></figure>
+<p>编辑匹配规则（/etc/udev/rules.d/10-local.rules）:<br>规则中只能包含单个父设备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#map cameras to clear names</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;Drive Camera&quot;, SYMLINK+=&quot;drive&quot;</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;PTZ Camera&quot;, SYMLINK+=&quot;ptz&quot;</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;Arm Camera&quot;, SYMLINK+=&quot;armCam&quot;</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;manufacturer&#125;==&quot;RoboteX&quot;, ATTRS&#123;product&#125;==&quot;USB2.0 Camera&quot;, SYMLINK+=&quot;radCam&quot;</span><br><span class="line">#map storage device to clear name</span><br><span class="line">KERNEL==&quot;mmcblk?p1&quot;, ATTRS&#123;vendor&#125;==&quot;0x8086&quot;, ATTRS&#123;device&#125;==&quot;0x0f16&quot;, SYMLINK+=&quot;storage&quot;</span><br><span class="line">#KERNEL==&quot;mmcblk?p2&quot;, SYMLINK+=&quot;storage&quot;</span><br><span class="line">KERNEL==&quot;sd?1&quot;, KERNELS==&quot;1-4.4:1.0&quot;, SYMLINK+=&quot;storage&quot;</span><br><span class="line"></span><br><span class="line">KERNEL==&quot;wlan*&quot;, SUBSYSTEMS==&quot;usb&quot;, NAME=&quot;wfb&quot;</span><br></pre></td></tr></table></figure>
+<p>重命名网卡</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">KERNEL==&quot;wlan*&quot;, SUBSYSTEMS==&quot;sdio&quot;, NAME=&quot;hostapd&quot;</span><br><span class="line">KERNEL==&quot;wlan*&quot;, SUBSYSTEMS==&quot;usb&quot;, NAME=&quot;wfb&quot;</span><br></pre></td></tr></table></figure>
+<p>触发规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo udevadm trigger</span><br></pre></td></tr></table></figure>
+<h1 id="查看文件夹大小"><a href="#查看文件夹大小" class="headerlink" title="查看文件夹大小"></a>查看文件夹大小</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">du</span><br><span class="line">du --max-depth=0 ./</span><br><span class="line">du -k ./</span><br><span class="line">du -m ./</span><br><span class="line">du -h ./</span><br></pre></td></tr></table></figure>
+<h1 id="dd-指令"><a href="#dd-指令" class="headerlink" title="dd 指令"></a>dd 指令</h1><ul>
+<li>生成空的 image 和扩容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=disk.img bs=1M count=256 <span class="comment">#生成256MBytes的image</span></span><br><span class="line">cat blank.img &gt;&gt; old.img <span class="comment">#将blank.img追加到old.img之后</span></span><br></pre></td></tr></table></figure>
+<p>追加之后的扩容操作，需要参考接下来的“<strong><em>使用 parted 扩容分区</em></strong>”，对 image 进行分区，请参考我的另一个文章<a href="https://blog.kaylordut.com/2021/08/07/%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9A%84image/#more"><strong><em>制作一个空的 image</em></strong></a></p>
+<ul>
+<li>烧写 image</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip -c kaylor.img.gz | dd of=/dev/xxx bs=20M</span><br></pre></td></tr></table></figure>
+<h1 id="使用-parted-扩容分区"><a href="#使用-parted-扩容分区" class="headerlink" title="使用 parted 扩容分区"></a>使用 parted 扩容分区</h1><ul>
+<li>修改分区表</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo parted /dev/sdb</span><br></pre></td></tr></table></figure>
+<p>打印信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">GNU Parted 3.2</span><br><span class="line">Using /dev/sdb</span><br><span class="line">Welcome to GNU Parted! Type &apos;help&apos; to view a list of commands.</span><br><span class="line">(parted) p</span><br><span class="line">Model: Multiple Card Reader (scsi)</span><br><span class="line">Disk /dev/sdb: 15.8GB</span><br><span class="line">Sector size (logical/physical): 512B/512B</span><br><span class="line">Partition Table: msdos</span><br><span class="line">Disk Flags:</span><br><span class="line"></span><br><span class="line">Number  Start  End     Size    Type     File system  Flags</span><br><span class="line"> 1      154kB  52.4MB  52.3MB  primary  ext2         boot</span><br><span class="line"></span><br><span class="line">(parted) resizepart 1</span><br><span class="line">Warning: Partition /dev/sdb1 is being used. Are you sure you want to continue?</span><br><span class="line">Yes/No? Yes</span><br><span class="line">End?  [52.4MB]? 15.8G</span><br><span class="line">(parted) p</span><br><span class="line">Model: Multiple Card Reader (scsi)</span><br><span class="line">Disk /dev/sdb: 15.8GB</span><br><span class="line">Sector size (logical/physical): 512B/512B</span><br><span class="line">Partition Table: msdos</span><br><span class="line">Disk Flags:</span><br><span class="line"></span><br><span class="line">Number  Start  End     Size    Type     File system  Flags</span><br><span class="line"> 1      154kB  15.8GB  15.8GB  primary  ext2         boot</span><br><span class="line"></span><br><span class="line">(parted) q</span><br><span class="line">Information: You may need to update /etc/fstab.</span><br></pre></td></tr></table></figure>
+<p>上述的指令可以复合成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo parted -s /dev/sdb resizepart 1 15.8G</span><br></pre></td></tr></table></figure>
+<ul>
+<li>恢复文件系统</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo e2fsck -f /dev/sdb1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>扩容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo resize2fs /dev/sdb1</span><br></pre></td></tr></table></figure>
+<h1 id="APT"><a href="#APT" class="headerlink" title="APT"></a>APT</h1><ul>
+<li>列出软件包可用版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-cache madison package-name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看当前apt配置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-config dump</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个指令可以过滤Install，设置一下apt默认的安装设置,比如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">❯ cat /etc/apt/apt.conf.d/99user               </span><br><span class="line">APT::Install-Recommends <span class="string">"0"</span>;</span><br><span class="line">APT::Install-Suggests <span class="string">"0"</span>;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>查看某个软件包的可用版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt policy syslog-ng</span><br><span class="line">apt policy <span class="comment"># 可以打印</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Package: *</span><br><span class="line">Pin: release a=ubuntu-updates <span class="comment"># 可以是用apt policy获取相关信息</span></span><br><span class="line">Pin-Priority: 999</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新安装某个包的时候，询问是否覆盖配置文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt reinstall package -o Dpkg::Options::=<span class="string">"--force-confask"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="GDB设置"><a href="#GDB设置" class="headerlink" title="GDB设置"></a>GDB设置</h1><ul>
+<li><p>设置ulimited</p>
+<ol>
+<li><p>临时设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">❯ <span class="built_in">ulimit</span> -c</span><br><span class="line">0</span><br><span class="line">❯ <span class="built_in">ulimit</span> -c unlimited</span><br><span class="line">❯ <span class="built_in">ulimit</span> -c          </span><br><span class="line">unlimited</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>永久设置<br>编辑/etc/security/limits.conf文件，在文件末尾添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* soft core unlimited</span><br><span class="line">* hard core unlimited</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>设置coredump文件格式和位置<br>在/etc/sysctl.conf中添加 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel.core_pattern = ./core_%e_%t_%p</span><br><span class="line">kernel.core_uses_pid = 0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><h2 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker ps -l <span class="comment">#查看上一次运行的容器</span></span><br><span class="line">docker ps -a <span class="comment">#查看历史运行的容器</span></span><br><span class="line">docker run -i -t ubuntu bash <span class="comment">#运行ubuntu， -i表示标准输出， -t表示生成tty， bash是运行的指令</span></span><br><span class="line">docker inspecet 唯一ID或者容器名字 <span class="comment">#返回容器的信息</span></span><br><span class="line">docker run --name=your_name -it ubuntu bash <span class="comment">#定义容器的名字</span></span><br><span class="line">docker start -i container_name <span class="comment">#重新启动停止的容器</span></span><br><span class="line">docker rm 容器的ID/容器名 <span class="comment">#删除已经停止的容器</span></span><br></pre></td></tr></table></figure>
+<h2 id="守护式容器"><a href="#守护式容器" class="headerlink" title="守护式容器"></a>守护式容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t ubuntu /bin/bash <span class="comment">#启动之后使用Ctrl+P 和 Ctrl+Q</span></span><br><span class="line">docker attach 容器ID/容器名 <span class="comment">#重新进入退出的容器</span></span><br><span class="line"></span><br><span class="line">docker run -d CONTAINER [COMMAND] [argv ...] <span class="comment">#后台启动容器，返回Docker守护进程分配的ID</span></span><br><span class="line"></span><br><span class="line">docker logs [-f] [-t] [--tail] CONTAINER</span><br><span class="line"><span class="comment"># -f --follow=true|false default:false</span></span><br><span class="line"><span class="comment"># -t --timestamps=true|false default:false</span></span><br><span class="line"><span class="comment"># --tail="all"</span></span><br><span class="line"></span><br><span class="line">docker top <span class="comment">#查看运行情况</span></span><br><span class="line">docker <span class="built_in">exec</span> [-d] [-t] [-t] CONTAINER_ID/NAME [COMMAND] [argv ...] <span class="comment">#在运行的容器中启动新的进程</span></span><br><span class="line">docker stop CONTAINER_NAME/ID <span class="comment"># 发送一个停止信号</span></span><br><span class="line">docker <span class="built_in">kill</span> CONTAINER_NAME_ID <span class="comment"># 直接停止容器</span></span><br></pre></td></tr></table></figure>
+<h2 id="容器端口映射"><a href="#容器端口映射" class="headerlink" title="容器端口映射"></a>容器端口映射</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dodker run -P -i -t ubuntu /bin/bash <span class="comment">#-P --publish-all=true|false default: false</span></span><br><span class="line">docker run -p 80 -i -t ubuntu /bin/bash  <span class="comment"># -p --publish=[] 指定端口</span></span><br><span class="line">docker run -p 8080:80 -i -t ubuntu /bin/bash</span><br><span class="line">docker run -p 0.0.0.0:80 -i -t ubuntu /bin/bash</span><br><span class="line">docker run -p 0.0.0.0:8080:80 -i -t ubuntu /bin/bash</span><br><span class="line">docker port CONTAINER_NAME/ID <span class="comment">#查看端口映射情况</span></span><br></pre></td></tr></table></figure>
+<h2 id="跨平台使用-docker"><a href="#跨平台使用-docker" class="headerlink" title="跨平台使用 docker"></a>跨平台使用 docker</h2><p>运行特权容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm --privileged docker/binfmt:66f9012c56a8316f9244ffd7622d7c21c1f6f28d</span><br></pre></td></tr></table></figure>
+<p>查看支持的 CPU 信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al /proc/sys/fs/binfmt_misc/</span><br></pre></td></tr></table></figure>
+<h2 id="主机文件夹映射"><a href="#主机文件夹映射" class="headerlink" title="主机文件夹映射"></a>主机文件夹映射</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v /home/kaylor/wifibroadcast/:/data --name rpi_env kaylor/rpi-env:20210507 /bin/bash</span><br></pre></td></tr></table></figure>
+<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker images [options] [repository]</span><br><span class="line">-a, --all=<span class="literal">false</span> <span class="comment">#显示所有镜像，包括中间镜像</span></span><br><span class="line">-f, --filter=[]</span><br><span class="line">--no-trunc=<span class="literal">false</span> <span class="comment">#不截断ID</span></span><br><span class="line">-q, --quiet=<span class="literal">false</span> <span class="comment">#只显示ID</span></span><br><span class="line"></span><br><span class="line">docker rmi [options] IMAGE</span><br><span class="line">-f, --force=<span class="literal">false</span> <span class="comment">#强制删除</span></span><br><span class="line">--no-prune=<span class="literal">false</span> <span class="comment">#保留未打标签的父镜像</span></span><br><span class="line"></span><br><span class="line">docker rmi <span class="variable">$&#123;docker images -q ubuntu&#125;</span> <span class="comment">#删除ubuntu的所有镜像</span></span><br></pre></td></tr></table></figure>
+<h2 id="查找-Images"><a href="#查找-Images" class="headerlink" title="查找 Images"></a>查找 Images</h2><ul>
+<li>从网站查找<br><a href="https://registry.hub.docker.com" target="_blank" rel="noopener">https://registry.hub.docker.com</a></li>
+<li>使用命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search [options] term <span class="comment">#最多返回25个结果</span></span><br><span class="line">--automated=<span class="literal">false</span></span><br><span class="line">--no-trunc-false</span><br><span class="line">-s, --stars=0</span><br></pre></td></tr></table></figure>
+<h2 id="拉取-Images"><a href="#拉取-Images" class="headerlink" title="拉取 Images"></a>拉取 Images</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull [options] NAME[:TAG]</span><br><span class="line">-a, -all-tags=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push repository</span><br></pre></td></tr></table></figure>
+<h2 id="配置国内镜像地址"><a href="#配置国内镜像地址" class="headerlink" title="配置国内镜像地址"></a>配置国内镜像地址</h2><p>编辑 <strong><em>/etc/docker/daemon.json</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker commit <span class="comment">#通过容器构建</span></span><br><span class="line">docker commit [options] CONTAINER [REPOSITORY[:TAG]]</span><br><span class="line"><span class="comment"># -a, --author=""</span></span><br><span class="line"><span class="comment"># -m, --message="" Commit message</span></span><br><span class="line"><span class="comment"># -p, --pause=true Pause container during commit</span></span><br><span class="line">docker build <span class="comment">#通过Dockerfile文件构造</span></span><br><span class="line">docker build [options] PATH | URL | -</span><br><span class="line"><span class="comment"># --force-rm=false</span></span><br><span class="line"><span class="comment"># --no-cache=false</span></span><br><span class="line"><span class="comment"># --pull=false</span></span><br><span class="line"><span class="comment"># -q, -quiet=false</span></span><br><span class="line"><span class="comment"># --rm=true</span></span><br><span class="line"><span class="comment"># -t,--tag=""</span></span><br></pre></td></tr></table></figure>
+<h2 id="Doker-的-C-S-模式"><a href="#Doker-的-C-S-模式" class="headerlink" title="Doker 的 C/S 模式"></a>Doker 的 C/S 模式</h2><ul>
+<li>Romote API</li>
+</ul>
+<p>unix:///var/run/docker.sock<br>tcp://host:port<br>fd://socketfd</p>
+<h2 id="Docker-的守护进程"><a href="#Docker-的守护进程" class="headerlink" title="Docker 的守护进程"></a>Docker 的守护进程</h2><p>docker -d [options]<br>-D, –debug=false<br>-e, –exec-driver=”native”<br>-g, –graph=”var/lib/docker”<br>–icc=true<br>-l, –log-level=”info”<br>–lable=[]<br>-p, –pidfile=””/var/run/docker.pid<br>-G, –group=”docker”<br>-H, –host=[]<br>–tls=false<br>–tlscacert=”/home/kaylor/.docker/ca.pem”<br>–tlscert=”/home/kaylor/.docker/cert.pem”<br>–tlskey=”/home/kaylor/.docker/key.pem”<br>–tlsverify=false<br>Registry 相关：<br>–insecure-registry=[]<br>–registry-mirror=[]<br>网络相关:<br>-b, –bridge=””<br>–bip=””<br>–fixed-cidr=””<br>–fixed-cidr-v6=””<br>–dns=[]<br>–dns-search=[]<br>–ip=0.0.0.0<br>–ip-forward=true<br>–ip-masq=true<br>–iptables=true<br>–ipv6=false<br>–mtu=0</p>
+<h2 id="Docker-环境变量"><a href="#Docker-环境变量" class="headerlink" title="Docker 环境变量"></a>Docker 环境变量</h2><p>export DOCKER_HOST=”tcp://x.x.x.x:2375”</p>
+<h2 id="镜像保存与加载"><a href="#镜像保存与加载" class="headerlink" title="镜像保存与加载"></a>镜像保存与加载</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker save -o 要保存的文件名 要保存的镜像</span><br><span class="line">$ docker save -o test.tar ubuntu</span><br><span class="line">docker load --input 加载的文件名</span><br></pre></td></tr></table></figure>
+<h2 id="dockerfile-指令"><a href="#dockerfile-指令" class="headerlink" title="dockerfile 指令"></a>dockerfile 指令</h2><p>Dockerfile 例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu:14.04</span><br><span class="line">MAINTAINER kaylor <span class="string">"kaylor@kaylordut.com"</span></span><br><span class="line">RUN apt update</span><br><span class="line">RUN apt install -y vim</span><br><span class="line">EXPOSE 80</span><br></pre></td></tr></table></figure>
+<ul>
+<li>FROM</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM &lt;image&gt;</span><br><span class="line">FROM &lt;image&gt;:&lt;tag&gt;</span><br></pre></td></tr></table></figure>
+<p>必须是 dockerfile 的第一条指令</p>
+<ul>
+<li>MAINTAINER</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MAINTAINER &lt;name&gt;</span><br></pre></td></tr></table></figure>
+<p>包含作者和联系信息</p>
+<ul>
+<li>RUN</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN &lt;<span class="built_in">command</span>&gt;</span><br><span class="line">shell 模式： /bin/sh -c <span class="built_in">command</span></span><br><span class="line">RUN <span class="built_in">echo</span> hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN [<span class="string">"executalbe"</span>, <span class="string">"param1"</span>, <span class="string">"param2"</span>]</span><br><span class="line"><span class="built_in">exec</span> 模式：</span><br><span class="line">RUN [<span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"echo hello"</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>EXPOSE</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE &lt;port&gt; [&lt;port&gt;...]</span><br></pre></td></tr></table></figure>
+<p>虽然我们在镜像构建中指定了暴露的端口号，但在容器运行时，我们仍需要手动的指定容器的端口映射，就像我们之前曾经使用的这个 docker run 命令。也就是说，在 dockerfile 中使用 expose 指令来指定的端口，只是告诉 Docker，该容器内的应用程序会使用特定的端口儿，但是出于安全的考虑，Docker 并不会自动地打开端口，是需要在使用时再 run 命令中添加对端口的映射指令。</p>
+<ul>
+<li>CMD</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CMD [<span class="string">"executalbe"</span>, <span class="string">"param1"</span>, <span class="string">"param2"</span>]</span><br><span class="line">CMD <span class="built_in">command</span> param1 param2</span><br><span class="line">CMD [<span class="string">"param1"</span>, <span class="string">"param2"</span>] <span class="comment">#作为ENTRYPOINT指令的默认参数</span></span><br></pre></td></tr></table></figure>
+<p>cmd 是指定容器运行时的默认指令，如果 docker run 带指令，会覆盖 cmd 的指令</p>
+<ul>
+<li>ENTRYPOINT</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ENTRYPOINT [<span class="string">"executalbe"</span>, <span class="string">"param1"</span>, <span class="string">"param2"</span>]</span><br><span class="line">ENTRYPOINT <span class="built_in">command</span> param1 param2</span><br></pre></td></tr></table></figure>
+<p>docker run 的指令不能覆盖该指令。</p>
+<ul>
+<li>ADD and COPY</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD/COPY src dest</span><br><span class="line">ADD/COPY [<span class="string">"src"</span>...<span class="string">"dest"</span>] <span class="comment">#路径中有空格也可以使用</span></span><br></pre></td></tr></table></figure>
+<p>add 包含 tar 的解压缩功能，复制推荐使用 copy</p>
+<ul>
+<li>VOLUME</li>
+<li>WORKDIR</li>
+<li>ENV</li>
+<li>USER</li>
+<li>ONBUILD</li>
+</ul>
+<h1 id="fswebcam-命令行拍照"><a href="#fswebcam-命令行拍照" class="headerlink" title="fswebcam 命令行拍照"></a>fswebcam 命令行拍照</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fswebcam -S 10 -r 640x480 --no-banner 1.jpg</span><br><span class="line"></span><br><span class="line">-S 跳过N帧</span><br><span class="line">-r 设置分辨率</span><br><span class="line">--no-banner 隐藏banner</span><br></pre></td></tr></table></figure>
+<h1 id="PVE-指令"><a href="#PVE-指令" class="headerlink" title="PVE 指令"></a>PVE 指令</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qm stop ID <span class="comment">#关机</span></span><br></pre></td></tr></table></figure>
+<h1 id="exec，-source-和-fork-的区别"><a href="#exec，-source-和-fork-的区别" class="headerlink" title="exec， source 和 fork 的区别"></a>exec， source 和 fork 的区别</h1><p>fork (/directory/script.sh) ：如果 shell 中包含执行命令，那么子命令并不影响父级的命令，在子命令执行完后再执行父级命令。子级的环境变量不会影响到父级。</p>
+<p>fork 是最普通的, 就是直接在脚本里面用 /directory/script.sh 来调用 script.sh 这个脚本. 运行的时候开一个 sub-shell 执行调用的脚本， sub-shell 执行的时候, parent-shell 还在。sub-shell 执行完毕后返回 parent-shell 。 sub-shell 从 parent-shell 继承环境变量.但是 sub-shell 中的环境变量不会带回 parent-shell 。整个执行的过程是 fork + exec + waitpid (此三者均为系统调用)。</p>
+<p>exec (exec /directory/script.sh) ：执行子级的命令后，不再执行父级命令。</p>
+<p>exec 与 fork 不同，不需要新开一个 sub-shell 来执行被调用的脚本. 被调用的脚本与父脚本在同一个 shell 内执行。但是使用 exec 调用一个新脚本以后, 父脚本中 exec 行之后的内容就不会再执行了。这是 exec 和 source 的区别。</p>
+<p>source (source /directory/script.sh) ：执行子级命令后继续执行父级命令，同时子级设置的环境变量会影响到父级的环境变量。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/vim/" rel="tag"># vim</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/ssh/" rel="tag"># ssh</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/28/VSCode和Clion一般设置/" rel="next" title="VSCode和Clion一般设置">
+                <i class="fa fa-chevron-left"></i> VSCode和Clion一般设置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/03/20/systemd相关/" rel="prev" title="Systemd相关">
+                Systemd相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Kaylor">
+            
+              <p class="site-author-name" itemprop="name">Kaylor</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/kaylorchen" title="GitHub &rarr; https://github.com/kaylorchen" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:jiapeng.chen@kaylordut.com" title="E-Mail &rarr; mailto:jiapeng.chen@kaylordut.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/kaylordut" title="Weibo &rarr; https://weibo.com/kaylordut" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gh指令说明"><span class="nav-number">1.</span> <span class="nav-text">gh指令说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MQTT服务器部署"><span class="nav-number">2.</span> <span class="nav-text">MQTT服务器部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用emqx"><span class="nav-number">2.1.</span> <span class="nav-text">使用emqx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统mqtt服务器"><span class="nav-number">2.2.</span> <span class="nav-text">传统mqtt服务器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ZSH-配置和-FZF-配置"><span class="nav-number">3.</span> <span class="nav-text">ZSH 配置和 FZF 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh-基本配置"><span class="nav-number">3.1.</span> <span class="nav-text">zsh 基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加插件"><span class="nav-number">3.2.</span> <span class="nav-text">添加插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私人化指令配置"><span class="nav-number">3.3.</span> <span class="nav-text">私人化指令配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置-fzf"><span class="nav-number">3.4.</span> <span class="nav-text">安装配置 fzf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与升级"><span class="nav-number">3.4.1.</span> <span class="nav-text">安装与升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础使用"><span class="nav-number">3.4.2.</span> <span class="nav-text">基础使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个性化配置"><span class="nav-number">3.4.3.</span> <span class="nav-text">个性化配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v4l2-ctl"><span class="nav-number">4.</span> <span class="nav-text">v4l2-ctl</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取支持的分辨率和编码格式"><span class="nav-number">4.1.</span> <span class="nav-text">获取支持的分辨率和编码格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示-Camera-所有信息-分辨率-Width-Height"><span class="nav-number">4.2.</span> <span class="nav-text">显示 Camera 所有信息(分辨率:Width/Height)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取支持的编码格式"><span class="nav-number">4.3.</span> <span class="nav-text">获取支持的编码格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取支持的-camera-设备"><span class="nav-number">4.4.</span> <span class="nav-text">获取支持的 camera 设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取摄像头控制参数"><span class="nav-number">4.5.</span> <span class="nav-text">获取摄像头控制参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Samba-相关"><span class="nav-number">5.</span> <span class="nav-text">Samba 相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载"><span class="nav-number">5.1.</span> <span class="nav-text">挂载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NFS-配置"><span class="nav-number">6.</span> <span class="nav-text">NFS 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-NFS"><span class="nav-number">6.1.</span> <span class="nav-text">安装 NFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置共享目录"><span class="nav-number">6.2.</span> <span class="nav-text">配置共享目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-mount"><span class="nav-number">6.3.</span> <span class="nav-text">客户端 mount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iptables-网络转发设置"><span class="nav-number">7.</span> <span class="nav-text">iptables 网络转发设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置内核转发"><span class="nav-number">7.1.</span> <span class="nav-text">设置内核转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables-指令说明"><span class="nav-number">7.2.</span> <span class="nav-text">iptables 指令说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PREROUTING-DNT"><span class="nav-number">7.2.1.</span> <span class="nav-text">PREROUTING(DNT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FORWARD"><span class="nav-number">7.2.2.</span> <span class="nav-text">FORWARD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POSTROUTING-SNAT"><span class="nav-number">7.2.3.</span> <span class="nav-text">POSTROUTING(SNAT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链操作"><span class="nav-number">7.2.4.</span> <span class="nav-text">链操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单-nat-路由器"><span class="nav-number">7.3.</span> <span class="nav-text">简单 nat 路由器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口转发"><span class="nav-number">7.4.</span> <span class="nav-text">端口转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存-iptables-指令"><span class="nav-number">7.5.</span> <span class="nav-text">保存 iptables 指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#日志相关"><span class="nav-number">8.</span> <span class="nav-text">日志相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令相关"><span class="nav-number">8.1.</span> <span class="nav-text">命令相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换系统log和开启log滚动"><span class="nav-number">8.2.</span> <span class="nav-text">更换系统log和开启log滚动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码中使用系统-log"><span class="nav-number">8.3.</span> <span class="nav-text">编码中使用系统 log</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#find-指令"><span class="nav-number">9.</span> <span class="nav-text">find 指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-内核编译指令"><span class="nav-number">10.</span> <span class="nav-text">Linux 内核编译指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nohup-指令"><span class="nav-number">11.</span> <span class="nav-text">nohup 指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户定制-USB-设备号驱动加载"><span class="nav-number">12.</span> <span class="nav-text">客户定制 USB 设备号驱动加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nload-分析网卡流量"><span class="nav-number">13.</span> <span class="nav-text">nload 分析网卡流量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH"><span class="nav-number">14.</span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端"><span class="nav-number">14.1.</span> <span class="nav-text">服务器端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-number">14.2.</span> <span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MacOS-ssh转发"><span class="nav-number">14.3.</span> <span class="nav-text">MacOS ssh转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#X11应用转发"><span class="nav-number">14.4.</span> <span class="nav-text">X11应用转发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TMUX"><span class="nav-number">15.</span> <span class="nav-text">TMUX</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VIM"><span class="nav-number">16.</span> <span class="nav-text">VIM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GRUB"><span class="nav-number">17.</span> <span class="nav-text">GRUB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户管理"><span class="nav-number">18.</span> <span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件传输"><span class="nav-number">19.</span> <span class="nav-text">文件传输</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络抓包"><span class="nav-number">20.</span> <span class="nav-text">网络抓包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">20.1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选项"><span class="nav-number">20.1.1.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式"><span class="nav-number">20.1.2.</span> <span class="nav-text">表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">20.2.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#捕获所有流量"><span class="nav-number">20.2.1.</span> <span class="nav-text">捕获所有流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定网卡接口"><span class="nav-number">20.2.2.</span> <span class="nav-text">指定网卡接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生输出"><span class="nav-number">20.2.3.</span> <span class="nav-text">原生输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看指定IP的流量"><span class="nav-number">20.2.4.</span> <span class="nav-text">查看指定IP的流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看更多的包信息，输出HEX"><span class="nav-number">20.2.5.</span> <span class="nav-text">查看更多的包信息，输出HEX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用源和目的地址过滤"><span class="nav-number">20.2.6.</span> <span class="nav-text">使用源和目的地址过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤某个子网的数据包"><span class="nav-number">20.2.7.</span> <span class="nav-text">过滤某个子网的数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤指定端口相关的流量"><span class="nav-number">20.2.8.</span> <span class="nav-text">过滤指定端口相关的流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤指定协议的流量"><span class="nav-number">20.2.9.</span> <span class="nav-text">过滤指定协议的流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只显示IPV6流量"><span class="nav-number">20.2.10.</span> <span class="nav-text">只显示IPV6流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用端口范围过滤"><span class="nav-number">20.2.11.</span> <span class="nav-text">使用端口范围过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于包的大小过滤流量"><span class="nav-number">20.2.12.</span> <span class="nav-text">基于包的大小过滤流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将捕获的内容写入文件"><span class="nav-number">20.2.13.</span> <span class="nav-text">将捕获的内容写入文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级"><span class="nav-number">20.3.</span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤指定源IP和目的端口"><span class="nav-number">20.3.1.</span> <span class="nav-text">过滤指定源IP和目的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤指定网络到另一个网络"><span class="nav-number">20.3.2.</span> <span class="nav-text">过滤指定网络到另一个网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤到指定IP的非ICMP报文"><span class="nav-number">20.3.3.</span> <span class="nav-text">过滤到指定IP的非ICMP报文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤来自非指定端口的指定主机的流量"><span class="nav-number">20.3.4.</span> <span class="nav-text">过滤来自非指定端口的指定主机的流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂分组和特殊字符"><span class="nav-number">20.3.5.</span> <span class="nav-text">复杂分组和特殊字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离指定的TCP标识"><span class="nav-number">20.3.6.</span> <span class="nav-text">隔离指定的TCP标识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示所有的URGENT-URG-包"><span class="nav-number">20.3.6.1.</span> <span class="nav-text">显示所有的URGENT (URG)包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示所有的ACKNOWLEDGE-ACK-包"><span class="nav-number">20.3.6.2.</span> <span class="nav-text">显示所有的ACKNOWLEDGE (ACK)包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示所有的PUSH-PSH-包"><span class="nav-number">20.3.6.3.</span> <span class="nav-text">显示所有的PUSH(PSH)包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示所有的RESET-RST-包"><span class="nav-number">20.3.6.4.</span> <span class="nav-text">显示所有的RESET(RST)包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示所有的SYNCHRONIZE-SYN-包"><span class="nav-number">20.3.6.5.</span> <span class="nav-text">显示所有的SYNCHRONIZE (SYN) 包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示所有的FINISH-FIN-包"><span class="nav-number">20.3.6.6.</span> <span class="nav-text">显示所有的FINISH(FIN)包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示说有的SYNCHRONIZE-ACKNOWLEDGE-SYNACK-包"><span class="nav-number">20.3.6.7.</span> <span class="nav-text">显示说有的SYNCHRONIZE/ACKNOWLEDGE (SYNACK)包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它方式"><span class="nav-number">20.3.6.8.</span> <span class="nav-text">其它方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#识别重要流量"><span class="nav-number">20.3.7.</span> <span class="nav-text">识别重要流量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤同时设置SYN和RST标识的包（这在正常情况下不应该发生）"><span class="nav-number">20.3.7.1.</span> <span class="nav-text">过滤同时设置SYN和RST标识的包（这在正常情况下不应该发生）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤明文的HTTP-GET请求"><span class="nav-number">20.3.7.2.</span> <span class="nav-text">过滤明文的HTTP GET请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过横幅文本过滤任意端口的SSH连接"><span class="nav-number">20.3.7.3.</span> <span class="nav-text">通过横幅文本过滤任意端口的SSH连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤TTL小于10的包（通常情况下是存在问题或者在使用traceroute）"><span class="nav-number">20.3.7.4.</span> <span class="nav-text">过滤TTL小于10的包（通常情况下是存在问题或者在使用traceroute）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤恶意的包"><span class="nav-number">20.3.7.5.</span> <span class="nav-text">过滤恶意的包</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT"><span class="nav-number">21.</span> <span class="nav-text">GIT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ROS-常用指令"><span class="nav-number">22.</span> <span class="nav-text">ROS 常用指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu-启动分析"><span class="nav-number">23.</span> <span class="nav-text">Ubuntu 启动分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分区自动挂载和格式化"><span class="nav-number">24.</span> <span class="nav-text">分区自动挂载和格式化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络配置"><span class="nav-number">25.</span> <span class="nav-text">网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#netplan-网络配置"><span class="nav-number">25.1.</span> <span class="nav-text">netplan 网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP-指令"><span class="nav-number">25.2.</span> <span class="nav-text">IP 指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态-IP-和-DNS-设置"><span class="nav-number">25.3.</span> <span class="nav-text">静态 IP 和 DNS 设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无线网络配置"><span class="nav-number">25.4.</span> <span class="nav-text">无线网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络启动等待的问题"><span class="nav-number">25.5.</span> <span class="nav-text">网络启动等待的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NetworkManager-管理相关"><span class="nav-number">25.6.</span> <span class="nav-text">NetworkManager 管理相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#永久不管理接口"><span class="nav-number">25.6.1.</span> <span class="nav-text">永久不管理接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#临时更改接口管理状态"><span class="nav-number">25.6.2.</span> <span class="nav-text">临时更改接口管理状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-转发设置"><span class="nav-number">25.7.</span> <span class="nav-text">NAT 转发设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iw-指令-无线网络"><span class="nav-number">25.8.</span> <span class="nav-text">iw 指令 (无线网络)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-的简易-httpserver"><span class="nav-number">26.</span> <span class="nav-text">Python 的简易 httpserver</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Udev-检查指令"><span class="nav-number">27.</span> <span class="nav-text">Udev 检查指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看文件夹大小"><span class="nav-number">28.</span> <span class="nav-text">查看文件夹大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dd-指令"><span class="nav-number">29.</span> <span class="nav-text">dd 指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-parted-扩容分区"><span class="nav-number">30.</span> <span class="nav-text">使用 parted 扩容分区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#APT"><span class="nav-number">31.</span> <span class="nav-text">APT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GDB设置"><span class="nav-number">32.</span> <span class="nav-text">GDB设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker"><span class="nav-number">33.</span> <span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本指令"><span class="nav-number">33.1.</span> <span class="nav-text">基本指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#守护式容器"><span class="nav-number">33.2.</span> <span class="nav-text">守护式容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器端口映射"><span class="nav-number">33.3.</span> <span class="nav-text">容器端口映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨平台使用-docker"><span class="nav-number">33.4.</span> <span class="nav-text">跨平台使用 docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主机文件夹映射"><span class="nav-number">33.5.</span> <span class="nav-text">主机文件夹映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像"><span class="nav-number">33.6.</span> <span class="nav-text">镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找-Images"><span class="nav-number">33.7.</span> <span class="nav-text">查找 Images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉取-Images"><span class="nav-number">33.8.</span> <span class="nav-text">拉取 Images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送镜像"><span class="nav-number">33.9.</span> <span class="nav-text">推送镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置国内镜像地址"><span class="nav-number">33.10.</span> <span class="nav-text">配置国内镜像地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建镜像"><span class="nav-number">33.11.</span> <span class="nav-text">构建镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Doker-的-C-S-模式"><span class="nav-number">33.12.</span> <span class="nav-text">Doker 的 C/S 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-的守护进程"><span class="nav-number">33.13.</span> <span class="nav-text">Docker 的守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-环境变量"><span class="nav-number">33.14.</span> <span class="nav-text">Docker 环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像保存与加载"><span class="nav-number">33.15.</span> <span class="nav-text">镜像保存与加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dockerfile-指令"><span class="nav-number">33.16.</span> <span class="nav-text">dockerfile 指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fswebcam-命令行拍照"><span class="nav-number">34.</span> <span class="nav-text">fswebcam 命令行拍照</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PVE-指令"><span class="nav-number">35.</span> <span class="nav-text">PVE 指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exec，-source-和-fork-的区别"><span class="nav-number">36.</span> <span class="nav-text">exec， source 和 fork 的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kaylor</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 's7hjnxeNNcP6yUXrbjEXWE7X-gzGzoHsz',
+    appKey: 'u0hQS7Na1SLNIL21G1fU0NAu',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'en' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
