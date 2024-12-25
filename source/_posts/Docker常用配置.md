@@ -72,6 +72,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
 
 ```bash
 usermod -a -G docker username
+newgrp docker # 及时生效
 reboot
 ```
 
