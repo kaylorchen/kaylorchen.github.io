@@ -1,0 +1,7 @@
+{
+  "remoteURL": "ssh://git@shenzhen.kaylordut.com:10022/kaylor/kaylorchen.github.io.git",
+  "gitLocation": "",
+  "syncinterval": 0,
+  "isSyncOnLoad": false,
+  "checkStatusOnLoad": true
+}
