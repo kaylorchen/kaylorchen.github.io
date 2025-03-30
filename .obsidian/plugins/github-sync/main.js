@@ -4735,7 +4735,7 @@ var GHSyncPlugin = class extends import_obsidian.Plugin {
     }
     new import_obsidian.Notice("GitHub Sync: Successfully set remote origin url");
     try {
-      await git.pull("origin", "main", { "--no-rebase": null }, (err, update) => {
+      await git.pull("origin", "hexo", { "--no-rebase": null }, (err, update) => {
         if (update) {
           new import_obsidian.Notice("GitHub Sync: Pulled " + update.summary.changes + " changes");
         }
@@ -4758,7 +4758,7 @@ var GHSyncPlugin = class extends import_obsidian.Plugin {
     }
     if (!clean) {
       try {
-        git.push("origin", "main", ["-u"]);
+        git.push("origin", "hexo", ["-u"]);
         new import_obsidian.Notice("GitHub Sync: Pushed on " + msg);
       } catch (e) {
         new import_obsidian.Notice(e, 1e4);
@@ -4775,7 +4775,7 @@ var GHSyncPlugin = class extends import_obsidian.Plugin {
         trimmed: false
       };
       git = simpleGit(simpleGitOptions);
-      await git.branch({ "--set-upstream-to": "origin/main" });
+      await git.branch({ "--set-upstream-to": "origin/hexo" });
       let statusUponOpening = await git.fetch().status();
       if (statusUponOpening.behind > 0) {
         if (this.settings.isSyncOnLoad == true) {
